@@ -25,13 +25,16 @@ Step 2：Prepare the necessary files.
 All these files (subdirectories) should be organized under a common working direcotry together with the all .py scripts.
 You can find all example files corresponding to the belowmentioned files.
 1. All .fastq files under one directory.
+
 2. The sgRNA-library file that is a csv formate file containing the header line, in which three are three columns that are in order of id, sequence and gene respectively, and each line uses a comma as delimiter. 
 If negative control sgRNAs are within this synthetic library, name them whatever you like (NCx for example) and assign '0' at 'gene' column of these sgRNAs. 
 (For example :
 	id,sequence,gene
 	sgRNA1,ATCCCCCCCCCCGGGGG,recA
-	sgRNA2,ACTGCCCCGGGGCCCCC,recA)
-This file can be found as an output of the library design subpackage.It should be noted that '-' should be eliminated from any id.
+	sgRNA2,ACTGCCCCGGGGCCCCC,recA
+	NC1,AAAAAAAAAAAAAAAAAAAA,0)
+This file can be found as an output of the library design subpackage. It should be noted that '-' should be eliminated from any id.
+
 3. The experiment design file. This file is used to distinguish between the initial (before selection), stressed and control (after selection) conditions with tab as delimiter. 
 Each row refers to a seqeuncing library and each column refers to a contidtion. '1' indicates the association between library and condition. All libraries under one common condition are regarded as biological replicates and read count for one sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. At least one library should be assigned as initial condition (before selection). Initial library will be used to exclude sgRNAs with poor representation from further analysis to ensure statistical robustness based on customized threshold (see below). Usually, keep cell library before selection to prepare initial seqeuncing library. Otherwise, you can use particular library under control condition as initial library (assume no sgRNA inhibits or improves cell growth together with dCas9 in this control condition).   
 (For example:
@@ -45,7 +48,8 @@ Each row refers to a seqeuncing library and each column refers to a contidtion. 
 	MOPS_C1_R2_1	0	1	0	0	0
 	MOPS_C2_R1_1	0	0	0	1	0
 	MOPS_C2_R2_1	0	0	0	1	0)
-4. Flat file of sgRNA position information in gene, this file is used to for the method for hit-gene calling. If not choose the method for hit gene calling according to position ,please not prepare the file. The file is a TXT file without title containing three columns that are in order of gene name, sgRNA name and the relative position of sgRNA in the gene，and each line uses a tab as a delimiter.
+	
+4. Flat file of sgRNA position (relative location of sgRNA in ORF of relevant target gene, see paper for details) information in gene, this file is in current version for hit-gene calling because generally sgRNAs locating at 5' of ORF exhbited better knockdown activity. The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene，and each line uses a tab as a delimiter.
 (For example :
 	rsmE	rsmE_9	0.0122950819672
 	rsmE	rsmE_10	0.0136612021858
@@ -57,6 +61,7 @@ Each row refers to a seqeuncing library and each column refers to a contidtion. 
 	acnA	acnA_441	0.164798206278
 	acnA	acnA_459	0.171524663677
 	acnA	acnA_477	0.178251121076)
+This file can be found as an output of the library design subpackage.
 
 5. Operon list file.This file is used to statistic the sgRNA on the level of Operon.If you do not want to do it ,you do not prepare this file. The file with title is made consist of three columns, and they are Operon numbering, Operon name and the genes that are contained by Operon. The file formate
  is that each line uses a tab as a delimiter, and the genes are separated by commas in each line.
