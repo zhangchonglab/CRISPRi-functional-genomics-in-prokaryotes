@@ -95,6 +95,14 @@ forward_suffixseq: several (4-10) nucleotides downstream (in the Cas9 binding mo
 
 sample-label: the label for each sequencing library seperated by comma. The order of the label corresponds to the order of the .fastq file names specified by the 'fastq' option. Hence, the total number of label should be tha same as that of file names. See example configure file to understand this intuitively. Note that the labels specified here should be the same as the library name defined in the experiment design file (see above). 
 
+sgrna-len: number of nucleotides of the variable (protospacer) region of the sgRNA. It is specified in the library design. Note that the length specified here should be consistent with that of the sgRNA-library file (see above). default: 20.
+
+list-seq: the name of the sgRNA-library file (see above).
+
+experiment_configure: the name of the experiment design file (see above).
+
+control_setting: sgRNAs used as control to calculate the statistics of the gene-phenotype association. Two options: 'NC' and 'all'. In the case where negative control sgRNAs were included in the synthetic library during the selection experiment, 'NC' is recommanded. In other cases where no negative control sgRNAs are available, 'all' should be specified. We highy recommand to include negative control sgRNAs during the experiment and data analysis, because this option significantly improves the statistical robustness of the result. Note that when 'NC' is specified here, negative control sgRNAs should be included in the sgRNA-library file (see above).
+
 Step 4：Run the script
 
 Examples
