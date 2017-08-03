@@ -1,5 +1,5 @@
 
-label 要和design中的label一致。
+The sample label should be consistent with the labels in design part.
 ========================
 CRISPR-Sequence-Analysis 
 ========================
@@ -10,7 +10,7 @@ Step 1：Installation
 ============
 1. Install Python version 2.7 or above 
 2. Install BioPython version 1.57 or above
-3. Install Spicy version 0.17.1 or above
+3. Install Scipy version 0.17.1 or above
 4. Install Matplotlib version 2.0.0 or above
 5. Install Numpy version 2.0.0 or above
 
