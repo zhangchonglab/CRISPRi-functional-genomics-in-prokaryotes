@@ -101,10 +101,19 @@ list-seq: the name of the sgRNA-library file (see above).
 
 experiment_configure: the name of the experiment design file (see above).
 
-control_setting: sgRNAs used as control to calculate the statistics of the gene-phenotype association. Two options: 'NC' and 'all'. In the case where negative control sgRNAs were included in the synthetic library during the selection experiment, 'NC' is recommanded. In other cases where no negative control sgRNAs are available, 'all' should be specified. We highy recommand to include negative control sgRNAs during the experiment and data analysis, because this option significantly improves the statistical robustness of the result. Note that when 'NC' is specified here, negative control sgRNAs should be included in the sgRNA-library file (see above).
+control_setting: sgRNAs used as control to calculate the statistics of the gene-phenotype association. Two options: 'NC' or 'all'. In the case where negative control sgRNAs were included in the synthetic library during the selection experiment, 'NC' is recommanded. In other cases where no negative control sgRNAs are available, 'all' should be specified. We highy recommand to include negative control sgRNAs during the experiment and data analysis, because this option significantly improves the statistical robustness of the result. Note that when 'NC' is specified here, negative control sgRNAs should be included in the sgRNA-library file (see above).
+
+FDR_threshold: FDR (False discovery rate) threshold to call significant phenotype-associated genes. Default: 0.05. FOr details to calculate FDR for each gene-phenotype association, see the paper.
+
+hit_gene_calling: method to call hit gene associated with particular phenotype. Two options: 'position' or 'all'. Due to the fact we found that sgRNAs targeting to the 5' of ORF exhibited better repression activity, 'position' method is more recommanded. For details, see the paper.
+
+gene_sgRNA_position: name of the flat file of sgRNA position (see above).
+
+Operon_gene_List: name of the operon file (see above).
 
 Step 4：Run the script
 
-Examples
+Open the command line window, cd to the working directory and run the pipeline.
 --------
+cd working_directory (the directory containing all necessary files mentioned above and .py scripts)
 python CRISPRscreen_main.py configure.txt
