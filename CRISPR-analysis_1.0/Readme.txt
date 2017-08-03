@@ -21,13 +21,14 @@ Step 1：Installation
 4. Install Matplotlib version 2.0.0 or above
 5. Install Numpy version 2.0.0 or above
 
-Step 2：Prepare the file 
-1. The fastq file contain the sgRNA sequence .
-2. The sgRNA-library file that is a csv formate file containing the title, in which three are three columns that are in order of id, sequence and gene respectively, and each line uses a comma as a delimiter.
+Step 2：Prepare the necessary files
+1. All .fastq files.
+2. The sgRNA-library file that is a csv formate file containing the header line, in which three are three columns that are in order of id, sequence and gene respectively, and each line uses a comma as delimiter.
 (For example :
 	id,sequence,gene
 	sgRNA1,ATCCCCCCCCCCGGGGG,recA
 	sgRNA2,ACTGCCCCGGGGCCCCC,recA)
+This file can be found as an output of the library design subpackage.
 3. The experiment design file. This file is used to distinguish between the control and experimental groups and each line uses a tab as a delimiter.
 (For example:
 	Library/Condition	initial	stress1	control1	stress2	control2
