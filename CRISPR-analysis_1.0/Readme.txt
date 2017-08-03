@@ -85,7 +85,15 @@ Step 3: Edit the configure file, which is used to set all the necessary paramete
 
 prefix: Prefix used for naming of all output files.
 
-fastqpath: directory
+fastqpath: directory under which there are all .fastq files
+
+fastq: the name of .fastq files to be processed under 'fastqpath'. The files can be fastq.gz or .fastq format. Multiple .fastq file names are seperated by ',' (comma).
+
+forward_prefixseq: several (4-10) nucleotides upstream (usually the last several nucleotides in promoter) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be within the prepared sequencing library.
+
+forward_suffixseq: several (4-10) nucleotides downstream (in the Cas9 binding motif) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be within the prepared sequencing library.
+
+sample-label: the label for each sequencing library seperated by comma. The order of the label corresponds to the order of the .fastq file names specified by the 'fastq' option. Hence, the total number of label should be tha same as that of file names. See example configure file to understand this intuitively. Note that the labels specified here should be the same as the library name defined in the experiment design file (see above). 
 
 Step 4：Run the script
 
