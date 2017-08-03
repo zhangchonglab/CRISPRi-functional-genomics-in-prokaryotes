@@ -1,0 +1,70 @@
+
+label 要和design中的label一致。
+========================
+CRISPR-Sequence-Analysis 
+========================
+Utilities to work with the sgRNA-library sequencing analysis 
+
+
+Step 1：Installation
+============
+1. Install Python version 2.7 or above 
+2. Install BioPython version 1.57 or above
+3. Install Spicy version 0.17.1 or above
+4. Install Matplotlib version 2.0.0 or above
+5. Install Numpy version 2.0.0 or above
+
+Step 2：Prepare the file 
+1. The fastq file contain the sgRNA sequence .
+2. The sgRNA-library file that is a csv formate file containing the title, in which three are three columns that are in order of id, sequence and gene respectively, and each line uses a comma as a delimiter.
+(For example :
+	id,sequence,gene
+	sgRNA1,ATCCCCCCCCCCGGGGG,recA
+	sgRNA2,ACTGCCCCGGGGCCCCC,recA)
+3. The experiment design file. This file is used to distinguish between the control and experimental groups and each line uses a tab as a delimiter.
+(For example:
+	Library/Condition	initial	stress1	control1	stress2	control2
+	M_LB_C1_R1_1	0	0	1	0	0
+	M_LB_C1_R2_1	0	0	1	0	0
+	M_LB_C2_R1_1	0	0	0	0	1
+	M_LB_C2_R2_1	0	0	0	0	1
+	Minimal_Bf_1	1	0	0	0	0	
+	MOPS_C1_R1_1	0	1	0	0	0
+	MOPS_C1_R2_1	0	1	0	0	0
+	MOPS_C2_R1_1	0	0	0	1	0
+	MOPS_C2_R2_1	0	0	0	1	0)
+4. Flat file of sgRNA position information in gene, this file is used to for the method for hit-gene calling. If not choose the method for hit gene calling according to position ,please not prepare the file. The file is a TXT file without title containing three columns that are in order of gene name, sgRNA name and the relative position of sgRNA in the gene，and each line uses a tab as a delimiter.
+(For example :
+	rsmE	rsmE_9	0.0122950819672
+	rsmE	rsmE_10	0.0136612021858
+	rsmE	rsmE_11	0.0150273224044
+	rsmE	rsmE_12	0.016393442623
+	rsmE	rsmE_25	0.0341530054645
+	acnA	acnA_384	0.143497757848
+	acnA	acnA_395	0.147608370703
+	acnA	acnA_441	0.164798206278
+	acnA	acnA_459	0.171524663677
+	acnA	acnA_477	0.178251121076)
+
+5. Operon list file.This file is used to statistic the sgRNA on the level of Operon.If you do not want to do it ,you do not prepare this file. The file with title is made consist of three columns, and they are Operon numbering, Operon name and the genes that are contained by Operon. The file formate
+ is that each line uses a tab as a delimiter, and the genes are separated by commas in each line.
+(For example:
+		koid	name	op	
+		KO04087	TU-1463	dapE,ypfN
+		KO04086	TU-1462	yffB,dapE,ypfN
+		KO04089	TU-1466	bcp,gcvR
+		KO04735	TU-2623	ykfH,ykfF,yafX,ykfI,ykfG,yafW
+		KO04731	TU-2616	dinJ,yafQ
+		KO04956	TU-2970	ssuB,ssuE,ssuA,ssuD,ssuC
+		KO05736	TU-4212	damX,aroB,gph,trpS,dam,rpe,aroK
+		KO04558	TU-2303	ubiA,ubiC
+		KO04884	TU-2858	kdpF,kdpA,kdpC,kdpB
+		KO04554	TU-2299	yjbF,yjbE,yjbH,yjbG
+		KO06171	TU-Exp-0624	sfsA,dksA)
+
+Step 3：Set up the configure file
+Step 4：Run the script
+
+Examples
+--------
+python CRISPRscreen_main.py configure.txt
