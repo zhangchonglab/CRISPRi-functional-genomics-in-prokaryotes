@@ -21,15 +21,19 @@ Step 1：Installation
 4. Install Matplotlib version 2.0.0 or above
 5. Install Numpy version 2.0.0 or above
 
-Step 2：Prepare the necessary files, all these files (subdirectories) should be organized under a common working direcotry together with the all .py scripts.
+Step 2：Prepare the necessary files.
+All these files (subdirectories) should be organized under a common working direcotry together with the all .py scripts.
+You can find all example files corresponding to the belowmentioned files.
 1. All .fastq files under one directory.
-2. The sgRNA-library file that is a csv formate file containing the header line, in which three are three columns that are in order of id, sequence and gene respectively, and each line uses a comma as delimiter.
+2. The sgRNA-library file that is a csv formate file containing the header line, in which three are three columns that are in order of id, sequence and gene respectively, and each line uses a comma as delimiter. 
+If negative control sgRNAs are within this synthetic library, name them whatever you like (NCx for example) and assign '0' at 'gene' column of these sgRNAs. 
 (For example :
 	id,sequence,gene
 	sgRNA1,ATCCCCCCCCCCGGGGG,recA
 	sgRNA2,ACTGCCCCGGGGCCCCC,recA)
 This file can be found as an output of the library design subpackage.It should be noted that '-' should be eliminated from any id.
-3. The experiment design file. This file is used to distinguish between the initial (before selection), stressed and control (after selection) conditions with tab as delimiter. Each row refers to a seqeuncing library and each column refers to a contidtion. '1' indicates the association between library and condition. All libraries under one common condition are regarded as biological replicates and read count for one sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. At least one library should be assigned as initial condition (before selection). Initial library will be used to exclude sgRNAs with poor representation from further analysis to ensure statistical robustness based on customized threshold (see below). Usually, keep cell library before selection to prepare initial seqeuncing library. Otherwise, you can use particular library under control condition as initial library (assume no sgRNA inhibits or improves cell growth together with dCas9 in this control condition).   
+3. The experiment design file. This file is used to distinguish between the initial (before selection), stressed and control (after selection) conditions with tab as delimiter. 
+Each row refers to a seqeuncing library and each column refers to a contidtion. '1' indicates the association between library and condition. All libraries under one common condition are regarded as biological replicates and read count for one sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. At least one library should be assigned as initial condition (before selection). Initial library will be used to exclude sgRNAs with poor representation from further analysis to ensure statistical robustness based on customized threshold (see below). Usually, keep cell library before selection to prepare initial seqeuncing library. Otherwise, you can use particular library under control condition as initial library (assume no sgRNA inhibits or improves cell growth together with dCas9 in this control condition).   
 (For example:
 	Library/Condition	initial	stress1	control1	stress2	control2
 	M_LB_C1_R1_1	0	0	1	0	0
