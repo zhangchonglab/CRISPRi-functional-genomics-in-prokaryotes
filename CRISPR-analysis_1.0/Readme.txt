@@ -1,3 +1,19 @@
+======================
+synthetic sgRNA library based functional genomics for prokaryotes: NGS data processing part
+======================
+
+# ///////////////////////////////////////////////////////////////
+What is this?
+This python script collection is one of the two the software subpackages of CRISPRi functional genomics method for the prokaryotes, used for the NGS data processing and result visualization. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
+
+This script collection is user-friendly for experimental microbiologists with no or limited programming expertise. Generally, the user only need to download the script, edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment to initiate the design process. The output includes the .fasta file for sgRNA and statistics-describing tables as well as figures to intuitively overview the design result.
+
+# ///////////////////////////////////////////////////////////////
+Seqmap, developed by Jiang, H., Wong, W.H. (2008) Bioinformatics, 24(20) is used in our program for off-target identification and elimination. We have included an executable file of seqmap in the delivered zip file. If you want to use the updated version of seqmap, please follow the below instructions:
+1. Download the Seqmap source file (for all platform) from http://www-personal.umich.edu/~jianghui/seqmap/ and unzip it.
+2. Compile the source code following the README file under the unzipped directory of seqmap. 
+3. Copy and paste the resulted seqmap executable file to the working directory.
+
 
 The sample label should be consistent with the labels in design part.
 ========================
