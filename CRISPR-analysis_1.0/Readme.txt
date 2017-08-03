@@ -66,6 +66,35 @@ Step 2：Prepare the file
 		KO06171	TU-Exp-0624	sfsA,dksA)
 
 Step 3：Set up the configure file
+# ///////////////////////////////////////////////////////////////
+Step 3: Edit the configure file, which is used to set all the necessary parameters for the design. The default parameters are given in the original configure file under the unzipped directory. Generally, the program processes the gene one by one, search for all the possible sgRNAs for this gene meeting the requirement given in the configure file, eliminate the sgRNAs with potential off-target site(s), and store all the qualified sgRNAs. The brief description of all the parameters is given below. For more details, please check our paper (BioRxiv: https://doi.org/10.1101/129668).
+
+ORFcutoff: The sgRNA location within the gene coding region (ORF 5’=0.0, ORF 3’=1.0) (default=0.05, real number belonging to (0.0,1.0)). We found that the sgRNAs exhibited higher activities locating with the first 5% of ORF. Hence, by default, the sgRNA is designed at this region as many as possible.
+
+sgRNA_number: The number of sgRNA you want to design for each gene (default=10, positive integer accepted). According to the description of our paper, we found that in E. coli, 5-10 sgRNAs per gene is enough for pooled screen based functional genomics analysis. However, more sgRNAs provide benefit (stronger statistical significance) for genes with only moderate phenotypic effect.
+
+GCcontentMin: The minimal GC content of spacer region (percentage) (default=20, positive integer between 0~100 is accepted).
+
+GCcontentMax: The maximum GC content of spacer region (percentage) (default=80, positive integer between 0~100 and > GCcontentMin is accepted). 
+
+In previous reports about dCas9 based CRISPRi system, GC content of spacer region is correlated with sgRNA activity only in extreme GC content (reduce the activity). Hence, we suggested the above threshold. In situations of genome with relative low or high GC content, we suggested to adjust the threshold to (10,90). 
+
+off_threshold: Set the off target penalty threshold (default=20), sgRNAs with potential off-target site carrying penalty score lower than the threshold will be eliminated. For the detailed description of the scoring method, please check the paper. Briefly, we suggested off_threshold >= 20 for library design. In extreme situation where more sgRNAs are desired, the threshold can be decreased to 10.
+
+strand: Whether the sgRNA is designed targeting (binding) to the template or nontemplate stand of a coding gene (default=nontemplate, nontemplate or template is accepted). It is suggested by previous reports that dCas9 based CRISPRi system used in this work exhibited higher activity when targeting to non-template strand in ORF region.
+
+negative: Choose whether to design negative control sgRNAs (sgRNA with no significant target across the genome, which is used as negative control in pooled screen to determine the phenotypic effect and statistical power of each gene) for the experiment(yes or no， default=yes). We highly recommend to include the negative control sgRNAs in the pooled screen. For the description of negative control sgRNA usage, please see our paper.
+
+negative_number: The number of negative control sgRNA you want to design for the experiment.If negative option is no, select 0 for this option. The default is 400.
+
+targetFasta: Gene sequence file for genes of interest in .fasta format. It can be downloaded from NCBI ftp site for all protein-coding gene (.ffn suffix) or all RNA-coding genes (.frn suffix) encoded by a genome of particular microorganisms. The customized .fasta file for a focused library design can be extracted from the abovementioned files. It is noted that the naming of each gene in the customized .fasta file should follow that of .ffn or .frn file from NCBI.
+
+indexFile: The gene sequence annotation file. (.ptt suffix for protein-coding genes and .rnt suffix for RNA-coding genes).
+
+genome: The genome file (.fna suffix) used for off-target check. 
+
+prefix: Prefix used for naming of all output files.
+
 Step 4：Run the script
 
 Examples
