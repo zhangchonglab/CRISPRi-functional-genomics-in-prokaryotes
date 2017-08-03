@@ -1,10 +1,10 @@
 ======================
-sgRNA Design
+synthetic sgRNA library based functional genomics for prokaryotes: sgRNA library design part
 ======================
 
 # ///////////////////////////////////////////////////////////////
 What is this?
-This python script collection is used to design the sgRNA (library) for the prokaryotic genome. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
+This python script collection is one of the two the software subpackages of CRISPRi functional genomics method for the prokaryotes, used for genome-wide sgRNA library design. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
 
 This script collection is user-friendly for experimental microbiologists with no or limited programming expertise. Generally, the user only need to download the script, edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment to initiate the design process. The output includes the .fasta file for sgRNA and statistics-describing tables as well as figures to intuitively overview the design result.
 
