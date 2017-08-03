@@ -63,8 +63,8 @@ Each row refers to a seqeuncing library and each column refers to a contidtion. 
 	acnA	acnA_477	0.178251121076)
 This file can be found as an output of the library design subpackage.
 
-5. Operon list file.This file is used to statistic the sgRNA on the level of Operon.If you do not want to do it ,you do not prepare this file. The file with title is made consist of three columns, and they are Operon numbering, Operon name and the genes that are contained by Operon. The file formate
- is that each line uses a tab as a delimiter, and the genes are separated by commas in each line.
+5. Operon file. CRISPRi works at the transcription level, due to the unique structure of polycistronic operons in prokaryotic genomes, it is hard to figure our the true phenotype-associated genes when multiple genes in one polycistronic operon responses. To cope with this problem, we designed in this subpackage to reorganize the gene level statistics at the operon level as an option. If you are not interested in this step, please ignore this file and no need to prepare it. 
+The file has header line and is consisted of three columns: operon id, operon name and the genes in the operon. Tab is used as delimiter, and the genes are separated by commas in each line. We recommand to organize genes in one polycistronic operon according to the order from upstream to downstream. Gene names should be consistent with those in sgRNA-library file and sgRNA-position file.
 (For example:
 		koid	name	op	
 		KO04087	TU-1463	dapE,ypfN
