@@ -301,7 +301,7 @@ for i,condition in enumerate(stressed_conditionLst):
                 relative_abundance=Processed_sgRNADic[sgRNA]['Normalized_RelativeAbundanceChange'][condition]
                 NCsgRNA_dic[condition].append(relative_abundance)
         elif control_setting=='all':
-            relative_abundance=Processed_sgRNADic[sgRNA]['Normalzied_RelativeAbundanceChange'][condition]
+            relative_abundance=Processed_sgRNADic[sgRNA]['Normalized_RelativeAbundanceChange'][condition]
             NCsgRNA_dic[condition].append(relative_abundance)
     meanZ, stdZ = norm.fit(NCsgRNA_dic[condition])
     plt.hist(NCsgRNA_dic[condition],color=colors[i])
