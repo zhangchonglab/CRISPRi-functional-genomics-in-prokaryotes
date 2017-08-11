@@ -154,7 +154,11 @@ f.close()
 for sgRNA in processed_sgRNALst:
     Processed_sgRNADic[sgRNA]['RelativeAbundanceChange']={}
     for condition in stressed_conditionLst:
-        pair_number=condition[-1]
+        for i,letter in enumerate(condition[::-1]):
+            if not letter.isdigit():
+                number_position=i
+                break
+        pair_number=condition[len(condition)-number_position:]
         abundance_stress=Processed_sgRNADic[sgRNA]['ConditionAbundanceDic']['stress%s'%(pair_number)]
         abundance_control=Processed_sgRNADic[sgRNA]['ConditionAbundanceDic']['control%s'%(pair_number)]
         Processed_sgRNADic[sgRNA]['RelativeAbundanceChange'][condition]=abundance_stress-abundance_control
