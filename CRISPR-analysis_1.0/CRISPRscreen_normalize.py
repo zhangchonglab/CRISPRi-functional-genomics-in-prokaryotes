@@ -523,6 +523,8 @@ def CRISPRsgRNA_main(args):
         CRISPRsgRNA_processonefile(filename,args,dict0,undict0,sgRNADic,datastat[filename],prefix_nucl,suffix_nucl)
         CRISPRsgRNA_mergedict(mapdict,dict0)
         CRISPRsgRNA_mergedict(unmapdict,undict0)
+        del dict0
+        del undict0
     # write to file
     # generate the files
     list_files=args.output_prefix.split('/')
