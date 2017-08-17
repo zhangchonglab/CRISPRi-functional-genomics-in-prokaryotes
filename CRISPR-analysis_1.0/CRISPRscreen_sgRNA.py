@@ -154,7 +154,7 @@ f.close()
 for sgRNA in processed_sgRNALst:
     Processed_sgRNADic[sgRNA]['RelativeAbundanceChange']={}
     for condition in stressed_conditionLst:
-        pair_number=condition[-1]
+        pair_number=condition.split('stress')[1]
         abundance_stress=Processed_sgRNADic[sgRNA]['ConditionAbundanceDic']['stress%s'%(pair_number)]
         abundance_control=Processed_sgRNADic[sgRNA]['ConditionAbundanceDic']['control%s'%(pair_number)]
         Processed_sgRNADic[sgRNA]['RelativeAbundanceChange'][condition]=abundance_stress-abundance_control
