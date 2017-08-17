@@ -257,7 +257,6 @@ os.system('mkdir %s_results/%s_gene_statistics/'%(prefix,prefix))
 for condition in stressed_conditionLst:
     os.system('cat /dev/null > %s_results/%s_gene_statistics/%s_%s_gene_statistics.txt'%(prefix,prefix,prefix,condition))
     g=open('%s_results/%s_gene_statistics/%s_%s_gene_statistics.txt'%(prefix,prefix,prefix,condition),'r+')
-    g.write('%s\t%s\n'%(prefix,condition))
     g.write('gene\tMedian\tLog10Pvalue\tsgRNAnumber\tFDRvalue\n')
     for gene in processed_geneLst:
         if gene!='0':
