@@ -117,3 +117,7 @@ Open the command line window, cd to the working directory and run the pipeline.
 --------
 cd working_directory (the directory containing all necessary files mentioned above and .py scripts)
 python CRISPRscreen_main.py configure.txt
+
+# ///////////////////////////////////////////////////////////////
+Now Let's check the output files
+The output files would be all organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory.
