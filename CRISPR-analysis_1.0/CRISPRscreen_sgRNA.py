@@ -322,7 +322,7 @@ for i,condition in enumerate(stressed_conditionLst):
     data=np.array(NCsgRNA_dic[condition])
     bins=np.linspace(np.nanmin(data),np.nanmax(data),20)
     plt.hist(data,bins,color=colors[i])
-    plt.xlabel('Log2 (normalzied sgRNA relative abundance change)',fontsize=16)
+    plt.xlabel('Log2 (normalzied sgRNA relative abundance change)',fontsize=14)
     plt.ylabel('sgRNA number',fontsize=16)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
