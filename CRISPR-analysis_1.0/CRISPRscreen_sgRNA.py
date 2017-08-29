@@ -395,7 +395,7 @@ for condition in stressed_conditionLst:
     condition_name=stressed_conditionDic[condition]
     os.system('cat /dev/null > %s_results/%s_sgRNA_statistics/combined_condition_level/sgRNA_combined_%s_results.txt'%(prefix,prefix,condition_name))
     g=open('%s_results/%s_sgRNA_statistics/combined_condition_level/sgRNA_combined_%s_results.txt'%(prefix,prefix,condition_name),'r+')
-    g.write('sgRNA\tgene\t%s_relative_abundnace_change\t%s_normalized_change\t%s_Zscore\n'%(condition,condition,condition_name))
+    g.write('sgRNA\tgene\t%s_relative_abundnace_change\t%s_normalized_change\t%s_Zscore\n'%(condition_name,condition_name,condition_name))
     for sgRNA in Processed_sgRNADic:
         gene=Processed_sgRNADic[sgRNA]['Gene']
         relative_abundance_change=Processed_sgRNADic[sgRNA]['RelativeAbundanceChange'][condition]
