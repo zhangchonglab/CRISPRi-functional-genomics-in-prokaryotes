@@ -112,8 +112,8 @@ else:
 
 #number of reads in initial library that below this threshold won't be incoperated in to the following analysis pipleine 
 if 'ReadsThreshold' not in config or config['ReadsThreshold']=='':
-    ReadsThreshold=100
-    print('the default value of ReadsThreshold is 100!')
+    ReadsThreshold=20
+    print('the default value of ReadsThreshold is 20!')
 else:
     ReadsThreshold=config['ReadsThreshold']
 
@@ -188,6 +188,6 @@ print ('gene statistics calculation finalized')
 # ////////////////////////////////////////////////////////////////////
 # operon level statistics calculation
 if len(Operon_gene_List)!=0:
-    os.system('python CRISPRscreen_Operon.py %s %s %s 2>>error.log'%(Finish_result_geneDic,Operon_gene_List,prefix))
+    os.system('python CRISPRscreen_operon.py %s %s %s 2>>error.log'%(Finish_result_geneDic,Operon_gene_List,prefix))
 
 os.system('rm %s_results/*.pickle'%(prefix))
