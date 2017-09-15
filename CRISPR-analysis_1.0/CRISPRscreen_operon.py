@@ -93,7 +93,7 @@ for condition in Result_OperonDic:
 #output the RemoveGene
 for condition in RemoveGene:
     if len(RemoveGene[condition])!=0:
-        os.system('cat/dev/null > %s_results/%s_operon_statistics/%s_%s_RemoveGene_statistics.txt' %(prefix,prefix,prefix,condition))
+        os.system('cat /dev/null > %s_results/%s_operon_statistics/%s_%s_RemoveGene_statistics.txt' %(prefix,prefix,prefix,condition))
         with open('%s_results/%s_operon_statistics/%s_%s_RemoveGene_statistics.txt' %(prefix,prefix,prefix,condition),'r+') as f:
             f.write('%s\nGene'%(condition))
             for line in RemoveGene[condition]:
@@ -102,7 +102,7 @@ for condition in RemoveGene:
 #output the RemoveOperon
 for condition in RemoveOperon:
     if len(RemoveOperon[condition])!=0:
-        os.system('cat/dev/null > %s_results/%s_operon_statistics/%s_%s_RemoveOperon_statistics.txt' %(prefix,prefix,prefix,condition))
+        os.system('cat /dev/null > %s_results/%s_operon_statistics/%s_%s_RemoveOperon_statistics.txt' %(prefix,prefix,prefix,condition))
         with open('%s_results/%s_operon_statistics/%s_%s_RemoveOperon_statistics.txt' %(prefix,prefix,prefix,condition),'r+') as f:
             f.write('%s\nOperon'%(condition))
             for line in RemoveOperon[condition]:
