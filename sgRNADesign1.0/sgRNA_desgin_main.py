@@ -113,7 +113,7 @@ for line in f:
             start=location_item[:-1].split('c')[1].split('-')[0]
            
             if start not in genePositionLst:
-                print ('%s,Yes'%(start))
+                print ('%s,abnormal ORF start site!'%(start))
         else:
             start=location_item[:-1].split('-')[0]
         if start in genePositionLst:
