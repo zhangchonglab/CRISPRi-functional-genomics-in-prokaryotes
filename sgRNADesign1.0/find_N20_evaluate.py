@@ -62,7 +62,7 @@ def mismatch_position_identify(seqOn,seqOff):
         if seqOnRC[i]!=seqOffRC[i]:
             mismatchLst.append(i-2)
     return mismatchLst
-# thus, the output of this function is a list of position for mismatch with the terminal closed to that of PAM site as 1 position 
+# thus, the output of this function is a list of position for mismatch with the nucleotide in spacer region closest to PAM site as 1 position 
 # mismatch within NGG is thus -2, -1 and 0, will not be considered in the following function
 
 # scoring system to test the specificity of N20
