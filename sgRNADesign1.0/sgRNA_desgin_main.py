@@ -34,12 +34,12 @@ if GCcontentMax<=GCcontentMin:
     sys.exit()
 ####
 if int(itemDic['off_threshold'])<10:
-    print('please input the positive integer for off_threshold')
+    print('The threshold for offtarget (off_threshold) is too small! please give integer ~ [10, 40]')
     sys.exit()
 off_threshold=int(itemDic['off_threshold'])
 ####
 if float(itemDic['ORFcutoff'])>1 or float(itemDic['ORFcutoff'])<0:
-    print('please input the correct decimal for ORFcutoff')
+    print('ORFcutoff value is incorrect, please give real number ~ [0,1], 0.05 is recommended!')
     sys.exit()
 ORFcutoff=float(itemDic['ORFcutoff'])
 ####
@@ -47,12 +47,12 @@ PAM='NGG'
 ####
 strand=itemDic['strand']
 if strand!='template' and strand!='nontemplate':
-    print('please input the correct strand')
+    print('please input the correct strand to which the sgRNA-dCas9 binds (template or nontemplate)')
     sys.exit()
 ####
 negative=itemDic['negative']
 if negative!='yes' and negative!='no':
-    print('please input the correct negative')
+    print('Incorrect value for negative is identified! Please input yes or no for this parameter')
     sys.exit()
 ####
 negative_number=itemDic['negative_number']
