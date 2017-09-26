@@ -1,20 +1,3 @@
-# this script is used to design N20 for target nucl seq in a high-throughput fashion
-# in this case, all the target seqs are the ORF part and thus non-template strand is targeted
-
-# two input files:
-
-# target seq 
-# fasta format
-
-# target genome
-# fasta format
-
-# N20_number
-# a maximum number of N20 for each target gene
-
-# in the following part, for each target nulc seq, son function find_N20_evaluate.py is cited to compute N20 and eliminate those with potential drawbacks (off-target due to suffering mismatch, poly U/T, GC content, sgRNA structure disruption)
-
-# all the ok N20 is saved and returned back to this main function and written into the output file
 import os
 import sys
 import matplotlib.pyplot as plt
