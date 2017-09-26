@@ -12,15 +12,15 @@ blast_result_file=sys.argv[3]
 # first of all, ask the user to define the threshold that they want to use:
 # identity
 identity_thre=True
-identity=0.9
+identity=0.95
 print 'Identity: %s'%str(identity)
 # coverage for query
 queryCoverage_thre=True
-queryCoverage=0.9
+queryCoverage=0.95
 print 'queryCoverage: %s'%str(queryCoverage)
 # coverage for hit
 hitCoverage_thre=True
-hitCoverage=0.9
+hitCoverage=0.95
 print 'hitCoverage: %s'%str(hitCoverage)
 
 # now construct the query and hit length dic with data structure like this
