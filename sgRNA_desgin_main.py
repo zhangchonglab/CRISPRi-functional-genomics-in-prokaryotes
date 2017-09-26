@@ -155,7 +155,7 @@ def muticopy(varlist):
 def main(configureFile):
     varlist= configprocess(configureFile)
     if varlist['multiple'] and varlist['nongenome']:
-        print('The method is single copy')
+        print('The method regards every gene as one single copy in the genome')
         geneID_clusterLst,target_fasta_dic=nongenomic(varlist)
     elif varlist['multiple'] and not varlist['nongenome']:
         geneID_clusterLst,target_fasta_dic=muticopy(varlist) 
@@ -163,7 +163,6 @@ def main(configureFile):
         geneID_clusterLst,target_fasta_dic=nongenomic(varlist)
     else:
         geneID_clusterLst,target_fasta_dic=singlecopy(varlist)
-    print 'fastadic finished!!!'
     with open('%s.gene_statistics.txt'%(varlist['prefix']),'w') as m:
         m.write('gene_name\tgene_length\tsgRNA_number_in_gene\n')
     with open('%s.sgRNA_statistics.txt'%(varlist['prefix']),'w') as n:
