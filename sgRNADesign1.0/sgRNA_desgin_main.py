@@ -21,14 +21,17 @@ sgRNA_number=int(itemDic['sgRNA_number'])
 spacer_length=20
 ####
 if int(itemDic['GCcontentMin'])>100 or int(itemDic['GCcontentMin'])<0:
-    print('please input the positive integer for GCcontentMin')
+    print('please input proper integer ([0,100]) for GCcontentMin')
     sys.exit()
 GCcontentMin=int(itemDic['GCcontentMin'])
 ####
 if int(itemDic['GCcontentMax'])>100 or int(itemDic['GCcontentMax'])<0:
-    print('please input the positive integer for GCcontentMax')
+    print('please input proper integer ([0,100]) for GCcontentMax')
     sys.exit()
 GCcontentMax=int(itemDic['GCcontentMax'])
+if GCcontentMax<=GCcontentMin:
+    print('GCcontentMax is unexpectedly smaller than GCcontentMin!')
+    sys.exit()
 ####
 if int(itemDic['off_threshold'])<10:
     print('please input the positive integer for off_threshold')
