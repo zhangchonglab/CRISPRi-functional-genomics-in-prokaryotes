@@ -122,19 +122,16 @@ for line in f:
             flag=True
     elif flag:
         target_fasta_dic[geneID]+=line.rstrip()
-
-
-
 f.close()
 g.close()
 k.close()
 m.close()
+
 os.system('rm -r %s'%(prefix))
 os.system('mkdir -p %s/fordevelop'%(prefix))
 os.system('mv %s.gene_name.notconsistent.list.txt  %s/fordevelop'%(prefix,prefix))
 os.system('mv %s.gene_start.notconsistent.list.txt  %s/fordevelop'%(prefix,prefix))
 os.system('mv %s.RefSeq_geneID.txt  %s/fordevelop'%(prefix,prefix))
-print 'fastadic finished!!!'
 
 os.system('cat /dev/null > %s.fasta'%(prefix))
 g=open('%s.fasta'%(prefix),'r+')
