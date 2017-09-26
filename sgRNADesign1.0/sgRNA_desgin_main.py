@@ -199,7 +199,10 @@ plt.xlabel('sgRNA position(relative to CDS 5`)')
 plt.ylabel('sgRNA number')
 plt.title('The distrution of sgRNA position per gene')
 plt.savefig('%s/The_distrution_of_sgRNA_position_per_gene.png'%(prefix),dpi=1000)
+plt.clf()
 
+# /////////////////////////////////////
+# design negative control sgRNA
 if negative=='yes':
     os.system('python negativeControl.py %s %s %s %s %s %s'%(genome,negative_number,spacer_length,GCcontentMin,GCcontentMax,prefix))
     os.system('mkdir -p %s/negative'%(prefix))
