@@ -1,7 +1,3 @@
-#Operon file
-#operon1 name1 gene
-#operon2 name2 gene .. .. ..
-
 import os
 import sys
 import numpy as np
