@@ -1,0 +1,44 @@
+#prefix for naming of all files
+prefix	all
+#
+fastqpath	essential_data/
+fastq	dCas9R1.fq.gz	dCas9R2.fq.gz	NCR1.fq.gz	NCR2.fq.gz	slib1-10mixNC.fq.gz
+
+#
+forward_prefixseq	GCAC	
+
+#
+forward_suffixseq	GTTT
+
+#
+sample-label	dCas9R1	dCas9R2	NCR1	NCR2	slib1-10mixNC
+
+#specify the length of the sgRNAs (without PAM sequence)
+sgrna-len	20
+
+#Path to library design file (csv format, columns: id, sequence, gene)
+list-seq	CRISPRigenomeLib.csv
+
+#Sample labels in the design matrix must refer to the samples defined above
+experiment_configure	exp_essential_configure.txt
+
+#Names of experiment, used as final dataset names
+name_configure	naming_essential_configure.txt
+
+#
+control_setting	NC
+
+#FDR threshold for hit gene calling
+FDR_threshold	0.02
+
+#
+ReadsThreshold	20
+
+#method for hit gene calling
+hit_gene_calling	all
+
+#flat file of gene sgRNA position information
+gene_sgRNA_position	Lib1-10.position.txt
+
+# operon organization file
+Operon_gene_List	Ecoli_operon_new.txt
