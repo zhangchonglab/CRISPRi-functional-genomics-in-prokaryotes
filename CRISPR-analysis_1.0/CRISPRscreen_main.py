@@ -155,7 +155,7 @@ else:
 # normalize the maped sgRNA number
 os.system('cat /dev/null > error.log')
 outputname='%s_results/%s_count/%s'%(prefix,prefix,prefix)
-#os.system('python CRISPRscreen_normalize.py --list_seq %s --sample_label %s --output_prefix %s --prefix_nucl %s --suffix_nucl %s --variable_region_len %s --unmapped-to-file --fastq %s  2>>error.log'%(list_seq,sample_label,outputname,forward_prefixseq,forward_suffixseq,sgrna_len,fastq))
+os.system('python CRISPRscreen_normalize.py --list_seq %s --sample_label %s --output_prefix %s --prefix_nucl %s --suffix_nucl %s --variable_region_len %s --unmapped-to-file --fastq %s  2>>error.log'%(list_seq,sample_label,outputname,forward_prefixseq,forward_suffixseq,sgrna_len,fastq))
 print('normalization finalized')
 # ////////////////////////////////////////////////////////////////////
 # sgRNA level statistics calculation
