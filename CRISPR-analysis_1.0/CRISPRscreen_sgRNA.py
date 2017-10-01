@@ -1,18 +1,3 @@
-#  this script is the main function for CRISPR screen data analysis
-# input file
-
-# configure.file describes library information
-# .. initial stress1 control1
-# Lib1 1 0 0 0
-# Lib2 0 1 0 0
-# Lib3 0 0 1 0
-# ...
-
-# narmailized data
-# sgRNA gene Lib1 Lib2 Lib3
-# sgRNA gene abundance .. ..
-# sgRNA gene .. .. ..
-
 import os
 import sys
 import numpy as np
