@@ -85,10 +85,13 @@ slib1-10mixNC|1|0|0
 
 #### File 6: naming file (example_naming_configure.txt)
 To name output files related to different studied phenotypes, we design this naming file to give each phenotype a name.
-**This file has no header line and uses tab as delimiter. The number of phenotypes and phenotype ID in this file should be compatible with File 5, the experiment design file.**
+**This file has no header line and uses tab as delimiter.***
+The file has two columns, while the first is a key pointing to File 5 (the experiment design file) and the second defines the name for each phenotype. Hence, the items in the first column should be like 'stressX', thus compatible with File 5.
 
 stress1|essential
 -------|---------
+stress2|whatever you like
+stress3|whatever you like
 ...|...
 
 ///////////////////////////////////////////////////////////////
