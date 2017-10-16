@@ -18,13 +18,13 @@ The synthetic sgRNA plasmid library designed by the sgRNA-design subpackage can 
 ### Step 2：Prepare the necessary files.
 All these files (or subdirectories) should be organized under a common working directory together with the all .py scripts. The structure of the working directory is shown as below as the checklist:
 under a common working_dir/[example illustration of files under the working directory](./image/files_prepared_before_data_processing.png)
-
 Please check the example files post at GitHub, which are described as below.
 
-#### File 1: NGS .fastq files under data/ directory
+#### File 1: NGS files (.fastq or .fq extension) under one directory (example_data/all files)
 Note: Please try to keep the name of each file meaningful but as simple as possible, thus simplifying the preparation of configure file as described below.
 
-2. The sgRNA-library file that is a csv formate file containing the header line, in which three are three columns that are in order of id, sequence and gene respectively, and each line uses a comma as delimiter. 
+#### File 2: sgRNA library file (example_library.csv)
+The sgRNA library file is at .csv formate containing the header line, in which three are three columns that are in order of id, sequence and gene respectively, and **each line uses a comma as delimiter**. 
 If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of the library design subpackage. It should be noted that '-' should be eliminated from any id name.
 
 For example:
