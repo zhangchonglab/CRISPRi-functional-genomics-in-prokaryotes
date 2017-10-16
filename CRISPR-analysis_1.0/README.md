@@ -52,7 +52,7 @@ acnA|acnA_459|0.171524663677
 acnA|acnA_477|0.178251121076
 ...|...|...
 
-#### File 4: operon file (example_operon.txt) **This is optional**
+#### File 4: operon file (example_operon.txt) (optional)
 CRISPRi works at the transcription level, due to the unique structure of polycistronic operons in prokaryotic genomes. It is hard to figure out the true phenotype-associated genes coping with multiple genes in one polycistronic operon. To address this problem, during the design of this package, we reorganize the gene level statistics at the operon level as an option. If you are not interested in this step or in other cases that your microorganism do not have a available operon file, please ignore this and no need to prepare it. 
 **The file has a header line and uses tab as delimiter.** It is consisted of three columns: operon id, operon name and the genes in the operon. **Genes in one polycistronic operon are separated by comma**. If one gene is located at multiple operons, it is ok to just list all of them. We recommend to organize genes in one polycistronic operon according to the order from upstream to downstream. Gene names should be consistent with those in sgRNA library file (File 2) and sgRNA position file (File 3).
 
@@ -94,19 +94,19 @@ stress2|whatever you like
 stress3|whatever you like
 ...|...
 
-///////////////////////////////////////////////////////////////
-### Step 3: Set up the configure file
-Edit the configure file, which is used to set all the necessary parameters and path towards necessary files. The default parameters are given in the original example configure file. Generally, lines beginning with '#' is the annotation; other lines start with one word (name of this parameter) separated with the following (setting of this parameter) by a tab delimiter.
+### Step 3: Set up the configure file (example_configure.txt)
+The configure file is used to set all the necessary parameters and tell the program where to find some necessary files. 
+**This file is in a two-column format using tab as delimiter.** Generally, lines beginning with '#' is the annotation and will be skipped by the program; other lines start with one word (name of one parameter) separated with the following (setting of this parameter) by a tab delimiter. **The default parameters are given in the original example configure file (example_configure.txt).** We describe each parameter as below.
  
-prefix: Prefix used for naming of all output files, keep it simple without any ‘_’ or ‘-’. For example, ‘myscreen2017’ is fine.
+prefix: Prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
 
-fastqpath: directory under which all .fastq files are located. See step 2 and part 1 above.
+fastqpath: directory under which all NGS raw data (.fastq or .fq extension) files are located. See File 1 above.
 
-fastq: the name of .fastq files to be processed under 'fastqpath'. The files can be fastq.gz or .fastq format. Multiple .fastq file names are separated by ',' (comma).
+fastq: the names of NGS raw data (.fastq or .fq extension) files to be processed under 'fastqpath'. The files can also be compressed as .gz format. Multiple file names are separated by ',' (comma).
 
-forward_prefixseq: several (4-10) nucleotides upstream (usually the last several nucleotides in promoter) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the range of the PCR product during sequencing library preparation.
+forward_prefixseq: several (4-10) upstream nucleotides flanking (usually the last several nucleotides in promoter) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the range of the PCR product during sequencing library preparation.
 
-forward_suffixseq: several (4-10) nucleotides downstream (in the Cas9 binding motif) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the range of the PCR product during sequencing library preparation.
+forward_suffixseq: several (4-10) downstream nucleotides flanking (in the Cas9 binding motif) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the range of the PCR product during sequencing library preparation.
 
 sample-label: the label for each sequencing library separated by comma. The order of the label should correspond to the order of the .fastq file names specified by the 'fastq' option. Hence, the total number of label should be the same as that of file names. See example configure file to understand this intuitively. Note that the labels specified here should be the same as the library name defined in the experiment design file (see above, Step 2, Part 5).
 
