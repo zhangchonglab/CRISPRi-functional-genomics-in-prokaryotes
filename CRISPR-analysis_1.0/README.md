@@ -164,11 +164,14 @@ python CRISPRscreen_main.py configure.txt
 To test whether this pipeline works or not in your environment, we post a toy example together with the scripts and the example_configure.txt has been edit to make it compatible. For this test, cd to the working directory, type in: 
 python CRISPRscreen_main.py example_configure.txt
 
-The program will print message if some particular steps are finalized successfully as below:
+The program will print message if some particular steps are finalized successfully with the order below:
 
 normalization finalized
+
 sgRNA statistics calculation finalized
+
 gene statistics calculation finalized
+
 operon statistics calculation finalized
 
 The program will also create an 'error.log' file under the working directory, open this file to check whether anything wrong happens during the pipeline execution. Generally, no content in this file suggests the successful running of the pipeline. Please post your 'error.log' file if you cannot figure out the bugs when using this pipeline.
