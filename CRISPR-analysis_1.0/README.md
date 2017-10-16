@@ -40,7 +40,6 @@ Flat file of sgRNA position (relative location of sgRNA in the coding region) in
 This file is in current version for hit-gene calling because generally sgRNAs locating at 5' of ORF exhibited better knockdown activity as described in our work. The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene，and each line uses tab as delimiter. The name of sgRNAid and gene should be compatible with the sgRNA-library file as described above. Actually, you can also find both of these two files as output of the library design subpackage.
 
 rsmE|rsmE_9|0.0122950819672
-----|------|---------------
 rsmE|rsmE_10|0.0136612021858
 rsmE|rsmE_11|0.0150273224044
 rsmE|rsmE_12|0.016393442623
