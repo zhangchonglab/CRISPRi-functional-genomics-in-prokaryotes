@@ -3,7 +3,7 @@
 ## What is this?
 This python script collection is one of the two the software subpackages of CRISPRi functional genomics method for the prokaryotes, used for the NGS data processing and result visualization. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
 
-This script collection is user-friendly for experimental microbiologists with no or limited programming expertise. Generally, the user only need to download the script, edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment to initiate the design process. The output includes the statistics about result at sgRNA, gene and operon level of each stressed condition. Meanwhile, the Gini index profile of each library, the agreement of biological replicates, fitness distribution of negative sgRNA, FPR-(Log10P MWU test)*|fitness score| value curve and diverse visualization files are also presented.
+This script collection is user-friendly for experimental microbiologists with no or limited programming expertise. Generally, the user only need to download the script, edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment to initiate the design process. The output includes the statistics about result at sgRNA, gene and operon level of each stressed condition. Meanwhile, the Gini index profile of each library, the agreement of biological replicates, fitness distribution of negative sgRNA, FPR-score curve and diverse visualization files are also presented.
 
 ## General description of the algorithm and experiment
 The synthetic sgRNA plasmid library designed by the sgRNA-design subpackage can be transformed into prokaryotic cells expressing dCas9 protein. The resulting cell library can be subjected to stressed and control condition, and the plasmids after selection can be extracted and prepared for NGS library. With this protocol, we have a series of NGS data (.fastq) for each stressed and control condition. Each one can have one or more biological replicates. About the detailed protocol of the method, see https://doi.org/10.1101/129668 in BioRxiv. This program is used to convert these .fastq data to the gene-phenotype association profile.
@@ -25,13 +25,15 @@ Note: Please try to keep the name of each file meaningful but as simple as possi
 
 #### File 2: sgRNA library file (example_library.csv)
 The sgRNA library file is at .csv formate containing the header line, in which three are three columns that are in order of id, sequence and gene respectively, and **each line uses a comma as delimiter**. 
-If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of the library design subpackage. It should be noted that '-' should be eliminated from any id name.
+If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of the library design subpackage. It should be noted that **'-' should be eliminated from any id name**.
 
-For example:
-id,sequence,gene
-sgRNA1,ATCCCCCCCCCCGGGGG,recA
-sgRNA2,ACTGCCCCGGGGCCCCC,recA
-NC1,AAAAAAAAAAAAAAAAAAAA,0
+id|sequence|gene
+--|--------|----
+sgRNA1|ATCCCCCCCCCCGGGGG|recA
+sgRNA2|ACTGCCCCGGGGCCCCC|recA
+NC1|ACACACACACACACACACAC|0
+NC2|TGTGTGTGTGTGTGTGTGTG|0
+...|....................|..
 
 
 3. Flat file of sgRNA position (relative location of sgRNA in ORF of relevant target gene, see our paper for details) information in gene, this file is in current version for hit-gene calling because generally sgRNAs locating at 5' of ORF exhibited better knockdown activity as described in our work. The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene，and each line uses tab as delimiter. The name of sgRNAid and gene should be compatible with the sgRNA-library file as described above. Actually, you can also find both of these two files as output of the library design subpackage.
