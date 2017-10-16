@@ -6,7 +6,7 @@ synthetic sgRNA library based functional genomics for prokaryotes: NGS data proc
 What is this?
 This python script collection is one of the two the software subpackages of CRISPRi functional genomics method for the prokaryotes, used for the NGS data processing and result visualization. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
 
-This script collection is user-friendly for experimental microbiologists with no or limited programming expertise. Generally, the user only need to download the script, edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment to initiate the design process. The output includes the statistics about result at sgRNA, gene and operon level of each stressed condition. Meanwhile, the Gini index profile of each library, the agreement of biological replicates, fitness distribution of negative sgRNA, FDR-(Log10P)*(effect size) value curve and diverse visualization files are also presented.
+This script collection is user-friendly for experimental microbiologists with no or limited programming expertise. Generally, the user only need to download the script, edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment to initiate the design process. The output includes the statistics about result at sgRNA, gene and operon level of each stressed condition. Meanwhile, the Gini index profile of each library, the agreement of biological replicates, fitness distribution of negative sgRNA, FPR-(Log10P MWU test)*|fitness score| value curve and diverse visualization files are also presented.
 
 # ///////////////////////////////////////////////////////////////
 General description of the algorithm and experiment
@@ -24,6 +24,7 @@ Step 2：Prepare the necessary files.
 All these files (or subdirectories) should be organized under a common working directory together with the all .py scripts. The structure of the working directory is shown as below as the checklist.
 under a common working_dir/
 *.py rawdata_dir/*.fq library.csv sgRNA-position.txt operon.csv(optional) experiment.txt naming.txt configure.txt
+[an example illustration of files under the working directory as a checklist](./image/files_prepared_before_data_processing.png)
 
 Please check the example files in your download or fork, corresponding to the below-mentioned files.
 
