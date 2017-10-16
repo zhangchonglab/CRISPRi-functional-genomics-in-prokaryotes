@@ -20,10 +20,10 @@ All these files (or subdirectories) should be organized under a common working d
 under a common working_dir/[example illustration of files under the working directory](./image/files_prepared_before_data_processing.png)
 Please check the example files post at GitHub, which are described as below.
 
-#### File 1: NGS files (.fastq or .fq extension) under one directory (example_data/all files)
+#### File 1: NGS files (.fastq or .fq extension) under one directory (see example_data/all files)
 Note: Please try to keep the name of each file meaningful but as simple as possible, thus simplifying the preparation of configure file as described below.
 
-#### File 2: sgRNA library file (example_library.csv)
+#### File 2: sgRNA library file (see example_library.csv)
 The sgRNA library file is at .csv formate **containing the header line**, in which three are three columns that are in order of id, sequence and gene respectively. **Use comma as delimiter**. 
 If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of the library design subpackage. It should be noted that **Note that -, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-sgRNA', 'super_sgRNA' or 'super sgRNA'**.
 
@@ -35,7 +35,7 @@ NC1|ACACACACACACACACACAC|0
 NC2|TGTGTGTGTGTGTGTGTGTG|0
 ...|...|...
 
-#### File 3: sgRNA position file (example_coding_region_position.txt)
+#### File 3: sgRNA position file (see example_coding_region_position.txt)
 Flat file of sgRNA position (relative location of sgRNA in the coding region) information in gene **without header line using tab as delimiter**.
 The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene. The name of sgRNAid and gene should be compatible with the sgRNA library file (File 2). Actually, you can also find this file as output of the library design subpackage.
 
@@ -52,7 +52,7 @@ acnA|acnA_459|0.171524663677
 acnA|acnA_477|0.178251121076
 ...|...|...
 
-#### File 4: operon file (example_operon.txt) (optional)
+#### File 4: operon file (see example_operon.txt) (optional)
 CRISPRi works at the transcription level, due to the unique structure of polycistronic operons in prokaryotic genomes. It is hard to figure out the true phenotype-associated genes coping with multiple genes in one polycistronic operon. To address this problem, during the design of this package, we reorganize the gene level statistics at the operon level as an option. If you are not interested in this step or in other cases that your microorganism do not have a available operon file, please ignore this and no need to prepare it. 
 **The file has a header line and uses tab as delimiter.** It is consisted of three columns: operon id, operon name and the genes in the operon. **Genes in one polycistronic operon are separated by comma**. If one gene is located at multiple operons, it is ok to just list all of them. We recommend to organize genes in one polycistronic operon according to the order from upstream to downstream. Gene names should be consistent with those in sgRNA library file (File 2) and sgRNA position file (File 3).
 
@@ -67,7 +67,7 @@ KO04956|ssuB,ssuE,ssuA,ssuD,ssuC
 KO05736|damX,aroB,gph,trpS,dam,rpe,aroK
 ...|...
 
-#### File 5: experiment design file (example_experiment_configure.txt)
+#### File 5: experiment design file (see example_experiment_configure.txt)
 For each phenotype to be studied, we need one selective and one control condition, respectively. This file is used to define the role of each screening experiment (NGS data). **This file has one header line and uses tab as delimiter. The header line should be organized in a format as below:**
 
 Library/Condition|initial|stress1|control1|...|stressX|controlX|...
@@ -83,7 +83,7 @@ NCR1|0|0|1
 NCR2|0|0|1
 slib1-10mixNC|1|0|0
 
-#### File 6: naming file (example_naming_configure.txt)
+#### File 6: naming file (see example_naming_configure.txt)
 To name output files related to different studied phenotypes, we design this naming file to give each phenotype a name.
 **This file has no header line and uses tab as delimiter.***
 The file has two columns, while the first is a key pointing to File 5 (the experiment design file) and the second defines the name for each phenotype. Hence, the items in the first column should be like 'stressX', thus compatible with File 5.
@@ -94,11 +94,11 @@ stress2|whatever you like
 stress3|whatever you like
 ...|...
 
-### Step 3: Set up the configure file (example_configure.txt)
+### Step 3: Set up the configure file (see example_configure.txt)
 The configure file is used to set all the necessary parameters and tell the program where to find some necessary files. 
 **This file is in a two-column format using tab as delimiter.** Generally, lines beginning with '#' is the annotation and will be skipped by the program; other lines start with one word (name of one parameter) separated with the following (setting of this parameter) by a tab delimiter. **The default parameters are given in the original example configure file (example_configure.txt).** We describe each parameter as below.
  
-prefix: Prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
+prefix: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
 
 fastqpath: directory under which all NGS raw data (.fastq or .fq extension) files are located. See File 1 above.
 
@@ -108,7 +108,7 @@ forward_prefixseq: several (4-10) upstream nucleotides flanking (usually the las
 
 forward_suffixseq: several (4-10) downstream nucleotides flanking (in the Cas9 binding motif) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the range of the PCR product during sequencing library preparation.
 
-sample-label: the label for each sequencing library separated by comma. The order of the label should correspond to the order of the .fastq file names specified by the 'fastq' option. Hence, the total number of label should be the same as that of file names. See example configure file to understand this intuitively. Note that the labels specified here should be the same as the library name defined in the experiment design file (see above, Step 2, Part 5).
+sample-label: the label for each NGS raw data file separated by comma. The order of the label should correspond to the order of the .fastq file names specified by the 'fastq' parameter. Hence, the total number of label should be the same as that of file names. See example configure file to understand this intuitively. Note that the labels specified here should be the same as the library name defined in the experiment design file (see above, Step 2, Part 5).
 
 sgrna-len: number of nucleotides of the variable region (protospacer, also the nucleotides between prefixseq and suffixseq) of the sgRNA. It is specified in the library design. Note that the length specified here should be consistent with that of the sgRNA-library file (see above). default: 20.
 
