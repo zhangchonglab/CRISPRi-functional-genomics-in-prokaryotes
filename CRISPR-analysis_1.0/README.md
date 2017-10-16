@@ -1,26 +1,24 @@
-======================
-synthetic sgRNA library based functional genomics for prokaryotes: NGS data processing part
-======================
+# synthetic sgRNA library based functional genomics for prokaryotes: NGS data processing part
 
-# ///////////////////////////////////////////////////////////////
-What is this?
+///////////////////////////////////////////////////////////////
+# What is this?
 This python script collection is one of the two the software subpackages of CRISPRi functional genomics method for the prokaryotes, used for the NGS data processing and result visualization. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
 
 This script collection is user-friendly for experimental microbiologists with no or limited programming expertise. Generally, the user only need to download the script, edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment to initiate the design process. The output includes the statistics about result at sgRNA, gene and operon level of each stressed condition. Meanwhile, the Gini index profile of each library, the agreement of biological replicates, fitness distribution of negative sgRNA, FPR-(Log10P MWU test)*|fitness score| value curve and diverse visualization files are also presented.
 
-# ///////////////////////////////////////////////////////////////
-General description of the algorithm and experiment
+///////////////////////////////////////////////////////////////
+# General description of the algorithm and experiment
 The synthetic sgRNA plasmid library designed by the sgRNA-design subpackage can be transformed into prokaryotic cells expressing dCas9 protein. The resulting cell library can be subjected to stressed and control condition, and the plasmids after selection can be extracted and prepared for NGS library. With this protocol, we have a series of NGS data (.fastq) for each stressed and control condition. Each one can have one or more biological replicates. About the detailed protocol of the method, see https://doi.org/10.1101/129668 in BioRxiv. This program is used to convert these .fastq data to the gene-phenotype association profile.
 
-
-Step 1：Installation
 ============
+# Step 1：Installation
 1. Install Python version 2.7 or above 
 2. Install Scipy version 0.19.1 or above
 3. Install Matplotlib version 2.0.2 or above
 4. Install Numpy version 1.13.1 or above
 
-Step 2：Prepare the necessary files.
+============
+# Step 2：Prepare the necessary files.
 All these files (or subdirectories) should be organized under a common working directory together with the all .py scripts. The structure of the working directory is shown as below as the checklist.
 under a common working_dir/
 *.py rawdata_dir/*.fq library.csv sgRNA-position.txt operon.csv(optional) experiment.txt naming.txt configure.txt
@@ -103,8 +101,8 @@ stress12        isobutanolvsMOPS
 stress13        MOPSvsCas5d
 stress14        MOPSvsCas10d
 
-# ///////////////////////////////////////////////////////////////
-Step 3: Set up the configure file
+///////////////////////////////////////////////////////////////
+# Step 3: Set up the configure file
 Edit the configure file, which is used to set all the necessary parameters and path towards necessary files. The default parameters are given in the original example configure file. Generally, lines beginning with '#' is the annotation; other lines start with one word (name of this parameter) separated with the following (setting of this parameter) by a tab delimiter.
  
 prefix: Prefix used for naming of all output files, keep it simple without any ‘_’ or ‘-’. For example, ‘myscreen2017’ is fine.
@@ -141,7 +139,8 @@ After Step 2 and 3, check your working directory. It should looks like below:
 under the working_dir/
 *.py rawdata_dir/*.fq library.csv sgRNA-position.txt operon.csv(optional) experiment.txt naming.txt configure.txt
 
-Step 4：Run the script
+=============================================
+# Step 4：Run the script
 
 Open the command line window, cd to the working directory and run the pipeline.
 --------
@@ -151,6 +150,6 @@ python CRISPRscreen_main.py configure.txt
 If you want to test your environment, we have a toy example for testing purpose. cd to the working_dir, type in: 
 python CRISPRscreen_main.py configure.txt
 
-# ///////////////////////////////////////////////////////////////
-Now Let's check the output files
+///////////////////////////////////////////////////////////////
+# Now Let's check the output files
 The output files would be all organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory.
