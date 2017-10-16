@@ -36,18 +36,20 @@ NC2|TGTGTGTGTGTGTGTGTGTG|0
 ...|....................|..
 
 #### File 3: sgRNA position file (example_coding_region_position.txt)
-Flat file of sgRNA position (relative location of sgRNA in ORF of relevant target gene, see our paper for details) information in gene, this file is in current version for hit-gene calling because generally sgRNAs locating at 5' of ORF exhibited better knockdown activity as described in our work. The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene，and each line uses tab as delimiter. The name of sgRNAid and gene should be compatible with the sgRNA-library file as described above. Actually, you can also find both of these two files as output of the library design subpackage.
-For example:
-rsmE	rsmE_9	0.0122950819672
-rsmE	rsmE_10	0.0136612021858
-rsmE	rsmE_11	0.0150273224044
-rsmE	rsmE_12	0.016393442623
-rsmE	rsmE_25	0.0341530054645
-acnA	acnA_384	0.143497757848
-acnA	acnA_395	0.147608370703
-acnA	acnA_441	0.164798206278
-acnA	acnA_459	0.171524663677
-acnA	acnA_477	0.178251121076
+Flat file of sgRNA position (relative location of sgRNA in the coding region) information in gene **without header line using tab as delimiter**.
+This file is in current version for hit-gene calling because generally sgRNAs locating at 5' of ORF exhibited better knockdown activity as described in our work. The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene，and each line uses tab as delimiter. The name of sgRNAid and gene should be compatible with the sgRNA-library file as described above. Actually, you can also find both of these two files as output of the library design subpackage.
+
+rsmE|rsmE_9|0.0122950819672
+----|------|---------------
+rsmE|rsmE_10|0.0136612021858
+rsmE|rsmE_11|0.0150273224044
+rsmE|rsmE_12|0.016393442623
+rsmE|rsmE_25|0.0341530054645
+acnA|acnA_384|0.143497757848
+acnA|acnA_395|0.147608370703
+acnA|acnA_441|0.164798206278
+acnA|acnA_459|0.171524663677
+acnA|acnA_477|0.178251121076
 
 4. Operon file. CRISPRi works at the transcription level, due to the unique structure of polycistronic operons in prokaryotic genomes, it is hard to figure out the true phenotype-associated genes coping with multiple genes in one polycistronic operon. To address this problem, during the design of this package, we reorganize the gene level statistics at the operon level as an option. If you are not interested in this step or in other cases that your microorganism do not have a available operon file, please ignore this and no need to prepare it. 
 The file has header line and is consisted of three columns: operon id, operon name and the genes in the operon. Tab is used as delimiter, and the genes are separated by commas in each line. We recommend to organize genes in one polycistronic operon according to the order from upstream to downstream. Gene names should be consistent with those in sgRNA-library file and sgRNA-position file.
