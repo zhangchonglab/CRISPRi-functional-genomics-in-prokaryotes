@@ -15,12 +15,9 @@ The synthetic sgRNA plasmid library designed by the sgRNA-design subpackage can 
 3. Install Matplotlib version 2.0.2 or above
 4. Install Numpy version 1.13.1 or above
 
-============
 ### Step 2：Prepare the necessary files.
-All these files (or subdirectories) should be organized under a common working directory together with the all .py scripts. The structure of the working directory is shown as below as the checklist.
-under a common working_dir/
-*.py rawdata_dir/*.fq library.csv sgRNA-position.txt operon.csv(optional) experiment.txt naming.txt configure.txt
-[example illustration of files under the working directory as a checklist](./image/files_prepared_before_data_processing.png)
+All these files (or subdirectories) should be organized under a common working directory together with the all .py scripts. The structure of the working directory is shown as below as the checklist:
+under a common working_dir/[example illustration of files under the working directory as a checklist](./image/files_prepared_before_data_processing.png)
 
 Please check the example files in your download or fork, corresponding to the below-mentioned files.
 
