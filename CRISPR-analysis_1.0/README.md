@@ -73,7 +73,7 @@ For each phenotype to be studied, we need one selective and one control conditio
 Library/Condition|initial|stress1|control1|...|stressX|controlX|...
 -----------------|-------|-------|--------|---|-------|--------|---
 
-**Each row refers to a NGS library and each column refers to a condition. '1' indicates the association between library and condition, whereas the program will skip the item set as ‘0’.** All libraries under one common condition (in one column) are regarded as biological replicates and read count for each sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. **At least and only one library should be assigned as initial condition.** Initial library will be used to exclude sgRNAs with poor representation from further analysis to ensure statistical robustness based on customized threshold (see below in configure file). Usually, use the library before selection as the initial library. Initial library can be also used as control condition for a particular phenotype to be studied. 
+**Each row refers to a NGS library and each column refers to a condition. '1' indicates the association between library and condition, whereas the program will skip the item set as ‘0’.** All libraries under one common condition (in one column) are regarded as biological replicates and read count for each sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. **At least and only one library should be assigned as initial condition.** Initial library will be used to exclude sgRNAs with poor representation from further analysis to ensure statistical robustness based on customized threshold (see below in configure file). Usually, use the library before selection as the initial library. Initial library can be also used as control condition for a particular phenotype to be studied.
 
 Library/Condition|initial|stress1|control1
 -----------------|-------|-------|--------
@@ -83,24 +83,13 @@ NCR1|0|0|1
 NCR2|0|0|1
 slib1-10mixNC|1|0|0
 
-6. The naming file for each stressed condition.
-To make the meaning of each output file more intuitive, we designed here a naming file for each stressed condition.
+#### File 6: naming file (example_naming_configure.txt)
+To name output files related to different studied phenotypes, we design this naming file to give each phenotype a name.
+**This file has no header line and uses tab as delimiter. The number of phenotypes and phenotype ID in this file should be compatible with File 5, the experiment design file.**
 
-For example:
-stress1 LogpH45vsini
-stress2 LogpH45vsLB
-stress3 Logacidshockvsini
-stress4 LogacidshockvsLB
-stress5 MOPS5dvsLB
-stress6 MOPS10dvsLB
-stress7 MOPSCas5dvsLB
-stress8 MOPSCas10dvsLB
-stress9 furfuralvsini
-stress10        furfuralvsMOPS
-stress11        isobutanolvsini
-stress12        isobutanolvsMOPS
-stress13        MOPSvsCas5d
-stress14        MOPSvsCas10d
+stress1|essential
+-------|---------
+...|...
 
 ///////////////////////////////////////////////////////////////
 ### Step 3: Set up the configure file
