@@ -10,7 +10,7 @@ The synthetic sgRNA plasmid library designed by the sgRNA-design subpackage can 
 
 ## How to use it
 ### Step 1：Installation
-1. Install Python version 2.7 or above 
+1. Install Python version 2.7 or above
 2. Install Scipy version 0.19.1 or above
 3. Install Matplotlib version 2.0.2 or above
 4. Install Numpy version 1.13.1 or above
@@ -24,7 +24,7 @@ Please check the example files post at GitHub, which are described as below.
 Note: Please try to keep the name of each file meaningful but as simple as possible, thus simplifying the preparation of configure file as described below.
 
 #### File 2: sgRNA library file (see example_library.csv)
-The sgRNA library file is at .csv formate **containing the header line**, in which three are three columns that are in order of id, sequence and gene respectively. **Use comma as delimiter**. 
+The sgRNA library file is at .csv formate **containing the header line**, in which three are three columns that are in order of id, sequence and gene respectively. **Use comma as delimiter**.
 If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of the library design subpackage. It should be noted that **Note that -, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-sgRNA', 'super_sgRNA' or 'super sgRNA'**.
 
 id|sequence|gene
@@ -110,27 +110,49 @@ The configure file is used to set all the necessary parameters and tell the prog
 
 **sample-label**: the label for each NGS raw data file. The order of the label should correspond to the order of the file names specified by the 'fastq' parameter. For simplicity, it is fine to use raw data file name without extension as label. Note that the labels specified here should be the same as the library name defined in the experiment design file (File 5).
 
-**sgrna-len**: number of nucleotides of the variable region (protospacer, also the nucleotides between prefixseq and suffixseq) of the sgRNA. It is specified in the library design. Note that the length specified here should be consistent with that of the sgRNA-library file (see above). default: 20.
+**sgrna-len**: number of nucleotides of the variable region (protospacer, also the nucleotides between forward_prefixseq and forward_suffixseq) of the sgRNA. It is determined in the library design. Hence, the length specified here should be consistent with that of the sgRNA-library file (see above). default: 20.
 
-**list-seq**: the name of the sgRNA-library file (see above, Step 2, Part 2).
+**list-seq**: the name of the sgRNA library file (see above, Step 2, File 2).
 
-**experiment_configure**: the name of the experiment design file (see above, Step 2, Part 5).
+**experiment_configure**: the name of the experiment design file (see above, Step 2, File 5).
 
-**name_configure**: the name of the naming file for each stressed condition (see above, Step 2, Part 6)
+**name_configure**: the name of the naming file (see above, Step 2, File 6)
 
-**control_setting**: sgRNAs used as control to calculate the statistics of the gene-phenotype association. Two options: 'NC' or 'all'. In the case where negative control sgRNAs (sgRNA targeting nowhere in the genome, set as gene=‘0’, see Step 2, Part 2) were included in the synthetic library during the selection experiment, 'NC' is recommended. In other cases where no negative control sgRNAs are available, 'all' should be specified. We highly recommend to include negative control sgRNAs during the experiment and data analysis, because this option significantly improves the statistical robustness of the experiment. Note that when 'NC' is specified here, negative control sgRNAs should be included in the sgRNA-library file (see Step 2, Part 2).
+**control_setting**: sgRNAs used as control to determine the experimental noise and calculate the statistics of the gene-phenotype association. **Two options: 'NC' or 'all'.** In the case where negative control sgRNAs (sgRNA targeting nowhere in the genome, set as gene=‘0’, see Step 2, File 2) are included in the sgRNA library, 'NC' is recommended. In other cases where no negative control sgRNAs are available, 'all' should be specified. **We highly recommend to include negative control sgRNAs during the experiment and data analysis**, because this option significantly improves the statistical robustness of the experiment. Note that when 'NC' is specified here, negative control sgRNAs should be included in the sgRNA-library file (see Step 2, File 2).
 
-**FDR_threshold**: FDR (False discovery rate) threshold to call significant phenotype-associated genes. Default: 0.01. For details to calculate FDR for each gene-phenotype association, see the paper.
+**FDR_threshold**: FDR (False discovery rate) threshold to call significant phenotype-associated genes. Default: 0.05. For details to calculate FDR for each gene-phenotype association, see the paper.
 
-**hit_gene_calling**: method to call hit gene associated with particular phenotype. Two options: 'position' or 'all'. For ‘position’ option, the program search sgRNA fitness belonging to a gene one by one according to their position within the gene ORF (start from those proximal to start codon) (specified by sgRNA-position.txt, Step 2, Part 3), and used the sgRNA subset with smallest FDR value. For ‘all’ option, all sgRNAs belonging to the gene were used. Due to the fact we found that sgRNAs targeting to the 5' of ORF exhibited better repression activity, 'position' method is more recommended. For details, see the paper.
+**ReadsThreshold**: threshold of read count. In initial library of libraries corresponding to control conditions, this threshold is used to remove sgRNAs with too less read count to assure the statistical robustness. Default: 20. For details, see our paper.
 
-**gene_sgRNA_position**: name of the flat file of sgRNA position (see above, Step 2, Part 3).
+**hit_gene_calling**: method to call hit gene associated with particular phenotype. **Two options: 'position' or 'all'.** For ‘position’ option, the program adds sgRNA belonging to a gene one by one to an increasing subset according to their position within the gene ORF (start from those proximal to start codon) (specified by sgRNA-position.txt, Step 2, File 3), and uses the sgRNA subset with smallest FPR (flase positive rate) value. For ‘all’ option, all sgRNAs belonging to the gene are used. Due to the fact we find that sgRNAs targeting to the 5' of coding exhibit better repression activity, **'position' method is more recommended.** For details, see the paper.
 
-**Operon_gene_List**: name of the operon file (see above, Step 2, Part 4). This one is optional, if you do not need it, just leave it blank.
+**gene_sgRNA_position**: name of the sgRNA position file (see above, Step 2, File 3).
+
+**Operon_gene_List**: name of the operon file (see above, Step 2, File 4). **This one is optional, if you do not need it, just leave it blank like below, Note that do not delete the tab when leaving this parameter blank**
+
+Below is an example configure file
+parameter|value
+---------|-----
+prefix|Ilovemicrobe
+fastqpath|example_data
+fastq|dCas9R1.fq.gz,dCas9R2.fq.gz,NCR1.fq.gz,NCR2.fq.gz,slib1-10mixNC.fq.gz
+forward_prefixseq|GCAC
+forward_suffixseq|GTTT
+sample-label|dCas9R1,dCas9R2,NCR1,NCR2,slib1-10mixNC
+sgrna-len|20
+list-seq|example_library.csv
+experiment_configure|example_experiment_configure.txt
+name_configure|example_naming_configure.txt
+control_setting|NC
+FDR_threshold|0.05
+ReadsThreshold|20
+hit_gene_calling|position
+gene_sgRNA_position|example_coding_region_position.txt
+Operon_gene_List|example_operon.txt
 
 After Step 2 and 3, check your working directory. It should looks like below:
 under the working_dir/
-*.py rawdata_dir/*.fq library.csv sgRNA-position.txt operon.csv(optional) experiment.txt naming.txt configure.txt
+/[example illustration of files under the working directory](./image/files_prepared_before_data_processing.png)
 
 =============================================
 ### Step 4：Run the script
