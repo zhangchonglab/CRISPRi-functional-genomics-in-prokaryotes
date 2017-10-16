@@ -131,6 +131,7 @@ The configure file is used to set all the necessary parameters and tell the prog
 **Operon_gene_List**: name of the operon file (see above, Step 2, File 4). **This one is optional, if you do not need it, just leave it blank like below, Note that do not delete the tab when leaving this parameter blank**
 
 Below is an example configure file
+
 parameter|value
 ---------|-----
 prefix|Ilovemicrobe
@@ -152,7 +153,7 @@ Operon_gene_List|example_operon.txt
 
 After Step 2 and 3, check your working directory. It should looks like below:
 under the working_dir/
-/[example illustration of files under the working directory](./image/files_prepared_before_data_processing.png)
+[example illustration of files under the working directory](./image/files_prepared_before_data_processing.png)
 
 =============================================
 ### Step 4：Run the script
