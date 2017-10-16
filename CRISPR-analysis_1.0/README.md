@@ -24,8 +24,8 @@ Please check the example files post at GitHub, which are described as below.
 Note: Please try to keep the name of each file meaningful but as simple as possible, thus simplifying the preparation of configure file as described below.
 
 #### File 2: sgRNA library file (example_library.csv)
-The sgRNA library file is at .csv formate containing the header line, in which three are three columns that are in order of id, sequence and gene respectively, and **each line uses a comma as delimiter**. 
-If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of the library design subpackage. It should be noted that **'-' should be eliminated from any id name**.
+The sgRNA library file is at .csv formate **containing the header line**, in which three are three columns that are in order of id, sequence and gene respectively. **Use comma as delimiter**. 
+If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of the library design subpackage. It should be noted that **Note that -, _ and ' ' should be eliminated from any id name**.
 
 id|sequence|gene
 --|--------|----
@@ -35,8 +35,8 @@ NC1|ACACACACACACACACACAC|0
 NC2|TGTGTGTGTGTGTGTGTGTG|0
 ...|....................|..
 
-
-3. Flat file of sgRNA position (relative location of sgRNA in ORF of relevant target gene, see our paper for details) information in gene, this file is in current version for hit-gene calling because generally sgRNAs locating at 5' of ORF exhibited better knockdown activity as described in our work. The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene，and each line uses tab as delimiter. The name of sgRNAid and gene should be compatible with the sgRNA-library file as described above. Actually, you can also find both of these two files as output of the library design subpackage.
+#### File 3: sgRNA position file (example_coding_region_position.txt)
+Flat file of sgRNA position (relative location of sgRNA in ORF of relevant target gene, see our paper for details) information in gene, this file is in current version for hit-gene calling because generally sgRNAs locating at 5' of ORF exhibited better knockdown activity as described in our work. The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene，and each line uses tab as delimiter. The name of sgRNAid and gene should be compatible with the sgRNA-library file as described above. Actually, you can also find both of these two files as output of the library design subpackage.
 For example:
 rsmE	rsmE_9	0.0122950819672
 rsmE	rsmE_10	0.0136612021858
