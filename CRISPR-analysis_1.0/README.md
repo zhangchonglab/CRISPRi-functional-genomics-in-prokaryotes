@@ -98,35 +98,35 @@ stress3|whatever you like
 The configure file is used to set all the necessary parameters and tell the program where to find some necessary files. 
 **This file is in a two-column format using tab as delimiter.** Generally, lines beginning with '#' is the annotation and will be skipped by the program; other lines start with one word (name of one parameter) separated with the following (setting of this parameter) by a tab delimiter. **The default parameters are given in the original example configure file (example_configure.txt).** We describe each parameter as below.
  
-prefix: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
+**prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
 
-fastqpath: directory under which all NGS raw data (.fastq or .fq extension) files are located. See File 1 above.
+**fastqpath**: directory under which all NGS raw data (.fastq or .fq extension) files are located. See File 1 above.
 
-fastq: the names of NGS raw data (.fastq or .fq extension) files to be processed under 'fastqpath'. The files can also be compressed as .gz format. Multiple file names are separated by ',' (comma).
+**fastq**: the names of NGS raw data (.fastq or .fq extension) files to be processed under 'fastqpath'. The files can also be compressed as .gz format. Multiple file names are separated by ',' (comma).
 
-forward_prefixseq: several (4-10) upstream nucleotides flanking (usually the last several nucleotides in promoter) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the range of the PCR product during sequencing library preparation.
+**forward_prefixseq**: several (4-10) upstream nucleotides flanking (usually the last several nucleotides in promoter) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the range of the PCR product during sequencing library preparation.
 
-forward_suffixseq: several (4-10) downstream nucleotides flanking (in the Cas9 binding motif) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the range of the PCR product during sequencing library preparation.
+**forward_suffixseq**: several (4-10) downstream nucleotides flanking (in the Cas9 binding motif) the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the range of the PCR product during sequencing library preparation.
 
-sample-label: the label for each NGS raw data file separated by comma. The order of the label should correspond to the order of the .fastq file names specified by the 'fastq' parameter. Hence, the total number of label should be the same as that of file names. See example configure file to understand this intuitively. Note that the labels specified here should be the same as the library name defined in the experiment design file (see above, Step 2, Part 5).
+**sample-label**: the label for each NGS raw data file. The order of the label should correspond to the order of the file names specified by the 'fastq' parameter. For simplicity, it is fine to use raw data file name without extension as label. Note that the labels specified here should be the same as the library name defined in the experiment design file (File 5).
 
-sgrna-len: number of nucleotides of the variable region (protospacer, also the nucleotides between prefixseq and suffixseq) of the sgRNA. It is specified in the library design. Note that the length specified here should be consistent with that of the sgRNA-library file (see above). default: 20.
+**sgrna-len**: number of nucleotides of the variable region (protospacer, also the nucleotides between prefixseq and suffixseq) of the sgRNA. It is specified in the library design. Note that the length specified here should be consistent with that of the sgRNA-library file (see above). default: 20.
 
-list-seq: the name of the sgRNA-library file (see above, Step 2, Part 2).
+**list-seq**: the name of the sgRNA-library file (see above, Step 2, Part 2).
 
-experiment_configure: the name of the experiment design file (see above, Step 2, Part 5).
+**experiment_configure**: the name of the experiment design file (see above, Step 2, Part 5).
 
-name_configure: the name of the naming file for each stressed condition (see above, Step 2, Part 6)
+**name_configure**: the name of the naming file for each stressed condition (see above, Step 2, Part 6)
 
-control_setting: sgRNAs used as control to calculate the statistics of the gene-phenotype association. Two options: 'NC' or 'all'. In the case where negative control sgRNAs (sgRNA targeting nowhere in the genome, set as gene=‘0’, see Step 2, Part 2) were included in the synthetic library during the selection experiment, 'NC' is recommended. In other cases where no negative control sgRNAs are available, 'all' should be specified. We highly recommend to include negative control sgRNAs during the experiment and data analysis, because this option significantly improves the statistical robustness of the experiment. Note that when 'NC' is specified here, negative control sgRNAs should be included in the sgRNA-library file (see Step 2, Part 2).
+**control_setting**: sgRNAs used as control to calculate the statistics of the gene-phenotype association. Two options: 'NC' or 'all'. In the case where negative control sgRNAs (sgRNA targeting nowhere in the genome, set as gene=‘0’, see Step 2, Part 2) were included in the synthetic library during the selection experiment, 'NC' is recommended. In other cases where no negative control sgRNAs are available, 'all' should be specified. We highly recommend to include negative control sgRNAs during the experiment and data analysis, because this option significantly improves the statistical robustness of the experiment. Note that when 'NC' is specified here, negative control sgRNAs should be included in the sgRNA-library file (see Step 2, Part 2).
 
-FDR_threshold: FDR (False discovery rate) threshold to call significant phenotype-associated genes. Default: 0.01. For details to calculate FDR for each gene-phenotype association, see the paper.
+**FDR_threshold**: FDR (False discovery rate) threshold to call significant phenotype-associated genes. Default: 0.01. For details to calculate FDR for each gene-phenotype association, see the paper.
 
-hit_gene_calling: method to call hit gene associated with particular phenotype. Two options: 'position' or 'all'. For ‘position’ option, the program search sgRNA fitness belonging to a gene one by one according to their position within the gene ORF (start from those proximal to start codon) (specified by sgRNA-position.txt, Step 2, Part 3), and used the sgRNA subset with smallest FDR value. For ‘all’ option, all sgRNAs belonging to the gene were used. Due to the fact we found that sgRNAs targeting to the 5' of ORF exhibited better repression activity, 'position' method is more recommended. For details, see the paper.
+**hit_gene_calling**: method to call hit gene associated with particular phenotype. Two options: 'position' or 'all'. For ‘position’ option, the program search sgRNA fitness belonging to a gene one by one according to their position within the gene ORF (start from those proximal to start codon) (specified by sgRNA-position.txt, Step 2, Part 3), and used the sgRNA subset with smallest FDR value. For ‘all’ option, all sgRNAs belonging to the gene were used. Due to the fact we found that sgRNAs targeting to the 5' of ORF exhibited better repression activity, 'position' method is more recommended. For details, see the paper.
 
-gene_sgRNA_position: name of the flat file of sgRNA position (see above, Step 2, Part 3).
+**gene_sgRNA_position**: name of the flat file of sgRNA position (see above, Step 2, Part 3).
 
-Operon_gene_List: name of the operon file (see above, Step 2, Part 4). This one is optional, if you do not need it, just leave it blank.
+**Operon_gene_List**: name of the operon file (see above, Step 2, Part 4). This one is optional, if you do not need it, just leave it blank.
 
 After Step 2 and 3, check your working directory. It should looks like below:
 under the working_dir/
