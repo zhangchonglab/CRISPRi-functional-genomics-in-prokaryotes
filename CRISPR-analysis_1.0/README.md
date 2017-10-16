@@ -81,7 +81,7 @@ dCas9R1|0|1|0
 dCas9R2|0|1|0
 NCR1|0|0|1
 NCR2|0|0|1
-slib1-10mixNC|1|0|0
+plasmid|1|0|0
 
 #### File 6: naming file (see example_naming_configure.txt)
 To name output files related to different studied phenotypes, we design this naming file to give each phenotype a name.
@@ -96,7 +96,7 @@ stress3|whatever you like
 
 ### Step 3: Set up the configure file (see example_configure.txt)
 The configure file is used to set all the necessary parameters and tell the program where to find some necessary files. 
-**This file is in a two-column format using tab as delimiter.** Generally, lines beginning with '#' is the annotation and will be skipped by the program; other lines start with one word (name of one parameter) separated with the following (setting of this parameter) by a tab delimiter. **The default parameters are given in the original example configure file (example_configure.txt).** We describe each parameter as below.
+**This file is in a two-column format using tab as delimiter.** Generally, lines beginning with '#' is the annotation and will be skipped by the program; other lines start with one word (name of one parameter) separated with the following (setting of this parameter) by a tab delimiter. We describe each parameter as below.
  
 **prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
 
@@ -130,7 +130,7 @@ The configure file is used to set all the necessary parameters and tell the prog
 
 **Operon_gene_List**: name of the operon file (see above, Step 2, File 4). **This one is optional, if you do not need it, just leave it blank like below, Note that do not delete the tab when leaving this parameter blank**
 
-Below is an example configure file
+Below is **an example configure file with default parameters**.
 
 parameter|value
 ---------|-----
@@ -166,6 +166,12 @@ python CRISPRscreen_main.py example_configure.txt
 
 The program will print message if some particular steps are finalized successfully as below:
 
+normalization finalized
+sgRNA statistics calculation finalized
+gene statistics calculation finalized
+operon statistics calculation finalized
+
+The program will also create an 'error.log' file under the working directory, open this file to check whether anything wrong happens during the pipeline execution. Generally, no content in this file suggests the successful running of the pipeline. Please post your 'error.log' file if you cannot figure out the bugs when using this pipeline.
 
 ## Output files
 The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory. Hence, the working directory is like below after you run the pipeline successfully (test run):
