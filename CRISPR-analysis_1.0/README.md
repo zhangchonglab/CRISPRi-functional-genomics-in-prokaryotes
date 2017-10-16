@@ -25,7 +25,7 @@ Note: Please try to keep the name of each file meaningful but as simple as possi
 
 #### File 2: sgRNA library file (example_library.csv)
 The sgRNA library file is at .csv formate **containing the header line**, in which three are three columns that are in order of id, sequence and gene respectively. **Use comma as delimiter**. 
-If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of the library design subpackage. It should be noted that **Note that -, _ and ' ' should be eliminated from any id name**.
+If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of the library design subpackage. It should be noted that **Note that -, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-sgRNA', 'super_sgRNA' or 'super sgRNA'**.
 
 id|sequence|gene
 --|--------|----
@@ -37,7 +37,7 @@ NC2|TGTGTGTGTGTGTGTGTGTG|0
 
 #### File 3: sgRNA position file (example_coding_region_position.txt)
 Flat file of sgRNA position (relative location of sgRNA in the coding region) information in gene **without header line using tab as delimiter**.
-This file is in current version for hit-gene calling because generally sgRNAs locating at 5' of ORF exhibited better knockdown activity as described in our work. The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene，and each line uses tab as delimiter. The name of sgRNAid and gene should be compatible with the sgRNA-library file as described above. Actually, you can also find both of these two files as output of the library design subpackage.
+The file is without header line containing three columns that are in order of gene name, sgRNAid and the relative position of sgRNA in the gene. The name of sgRNAid and gene should be compatible with the sgRNA library file (File 2). Actually, you can also find this file as output of the library design subpackage.
 
 rsmE|rsmE_9|0.0122950819672
 ----|------|---------------
@@ -52,21 +52,20 @@ acnA|acnA_459|0.171524663677
 acnA|acnA_477|0.178251121076
 ...|...|...
 
-4. Operon file. CRISPRi works at the transcription level, due to the unique structure of polycistronic operons in prokaryotic genomes, it is hard to figure out the true phenotype-associated genes coping with multiple genes in one polycistronic operon. To address this problem, during the design of this package, we reorganize the gene level statistics at the operon level as an option. If you are not interested in this step or in other cases that your microorganism do not have a available operon file, please ignore this and no need to prepare it. 
-The file has header line and is consisted of three columns: operon id, operon name and the genes in the operon. Tab is used as delimiter, and the genes are separated by commas in each line. We recommend to organize genes in one polycistronic operon according to the order from upstream to downstream. Gene names should be consistent with those in sgRNA-library file and sgRNA-position file.
-For example:
-koid	name	op	
-KO04087	TU-1463	dapE,ypfN
-KO04086	TU-1462	yffB,dapE,ypfN
-KO04089	TU-1466	bcp,gcvR
-KO04735	TU-2623	ykfH,ykfF,yafX,ykfI,ykfG,yafW
-KO04731	TU-2616	dinJ,yafQ
-KO04956	TU-2970	ssuB,ssuE,ssuA,ssuD,ssuC
-KO05736	TU-4212	damX,aroB,gph,trpS,dam,rpe,aroK
-KO04558	TU-2303	ubiA,ubiC
-KO04884	TU-2858	kdpF,kdpA,kdpC,kdpB
-KO04554	TU-2299	yjbF,yjbE,yjbH,yjbG
-KO06171	TU-Exp-0624	sfsA,dksA
+#### File 4: operon file (example_operon.txt) **This is optional**
+CRISPRi works at the transcription level, due to the unique structure of polycistronic operons in prokaryotic genomes. It is hard to figure out the true phenotype-associated genes coping with multiple genes in one polycistronic operon. To address this problem, during the design of this package, we reorganize the gene level statistics at the operon level as an option. If you are not interested in this step or in other cases that your microorganism do not have a available operon file, please ignore this and no need to prepare it. 
+**The file has a header line and use tab as delimiter.** It is consisted of three columns: operon id, operon name and the genes in the operon. **Genes in one polycistronic operon are separated by comma**. If one gene is located at multiple operons, it is ok to just list all of them. We recommend to organize genes in one polycistronic operon according to the order from upstream to downstream. Gene names should be consistent with those in sgRNA library file (File 2) and sgRNA position file (File 3).
+
+operonid|operon	genes
+|-------|------------
+KO04087|dapE,ypfN
+KO04086|yffB,dapE,ypfN
+KO04089|bcp,gcvR
+KO04735|ykfH,ykfF,yafX,ykfI,ykfG,yafW
+KO04731|dinJ,yafQ
+KO04956|ssuB,ssuE,ssuA,ssuD,ssuC
+KO05736|damX,aroB,gph,trpS,dam,rpe,aroK
+...|...
 
 5. The experiment design file. This file is used to distinguish between the initial (before selection), stressed and control (after selection) conditions with tab as delimiter. 
 Each row refers to a sequencing library and each column refers to a condition. '1' indicates the association between library and condition, whereas the program will skip the item set as ‘0’. All libraries under one common condition are regarded as biological replicates and read count for one sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. At least one library should be assigned as initial condition (before selection). Initial library will be used to exclude sgRNAs with poor representation from further analysis to ensure statistical robustness based on customized threshold (see below in configure file part). Usually, use cell library before selection to as initial library. Otherwise, you can use particular library under control condition as initial library (assume no sgRNA inhibits or improves cell growth together with dCas9 in this control condition). Note that initial library can be also used as control condition for a particular stress condition.
