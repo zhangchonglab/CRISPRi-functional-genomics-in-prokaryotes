@@ -60,9 +60,9 @@ operonid|operon	genes
 |-------|------------
 KO04087|dapE,ypfN
 KO04086|yffB,dapE,ypfN
-KO04089|bcp,gcvR
+KO04089|bcp
 KO04735|ykfH,ykfF,yafX,ykfI,ykfG,yafW
-KO04731|dinJ,yafQ
+KO04731|dinJ
 KO04956|ssuB,ssuE,ssuA,ssuD,ssuC
 KO05736|damX,aroB,gph,trpS,dam,rpe,aroK
 ...|...
@@ -136,10 +136,10 @@ parameter|value
 ---------|-----
 prefix|Ilovemicrobe
 fastqpath|example_data
-fastq|dCas9R1.fq.gz,dCas9R2.fq.gz,NCR1.fq.gz,NCR2.fq.gz,slib1-10mixNC.fq.gz
+fastq|dCas9R1.fq.gz,dCas9R2.fq.gz,NCR1.fq.gz,NCR2.fq.gz,plasmid.fq.gz
 forward_prefixseq|GCAC
 forward_suffixseq|GTTT
-sample-label|dCas9R1,dCas9R2,NCR1,NCR2,slib1-10mixNC
+sample-label|dCas9R1,dCas9R2,NCR1,NCR2,plasmid
 sgrna-len|20
 list-seq|example_library.csv
 experiment_configure|example_experiment_configure.txt
@@ -164,7 +164,16 @@ python CRISPRscreen_main.py configure.txt
 To test whether this pipeline works or not in your environment, we post a toy example together with the scripts and the example_configure.txt has been edit to make it compatible. For this test, cd to the working directory, type in: 
 python CRISPRscreen_main.py example_configure.txt
 
-///////////////////////////////////////////////////////////////
+The program will print message if some particular steps are finalized successfully as below:
+
+
 ## Output files
-The output files will be all organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory. Hence, the working directory is like below after you run the pipeline successfully:
+The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory. Hence, the working directory is like below after you run the pipeline successfully (test run):
+
+
+
+
+
+
+
 
