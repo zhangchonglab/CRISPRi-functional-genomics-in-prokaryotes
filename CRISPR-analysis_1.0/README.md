@@ -68,10 +68,15 @@ KO05736|damX,aroB,gph,trpS,dam,rpe,aroK
 ...|...
 
 #### File 5: experiment design file (example_experiment_configure.txt)
-For each phenotype to be studied, we need one selective and one control condition, respectively. This file is used to define the role of each screening experiment (NGS data). **This file has one header line and uses tab as delimiter.**
-**Each row refers to a NGS library and each column refers to a condition. '1' indicates the association between library and condition, whereas the program will skip the item set as ‘0’.** All libraries under one common condition (in one column) are regarded as biological replicates and read count for each sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. **At least and only one library should be assigned as initial condition.** Initial library will be used to exclude sgRNAs with poor representation from further analysis to ensure statistical robustness based on customized threshold (see below in configure file). Usually, use the library before selection as the initial library. Note that initial library can be also used as control condition for a particular phenotype to be studied.
+For each phenotype to be studied, we need one selective and one control condition, respectively. This file is used to define the role of each screening experiment (NGS data). **This file has one header line and uses tab as delimiter. The header line should be organized in a format as below:**
+
+Library/Condition|initial|stress1|control1|...|stressX|controlX|...
+-----------------|-------|-------|--------|---|-------|--------|---
+
+**Each row refers to a NGS library and each column refers to a condition. '1' indicates the association between library and condition, whereas the program will skip the item set as ‘0’.** All libraries under one common condition (in one column) are regarded as biological replicates and read count for each sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. **At least and only one library should be assigned as initial condition.** Initial library will be used to exclude sgRNAs with poor representation from further analysis to ensure statistical robustness based on customized threshold (see below in configure file). Usually, use the library before selection as the initial library. Initial library can be also used as control condition for a particular phenotype to be studied. 
 
 Library/Condition|initial|stress1|control1
+-----------------|-------|-------|--------
 dCas9R1|0|1|0
 dCas9R2|0|1|0
 NCR1|0|0|1
