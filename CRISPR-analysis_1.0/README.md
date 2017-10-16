@@ -183,7 +183,7 @@ For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the exam
 ## Output files
 The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory. Hence, the working directory is like below after you run the pipeline successfully.
 
-[illustration of your working directory after running the test](./image/wkd_after_example_running)
+[illustration of your working directory after running the test](./image/wkd_after_example_running.png)
 
 
 
