@@ -178,10 +178,12 @@ Check [here](./image/successful_running.png) for the output during a successful 
 
 The program will also create an 'error.log' file under the working directory, open this file to check whether anything wrong happens during the pipeline execution. Generally, no content in this file suggests the successful running of the pipeline. Please post your 'error.log' file if you cannot figure out the bugs when using this pipeline.
 
-For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be run within ten minutes. The limiting step is the 
+For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The limiting step is the mapping and normalization of the raw NGS data. For a typical Macbook, we expect a processing speed of 20 million reads per hour. For a genome-scale library with 50 k members (10 sgRNAs per gene assuming 5 k genes encoded by a genome), 100-fold coverage (fairly enough in our opinion) of NGS data leads to 5 million reads per library, thus roughly 4 NGS libraries per hour to run this pipeline.
 
 ## Output files
-The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory. Hence, the working directory is like below after you run the pipeline successfully (test run):
+The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory. Hence, the working directory is like below after you run the pipeline successfully.
+
+[illustration of your working directory after running the test](./image/wkd_after_example_running)
 
 
 
