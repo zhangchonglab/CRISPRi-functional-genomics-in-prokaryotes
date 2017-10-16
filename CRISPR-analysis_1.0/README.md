@@ -174,7 +174,11 @@ gene statistics calculation finalized
 
 operon statistics calculation finalized
 
+Check [here](./image/successful_running.png) for the output during a successful running of the abovementioned test.
+
 The program will also create an 'error.log' file under the working directory, open this file to check whether anything wrong happens during the pipeline execution. Generally, no content in this file suggests the successful running of the pipeline. Please post your 'error.log' file if you cannot figure out the bugs when using this pipeline.
+
+For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be run within ten minutes. The limiting step is the 
 
 ## Output files
 The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory. Hence, the working directory is like below after you run the pipeline successfully (test run):
