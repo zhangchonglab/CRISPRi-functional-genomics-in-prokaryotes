@@ -1,4 +1,4 @@
-# synthetic sgRNA library based functional genomics for prokaryotes: NGS data processing part
+# synthetic sgRNA library based functional genomics for prokaryotes: NGS data processing package
 
 ## What is this?
 This python script collection is one of the two the software subpackages of CRISPRi functional genomics method for the prokaryotes, used for the NGS data processing and result visualization. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
@@ -155,17 +155,16 @@ After Step 2 and 3, check your working directory. It should looks like below:
 under the working_dir/
 [example illustration of files under the working directory](./image/files_prepared_before_data_processing.png)
 
-=============================================
-### Step 4：Run the script
 
-Open the command line window, cd to the working directory and run the pipeline.
---------
+### Step 4：Run the pipeline
+Open the command line window (for example, terminal in Macbook), cd to the working directory and run the pipeline.
 cd working_directory (the directory containing all necessary files mentioned above and .py scripts)
 python CRISPRscreen_main.py configure.txt
 
-If you want to test your environment, we have a toy example for testing purpose. cd to the working_dir, type in: 
-python CRISPRscreen_main.py configure.txt
+To test whether this pipeline works or not in your environment, we post a toy example together with the scripts and the example_configure.txt has been edit to make it compatible. For this test, cd to the working directory, type in: 
+python CRISPRscreen_main.py example_configure.txt
 
 ///////////////////////////////////////////////////////////////
 ## Output files
-The output files would be all organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory.
+The output files will be all organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory. Hence, the working directory is like below after you run the pipeline successfully:
+
