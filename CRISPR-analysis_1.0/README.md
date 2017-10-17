@@ -200,9 +200,10 @@ gspKb3332_817|gspK|12.07|11.08|10.95|8.95|7.98
 We remove the over diluted sgRNAs with read count less than one threshold ('ReadsThreshold' described in the configure file part).
 
  1. **prefix.removed.sgRNA.txt**: a simple list flat file with one sgRNA each line
+
 ============================================================
 #### biological replicate agreement (replicate_consistence/)
-It is neccessary to set up biological (technical) replicates during the experiment to test the reliability. Files under this dierectory is a minotoring panel for biological replicate agreement. In our opinion, two replicates for one experiment is fairly enough. The replicate information is encoded by the experiment design file (see above, How to use it? Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file about the Pearson correlation coefficients for all replicate pairs is given.
+Files under this dierectory is a minotoring panel for biological replicate agreement. The replicate information is encoded by the experiment design file (Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file for all conditions is also given.
 
  1. **prefix_replicates_reads_statistics.txt**: the summary file
  
@@ -212,7 +213,7 @@ It is neccessary to set up biological (technical) replicates during the experime
  control1|0.832|0.0
  ...|...|...
 
- 2. **prefix_oneexperiment_replicates.txt**: two-column flat file of normalized read count of each sgRNA in two replicates of one particular experiment. For example, NCR1 and NCR2 (in our test data) are two replicates for one experiment. Hence, we have:
+ 2. **prefix_oneexperiment_replicates.txt**: two-column flat file of read count of each sgRNA in two replicates. For example, NCR1 and NCR2 (in our test data) are two replicates for one experiment.
  
  sgRNA|NCR1_abundance|NCR1_reads|NCR1_abundance_vs_initial|NCR2_abundance|NCR2_reads|NCR2_abundance_vs_initial
  -----|--------------|----------|-------------------------|--------------|----------|-------------------------
@@ -221,6 +222,7 @@ It is neccessary to set up biological (technical) replicates during the experime
 
  3. [**prefix_oneexperiment_replicates.png**](./image/all_control1_replicates.png): schematic of replicate agreement of one particular experiment.
 
+============================================================
 #### sgRNA read count, abundance change, fitness score, etc (prefix_sgRNA_statistics/)
 This directory stores all dataset about sgRNA metrics. It is generally organized at three levels (three sub directories):
  1. **Library level** (information of one NGS library, under library_level directory). N files, N = number of rows in experiment design file.
