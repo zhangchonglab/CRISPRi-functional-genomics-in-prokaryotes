@@ -231,20 +231,28 @@ yhbJb3205_520|yhbJ|13.07|8.06|27.87|19.88|7.98
 #### biological replicate agreement (replicate_consistence/)
 It is neccessary to set up biological (technical) replicates during the experiment to test the reliability. Files under this dierectory is a minotoring panel for biological replicate agreement. In our opinion, two replicates for one experiment is fairly enough. The replicate information is encoded by the experiment design file (see above, How to use it? Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file about the Pearson correlation coefficients for all replicate pairs is given.
 
-**prefix_replicates_reads_statistics.txt**: the summary file
+ 1. **prefix_replicates_reads_statistics.txt**: the summary file
 
-**prefix_oneexperiment_replicates.txt**: two-column flat file of normalized read count of each sgRNA in two replicates of one particular experiment.
+ 2. **prefix_oneexperiment_replicates.txt**: two-column flat file of normalized read count of each sgRNA in two replicates of one particular experiment.
 
-[**prefix_oneexperiment_replicates.png**](./image/all_control1_replicates.png): schematic of replicate agreement of one particular experiment.
+ 3. [**prefix_oneexperiment_replicates.png**](./image/all_control1_replicates.png): schematic of replicate agreement of one particular experiment.
+
+#### sgRNA read count, abundance change, fitness score, etc (prefix_sgRNA_statistics/)
+This directory stores all dataset about sgRNA metrics. It is generally organized at three levels:
+ 1. **Library level** (information of one NGS library, under library_level directory)
+
+ 2. **Condition level** (information of one experiement (average of two replicate NGS library), under condition_level directory)
+
+ 3. **Phenotype level (only need to focus on this level if you are not a developer)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory)
 
 #### negative control sgRNA distribution (fit by normal distribution) (NCsgRNA_ND/)
 We use negative control sgRNA in the screening experiment to monitor the noise introduced during the experiment. Theoretically, fitness socre (log2 abundance change) of negative control sgRNA should follow a normal distribution. We hence use a normal distribution to fit negative control sgRNA fitness score and the derived sigma value (standard deriative) is a quantitative measurement of experimental noise.
 
-**prefix_NCsgRNA_ND.txt**: normal distribution of negative control sgRNA fitness
+ 1. **prefix_NCsgRNA_ND.txt**: normal distribution of negative control sgRNA fitness
 
-**prefix_NCsgRNA_normalized_ND.txt**
+ 2. **prefix_NCsgRNA_normalized_ND.txt**
 
-[**prefix_phenotype_NCsgRNAND.png**](./image/all_essential_NCsgRNAND.png): schematic of negative control sgRNA fitness score distribution.
+ 3. [**prefix_phenotype_NCsgRNAND.png**](./image/all_essential_NCsgRNAND.png): schematic of negative control sgRNA fitness score distribution.
 
 
 ### gene level statistics
