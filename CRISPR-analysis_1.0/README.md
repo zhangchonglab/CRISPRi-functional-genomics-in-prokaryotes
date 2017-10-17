@@ -24,7 +24,7 @@ Note: Please try to keep the name of each file meaningful but as simple as possi
 
 #### File 2: sgRNA library file (see example_library.csv)
 The sgRNA library file is at .csv formate **containing one header line**, in which there are three columns in order of id, sequence and gene respectively. **Use comma as delimiter**.
-If negative control sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of our library design subpackage. It should be noted that **-, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-sgRNA', 'super_sgRNA' or 'super sgRNA'**.
+If negative control (NC) sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of our library design subpackage. It should be noted that **-, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-sgRNA', 'super_sgRNA' or 'super sgRNA'**.
 
 id|sequence|gene
 --|--------|----
@@ -105,7 +105,7 @@ The configure file is used to set all the necessary parameters and tell the prog
 
 **name_configure**: the name of the naming file (see above, Step 2, File 6)
 
-**control_setting**: sgRNAs used as control to determine the experimental noise and calculate the statistics of the gene-phenotype association. **Two options: 'NC' or 'all'.** In the case where negative control sgRNAs (sgRNA targeting nowhere in the genome, set as gene=‘0’, see Step 2, File 2) are included in the sgRNA library, 'NC' is recommended. In other cases, 'all' should be specified. **We highly recommend to include negative control sgRNAs during the experiment and data analysis**, because this option significantly improves the statistical robustness of the experiment. Note that when 'NC' is specified here, negative control sgRNAs should be included in the sgRNA-library file (see Step 2, File 2).
+**control_setting**: sgRNAs used as control to determine the experimental noise and calculate the statistics of the gene-phenotype association. **Two options: 'NC' or 'all'.** In the case where NC sgRNAs (sgRNA targeting nowhere in the genome, set as gene=‘0’, see Step 2, File 2) are included in the sgRNA library, 'NC' is recommended. In other cases, 'all' should be specified. **We highly recommend to include NC sgRNAs during the experiment and data analysis**, because this option significantly improves the statistical robustness of the experiment. Note that when 'NC' is specified here, NC sgRNAs should be included in the sgRNA-library file (see Step 2, File 2).
 
 **FDR_threshold**: FDR (False discovery rate) threshold for hit gene calling. Default: 0.05.
 
@@ -225,56 +225,53 @@ Files under this dierectory is a minotoring panel for biological replicate agree
 ============================================================
 #### sgRNA read count, abundance change, fitness score, etc (prefix_sgRNA_statistics/)
 This directory stores all dataset about sgRNA metrics. It is generally organized at three levels (three sub directories):
- 1. **Library level** (information of one NGS library, under library_level directory). N files, N = number of rows in experiment design file.
+ 1. **Library level** (information of one NGS library). N files, N = number of rows in experiment design file.
  
  sgRNA|gene|plasmid_Log2_abundnace|plasmid_reads|plasmid_Log2_abundnace_vs_initial
  -----|----|----------------------|-------------|---------------------------------
  gspKb3332_817|gspK|-16.68|7.98|0.0
- intRb1345_13|intR|-14.55|34.90|0.0
  ...|...|...|...|...|
 
- 2. **Condition level** (information of one experiement (average of two replicate NGS library), under condition_level directory). N files, N = number of columns in experiment design file.
+ 2. **Condition level** (information of one experiement (average of two replicate NGS library)). N files, N = number of columns in experiment design file.
  
  sgRNA|gene|control1_Log2_abundnace|control1_reads|control1_Log2_abundnace_vs_initial|control1_relative_deviation
  -----|----|----------------------|---------------|----------------------------------|---------------------------
  gspKb3332_817|gspK|-16.37|9.90|0.31|0.10
- intRb1345_13|intR|-15.26|21.31|-0.71|0.23
  ...|...|...|...|...|...
 
- 3. **Phenotype level (only need to focus on this level if you are not a developer)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory). N files, N = number of 'stress'(selective) conditions in experiment design file.
+ 3. **Phenotype level (only need to focus on this level for simplicity)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory). N files, N = number of 'stress'(selective) conditions in experiment design file.
  
  relative_abundnace_change = Log2 (read count selective condition / read count control condition)
  
- normalized_change (**it is used as sgRNA fitness score**) = relative_abundnace_change - median relative_abundnace_change of negative control sgRNAs
+ normalized_change (**it is used as sgRNA fitness score**) = relative_abundnace_change - median relative_abundnace_change of NC sgRNAs
  
- Zscore = normalized_change / sigma of negative control sgRNA normalized_change normal distribution
+ Zscore = normalized_change / sigma of NC sgRNA normalized_change normal distribution
  
- Quality: it is tagged as 'Good' if the averaged read count in control condition is above the threshold ('ReadsThreshold' described in the configure file part). **Only 'Good' sgRNAs are used in gene level calculation**.
+ Quality: it is tagged as 'Good' if the averaged read count in control condition is above the threshold ('ReadsThreshold' described in the configure file). **Only 'Good' sgRNAs are used in gene level calculation**.
   
  sgRNA|gene|relative_abundnace_change|normalized_change|Zscore|Quality
  -----|----|-------------------------|-----------------|------|-------
  gspKb3332_817|gspK|0.22|-0.03|-0.04|Good
- intRb1345_13|intR|0.78|0.53|0.74|Good
  ...|...|...|...|...
 
-#### negative control sgRNA distribution (fit by normal distribution) (NCsgRNA_ND/)
-We use negative control sgRNA in the screening experiment to monitor the noise introduced during the experiment. Theoretically, fitness socre (log2 abundance change) of negative control sgRNA should follow a normal distribution. We hence use a normal distribution to fit negative control sgRNA fitness score and the derived sigma value (standard deriative) is a quantitative measurement of experimental noise.
+#### NC sgRNA distribution (fit by normal distribution) (NCsgRNA_ND/)
+Theoretically, fitness socre (log2 abundance change) of NC sgRNA should follow a normal distribution. We hence use a normal distribution to fit NC sgRNA fitness score data.
 
- 1. **prefix_NCsgRNA_ND.txt**: normal distribution of negative control sgRNA relative abundance changes (before normalization by median of negative control sgRNA relative abundance change, referring to 'relative_abundnace_change' column in phenotype level sgRNA statistics)
+ 1. **prefix_NCsgRNA_ND.txt**: normal distribution of NC sgRNA relative abundance changes (before normalization by median of NC sgRNA relative abundance change, referring to 'relative_abundnace_change' column in phenotype level sgRNA statistics)
  
  condition|median|mean|stdev
  ---------|------|----|-----
  example|0.25|0.16|0.71
  ...|...|...|...
 
- 2. **prefix_NCsgRNA_normalized_ND.txt**: normal distribution of negative control sgRNA fitness scores (after normalization by median of negative control sgRNA relative abundance change, referring to 'normalized_change' column in phenotype level sgRNA statistics)
+ 2. **prefix_NCsgRNA_normalized_ND.txt**: normal distribution of NC sgRNA fitness scores (after normalization by median of NC sgRNA relative abundance change, referring to 'normalized_change' column in phenotype level sgRNA statistics)
  
  condition|median|mean|stdev
  ---------|------|----|-----
  example|0.0|-0.09|0.71
  ...|...|...|...
 
- 3. [**prefix_phenotype_NCsgRNAND.png**](./image/all_essential_NCsgRNAND.png): schematic of negative control sgRNA fitness score distribution.
+ 3. [**prefix_phenotype_NCsgRNAND.png**](./image/all_essential_NCsgRNAND.png): schematic of NC sgRNA fitness score distribution.
 
 
 ### gene level statistics
