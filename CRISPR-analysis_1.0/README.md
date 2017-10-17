@@ -235,11 +235,16 @@ It is neccessary to set up biological (technical) replicates during the experime
  
  condition|pearson correlation coefficient|P value
  ---------|-------------------------------|-------
- stress1|0.868083522607|0.0
- control1|0.831989793461|0.0
+ stress1|0.868|0.0
+ control1|0.832|0.0
  ...|...|...
 
- 2. **prefix_oneexperiment_replicates.txt**: two-column flat file of normalized read count of each sgRNA in two replicates of one particular experiment.
+ 2. **prefix_oneexperiment_replicates.txt**: two-column flat file of normalized read count of each sgRNA in two replicates of one particular experiment. For example, NCR1 and NCR2 (in our test data) are two replicates for one experiment. Hence, we have:
+ 
+ sgRNA|NCR1_abundance|NCR1_reads|NCR1_abundance_vs_initial|NCR2_abundance|NCR2_reads|NCR2_abundance_vs_initial
+ gspKb3332_817|-16.22|10.95|0.46|-16.51|8.95|0.16
+ intRb1345_13|-14.92|26.88|-0.38|-15.59|16.90|-1.05
+ ...|...|...|...|...|...|...
 
  3. [**prefix_oneexperiment_replicates.png**](./image/all_control1_replicates.png): schematic of replicate agreement of one particular experiment.
 
