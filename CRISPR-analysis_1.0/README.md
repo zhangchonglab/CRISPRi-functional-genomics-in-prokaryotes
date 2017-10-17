@@ -215,7 +215,7 @@ intRb1345_13|30|44|27|17|35
 yhbJb3205_520|13|8|28|20|8
 ...|...|...|...|...|...
 
-**prefix.normalizeCount.txt**: read count for each sgRNA in the *in silico* library **after normalization of sequencing depth** (for details, see our paper).
+**prefix.normalizeCount.txt**: read count for each sgRNA in the *in silico* library **after normalization of sequencing depth** (for details, see our paper). **This dataset is used for following data processing.**
 
 sgRNA|Gene|dCas9R1|dCas9R2|NCR1|NCR2|plasmid
 -----|----|-------|-------|----|----|-------
@@ -228,6 +228,11 @@ yhbJb3205_520|yhbJ|13.07|8.06|27.87|19.88|7.98
 
 ### sgRNA level statistics
 -------------------------------------------------------------
+#### removed sgRNAs (removed.sgRNA/)
+We remove the over diluted sgRNAs with read count less than one threshold ('ReadsThreshold' described in the configure file part).
+
+ 1. **prefix.removed.sgRNA.txt**: a simple list flat file with one sgRNA each line
+
 #### biological replicate agreement (replicate_consistence/)
 It is neccessary to set up biological (technical) replicates during the experiment to test the reliability. Files under this dierectory is a minotoring panel for biological replicate agreement. In our opinion, two replicates for one experiment is fairly enough. The replicate information is encoded by the experiment design file (see above, How to use it? Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file about the Pearson correlation coefficients for all replicate pairs is given.
 
@@ -242,6 +247,7 @@ It is neccessary to set up biological (technical) replicates during the experime
  2. **prefix_oneexperiment_replicates.txt**: two-column flat file of normalized read count of each sgRNA in two replicates of one particular experiment. For example, NCR1 and NCR2 (in our test data) are two replicates for one experiment. Hence, we have:
  
  sgRNA|NCR1_abundance|NCR1_reads|NCR1_abundance_vs_initial|NCR2_abundance|NCR2_reads|NCR2_abundance_vs_initial
+ -----|--------------|----------|-------------------------|--------------|----------|-------------------------
  gspKb3332_817|-16.22|10.95|0.46|-16.51|8.95|0.16
  intRb1345_13|-14.92|26.88|-0.38|-15.59|16.90|-1.05
  ...|...|...|...|...|...|...
@@ -251,10 +257,28 @@ It is neccessary to set up biological (technical) replicates during the experime
 #### sgRNA read count, abundance change, fitness score, etc (prefix_sgRNA_statistics/)
 This directory stores all dataset about sgRNA metrics. It is generally organized at three levels (three sub directories):
  1. **Library level** (information of one NGS library, under library_level directory)
+ 
+ sgRNA|gene|plasmid_Log2_abundnace|plasmid_reads|plasmid_Log2_abundnace_vs_initial
+ -----|----|----------------------|-------------|---------------------------------
+ gspKb3332_817|gspK|-16.68|7.98|0.0
+ intRb1345_13|intR|-14.55|34.9043440304|0.0
+ ...|...|...|...|...|
 
  2. **Condition level** (information of one experiement (average of two replicate NGS library), under condition_level directory)
+ 
+ sgRNA|gene|control1_Log2_abundnace|control1_reads|control1_Log2_abundnace_vs_initial|control1_relative_deviation
+ -----|----|----------------------|-------------|---------------------------------
+ gspKb3332_817|gspK|-16.37|9.90|0.31|0.10
+ intRb1345_13|intR|-15.26|21.31|-0.71|0.23
+ ...|...|...|...|...|...
 
  3. **Phenotype level (only need to focus on this level if you are not a developer)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory)
+ 
+ sgRNA|gene|essential_relative_abundnace_change|essential_normalized_change|essential_Zscore	Quality
+ -----|----|-----------------------------------|---------------------------|------------------------
+ gspKb3332_817|gspK|0.224399437928|-0.027223892011|-0.0381514944062|Good
+ intRb1345_13|intR|0.778866623706|0.527243293767|0.738877437683|Good
+ ...|...|...|...|...
 
 #### negative control sgRNA distribution (fit by normal distribution) (NCsgRNA_ND/)
 We use negative control sgRNA in the screening experiment to monitor the noise introduced during the experiment. Theoretically, fitness socre (log2 abundance change) of negative control sgRNA should follow a normal distribution. We hence use a normal distribution to fit negative control sgRNA fitness score and the derived sigma value (standard deriative) is a quantitative measurement of experimental noise.
