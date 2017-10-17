@@ -142,62 +142,47 @@ After Step 2 and 3, check your working directory. It should looks like below:
 [here](./image/files_prepared_before_data_processing.png)
 
 ### Step 4：Run the pipeline
-Open the command line window (for example, terminal in Macbook), cd to the working directory and run the pipeline.
-cd working_directory (the directory containing all necessary files mentioned above and .py scripts)
+Open the command line window (for example, terminal in Macbook), cd to the working directory.
+cd path_to_your_working_directory
 python CRISPRscreen_main.py configure.txt
 
-To test whether this pipeline works or not in your environment, we post a toy example together with the scripts and the example_configure.txt has been edit to make it compatible. For this test, cd to the working directory, type in: 
+We also post a toy example together with the scripts and the example_configure.txt has been edit to make it compatible. For this test, cd to the working directory, type in: 
 python CRISPRscreen_main.py example_configure.txt
-
-The program will print message if some particular steps are finalized successfully with the order below:
-
-normalization finalized
-
-sgRNA statistics calculation finalized
-
-gene statistics calculation finalized
-
-operon statistics calculation finalized
 
 Check [here](./image/successful_running.png) for the output during a successful running of the abovementioned test.
 
-The program will also create an 'error.log' file under the working directory, open this file to check whether anything wrong happens during the pipeline execution. Generally, no content in this file suggests the successful running of the pipeline. Please post your 'error.log' file if you cannot figure out the bugs when using this pipeline.
+The program will create an 'error.log' file under the working directory, open this file to check whether anything wrong happens. Generally, no content suggests successful running. Please post your 'error.log' if you cannot figure out the bugs when using this tool.
 
-For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step of this pipeline is the mapping and normalization of the raw NGS data. For a typical Macbook, we expect a processing speed of 20 million reads per hour. For a genome-scale library with 50 k members (10 sgRNAs per gene assuming 5 k genes encoded by a genome), 100-fold coverage (fairly enough in our opinion) of NGS data leads to 5 million reads per library, thus roughly 4 NGS libraries processed per hour by this pipeline.
+For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step is the mapping of the raw NGS data. For a typical Macbook, we expect a processing speed of 20 million reads per hour. For a genome-scale library with 50 k members (10 sgRNAs per gene assuming 5 k genes encoded by a genome), 100-fold coverage leads to 5 million reads per library, thus roughly 4 NGS libraries processed per hour.
 
 ## Output files
-The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex_results). Hence, the working directory is like below after you run the pipeline successfully. We term this subdirectory 'result directory' thereafter.
+The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex_results). We term this subdirectory 'result directory' thereafter.
 
-[illustration of your working directory after running the test](./image/wkd_after_example_running.png)
+[your working directory should be like this after running the test](./image/wkd_after_example_running.png)
 
-You can find many sub directories in under the result directory. Below is an illustration.
+You can find many sub directories under the result directory.
 
-[illustration of your result directory after running the test](./image/resultdir_after_example_running.png)
+[your result directory after running the test](./image/resultdir_after_example_running.png)
 
-We describe the output files located under each sub directory as below.
+Below is the description of these files. For the comprehensive description of the mathematical processing, see our paper.
 
 ### NGS raw data profile
 -------------------------------------------------------------
 #### read count of each sgRNA in each library (prefix_count/)
-**prefix.countsummary.txt**: basic statistics of the mapping ratio of each NGS library. It is a .csv file with a header line using tab as delimiter.
+**prefix.countsummary.txt**: basic statistics of the mapping ratio of each NGS library with a header line using tab as delimiter.
 
 File|Label|Reads|Mapped|Synerror|Unknown|Percentage|Zerocounts|GiniIndex
 ----|-----|-----|------|--------|-------|----------|----------|---------
-example_data/dCas9R2.fq.gz|dCas9R2|1000000|829847|92360|77793|0.8298|6766|0.2817
 example_data/plasmid.fq.gz|plasmid|1000000|838484|90356|71160|0.8385|1734|0.2167
-example_data/dCas9R1.fq.gz|dCas9R1|1000000|831615|92301|76084|0.8316|6762|0.2808
-example_data/NCR2.fq.gz|NCR2|1000000|841039|86621|72340|0.841|2346|0.2013
-example_data/NCR1.fq.gz|NCR1|1000000|839977|86801|73222|0.84|2266|0.1985
+...|...|...|...|...|...|...|...|...
 
-Reads denote the number of reads in the raw data. Mapped denotes number of reads mapping perfectly to one member of the synthetic sgRNA library. Synerror refers to those reads with one indel mutation or more mismatch mutations. Unknown refers to those reads where no forward_prefixseq and forward_suffixseq can be identified (see configure file). Percentage is the mapping ratio. Zerocount refers to sgRNA number in the *in silico* library without any corresponding read detected in the library. GiniIndex is a metric reflecting the member abundance uniformity in a library. Bigger Gini index indicate more biased distribution of library with over- represented or diluted members. Generally, more stringent the selective condition is, bigger Gini index we can expect. 
+Reads denote the number of reads in the raw data. Mapped denotes number of reads mapping perfectly to one member of the synthetic sgRNA library. Synerror refers to those reads with one indel mutation or more mismatch mutations. Unknown refers to those reads where no forward_prefixseq or forward_suffixseq can be identified. Percentage is the mapping ratio. Zerocount refers to sgRNA number in the *in silico* library without any corresponding read detected. GiniIndex is a metric reflecting the member abundance uniformity in a library. Bigger Gini index indicates more biased distribution with over- represented or diluted members. Generally, more stringent the selective condition is, bigger Gini index we can expect. 
 
 **prefix.count.txt**: raw read count for each sgRNA in the *in silico* library **before normalization**.
 
 sgRNA|dCas9R1|dCas9R2|NCR1|NCR2|plasmid
 -----|-------|-------|----|----|-------
 gspKb3332_817|12|11|11|9|8
-intRb1345_13|30|44|27|17|35
-yhbJb3205_520|13|8|28|20|8
 ...|...|...|...|...|...
 
 **prefix.normalizeCount.txt**: read count for each sgRNA in the *in silico* library **after normalization of sequencing depth** (for details, see our paper). **This dataset is used for following data processing.**
@@ -205,19 +190,17 @@ yhbJb3205_520|13|8|28|20|8
 sgRNA|Gene|dCas9R1|dCas9R2|NCR1|NCR2|plasmid
 -----|----|-------|-------|----|----|-------
 gspKb3332_817|gspK|12.07|11.08|10.95|8.95|7.98
-intRb1345_13|intR|30.16|44.34|26.88|16.90|34.90
-yhbJb3205_520|yhbJ|13.07|8.06|27.87|19.88|7.98
 ...|...|...|...|...|...|...
 
 [**prefix_Libray_Gini_Score.png**](./image/all_Libray_Gini_Score.png): schematic of Gini index for each library.
 
-### sgRNA level statistics: for the comprehensive description of the mathematical processing, see our paper.
+### sgRNA level statistics
 -------------------------------------------------------------
 #### removed sgRNAs (removed.sgRNA/)
 We remove the over diluted sgRNAs with read count less than one threshold ('ReadsThreshold' described in the configure file part).
 
  1. **prefix.removed.sgRNA.txt**: a simple list flat file with one sgRNA each line
-==============================================================
+============================================================
 #### biological replicate agreement (replicate_consistence/)
 It is neccessary to set up biological (technical) replicates during the experiment to test the reliability. Files under this dierectory is a minotoring panel for biological replicate agreement. In our opinion, two replicates for one experiment is fairly enough. The replicate information is encoded by the experiment design file (see above, How to use it? Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file about the Pearson correlation coefficients for all replicate pairs is given.
 
@@ -234,7 +217,6 @@ It is neccessary to set up biological (technical) replicates during the experime
  sgRNA|NCR1_abundance|NCR1_reads|NCR1_abundance_vs_initial|NCR2_abundance|NCR2_reads|NCR2_abundance_vs_initial
  -----|--------------|----------|-------------------------|--------------|----------|-------------------------
  gspKb3332_817|-16.22|10.95|0.46|-16.51|8.95|0.16
- intRb1345_13|-14.92|26.88|-0.38|-15.59|16.90|-1.05
  ...|...|...|...|...|...|...
 
  3. [**prefix_oneexperiment_replicates.png**](./image/all_control1_replicates.png): schematic of replicate agreement of one particular experiment.
