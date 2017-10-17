@@ -234,7 +234,7 @@ yhbJb3205_520|yhbJ|13.07|8.06|27.87|19.88|7.98
 We remove the over diluted sgRNAs with read count less than one threshold ('ReadsThreshold' described in the configure file part).
 
  1. **prefix.removed.sgRNA.txt**: a simple list flat file with one sgRNA each line
-
+.............................................................
 #### biological replicate agreement (replicate_consistence/)
 It is neccessary to set up biological (technical) replicates during the experiment to test the reliability. Files under this dierectory is a minotoring panel for biological replicate agreement. In our opinion, two replicates for one experiment is fairly enough. The replicate information is encoded by the experiment design file (see above, How to use it? Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file about the Pearson correlation coefficients for all replicate pairs is given.
 
