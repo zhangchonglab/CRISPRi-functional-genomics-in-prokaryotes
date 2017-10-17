@@ -191,10 +191,11 @@ You can find many sub directories in under the result directory. Below is an ill
 
 We describe the output files located under each sub directory as below.
 
+
 ### ---------------------------------------------------------
 ### NGS raw data profile
-#### read count of each sgRNA in each library (prefix_count/)
 
+#### read count of each sgRNA in each library (prefix_count/)
 **prefix.countsummary.txt**: basic statistics of the mapping ratio of each NGS library. It is a .csv file with a header line using tab as delimiter.
 
 File|Label|Reads|Mapped|Synerror|Unknown|Percentage|Zerocounts|GiniIndex
@@ -230,6 +231,7 @@ yhbJb3205_520|yhbJ|13.07|8.06|27.87|19.88|7.98
 
 ### ---------------------------------------------------------
 ### sgRNA level statistics
+
 #### ---------------------------------------------------------
 #### biological replicate agreement (replicate_consistence/)
 It is neccessary to set up biological (technical) replicates during the experiment to test the reliability. Files under this dierectory is a minotoring panel for biological replicate agreement. In our opinion, two replicates for one experiment is fairly enough. The replicate information is encoded by the experiment design file (see above, How to use it? Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file about the Pearson correlation coefficients for all replicate pairs is given.
