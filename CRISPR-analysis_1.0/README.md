@@ -278,7 +278,7 @@ Theoretically, fitness socre (log2 abundance change) of NC sgRNA should follow a
 ### gene level statistics: 
 -------------------------------------------------------------
 #### FPR-score curve (prefix_quasigeneFPR/)
-We use a NC sgRNA derived 'quasi' gene simulation approach (score approach thereafter, we use this method in our paper) (score = |gene fitness| * -Log10Pvalue_MWUtest) to determine the false positive rate (*FPR*) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated *FPR*-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
+We use a NC sgRNA derived 'quasi' gene simulation approach (score approach thereafter, we use this method in our paper) (score = |gene fitness| * -Log<sub>10</sub>Pvalue_MWUtest) to determine the false positive rate (*FPR*) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated *FPR*-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
 
 ============================================================
 #### P value-Q value curve (prefix_Pvalue_Qvalue/)
