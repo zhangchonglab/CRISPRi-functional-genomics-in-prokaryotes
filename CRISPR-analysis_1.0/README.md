@@ -261,7 +261,7 @@ This directory stores all dataset about sgRNA metrics. It is generally organized
  sgRNA|gene|plasmid_Log2_abundnace|plasmid_reads|plasmid_Log2_abundnace_vs_initial
  -----|----|----------------------|-------------|---------------------------------
  gspKb3332_817|gspK|-16.68|7.98|0.0
- intRb1345_13|intR|-14.55|34.9043440304|0.0
+ intRb1345_13|intR|-14.55|34.90|0.0
  ...|...|...|...|...|
 
  2. **Condition level** (information of one experiement (average of two replicate NGS library), under condition_level directory)
@@ -273,19 +273,19 @@ This directory stores all dataset about sgRNA metrics. It is generally organized
  ...|...|...|...|...|...
 
  3. **Phenotype level (only need to focus on this level if you are not a developer)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory)
- 
+  
   3.1 relative_abundnace_change = Log2 (read count selective condition / read count control condition)
- 
+  
   3.2 normalized_change (**it is used as sgRNA fitness score**) = relative_abundnace_change - median relative_abundnace_change of negative control sgRNAs
   
   3.3 Zscore = normalized_change / sigma of negative control sgRNA normalized_change normal distribution
- 
+  
   3.4 Quality: it is tagged as 'Good' if the averaged read count in control condition is above the threshold ('ReadsThreshold' described in the configure file part). **Only 'Good' sgRNAs are used in gene level calculation**.
- 
+  
  sgRNA|gene|relative_abundnace_change|normalized_change|Zscore|Quality
  -----|----|-------------------------|-----------------|------|-------
- gspKb3332_817|gspK|0.224399437928|-0.027223892011|-0.0381514944062|Good
- intRb1345_13|intR|0.778866623706|0.527243293767|0.738877437683|Good
+ gspKb3332_817|gspK|0.22|-0.03|-0.04|Good
+ intRb1345_13|intR|0.78|0.53|0.74|Good
  ...|...|...|...|...
 
 #### negative control sgRNA distribution (fit by normal distribution) (NCsgRNA_ND/)
