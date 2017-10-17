@@ -278,15 +278,27 @@ Theoretically, fitness socre (log2 abundance change) of NC sgRNA should follow a
 ### gene level statistics: 
 -------------------------------------------------------------
 #### FPR-score curve (prefix_quasigeneFPR/)
-We use a NC sgRNA derived 'quasi' gene simulation approach (score approach thereafter) to determine the false positive rate (FPR) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated FPR-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
+We use a NC sgRNA derived 'quasi' gene simulation approach (score approach thereafter, we use this method in our paper) to determine the false positive rate (*FPR*) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated FPR-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
 
 ============================================================
 #### P value-Q value curve (prefix_Pvalue_Qvalue/)
 We use a Storey-Tibshirani approach (PNAS 2003) to convert *FPR* into *Q* values. We also use a simple student t test method (sgRNA for one gene vs NC sgRNAs) (t test approach thereafter) to calculate another *P* value and convert it into *Q* values.
 
- 1. **Qvalue_scoreFPR.txt**: score approach derived *P-Q* value curve.
+ 1. **Qvalue_scoreFPR.txt**: score approach derived *P-Q* value curve for all phenotypes.
  
-
+ phenotype1|phenotype2|...|Qvalue
+ ----------|----------|---|------
+ 0.00015|...|...|0.001
+ 0.00084|...|...|0.005
+ ...|...|...|...
+ 0.03180|...|...|0.1
+ 
+  2. **Qvalue_TtestPvalue.txt**: t test approach derived *P-Q* value curve for all phenotypes, similar to above.
+  
+  3. Distributions of *FPR* (or t test *P*) for all genes (2N [figures](./image/all_essential_Ttest_pValue.png), N = number of phenotypes).
+  
+  4. Comparison of *P-Q* curves from two approaches (N [figures](./image/all_essential_Pvalue_Qvalue.png), N = number of phenotypes).
+ 
 ============================================================
 #### gene fitness, statistical significance, etc (prefix_gene_statistics/)
 This directory stores all dataset about gene metrics. N files are generated, corresponding to N studied phenotypes.
