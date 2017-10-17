@@ -194,7 +194,7 @@ We describe the output files located under each sub directory as below.
 ### NGS raw data profile
 #### read count of each sgRNA in each library (prefix_count/)
 
-**Ilovemicrobe.countsummary.txt**: basic statistics of the mapping ratio of each NGS library. It is a .csv file with a header line using tab as delimiter.
+**prefix.countsummary.txt**: basic statistics of the mapping ratio of each NGS library. It is a .csv file with a header line using tab as delimiter.
 
 File|Label|Reads|Mapped|Synerror|Unknown|Percentage|Zerocounts|GiniIndex
 ----|-----|-----|------|--------|-------|----------|----------|---------
@@ -205,6 +205,24 @@ example_data/NCR2.fq.gz|NCR2|1000000|841039|86621|72340|0.841|2346|0.2013
 example_data/NCR1.fq.gz|NCR1|1000000|839977|86801|73222|0.84|2266|0.1985
 
 Reads denote the number of reads in the raw data. Mapped denotes number of reads mapping perfectly to one member of the synthetic sgRNA library. Synerror refers to those reads with one indel mutation or more mismatch mutations. Unknown refers to those reads where no forward_prefixseq and forward_suffixseq can be identified (see configure file). Percentage is the mapping ratio. Zerocount refers to sgRNA number in the *in silico* library without any corresponding read detected in the library. GiniIndex is a metric reflecting the member abundance uniformity in a library. Bigger Gini index indicate more biased distribution of library with over- represented or diluted members. Generally, more stringent the selective condition is, bigger Gini index we can expect. 
+
+**prefix.count.txt**: raw read count for each sgRNA in the *in silico* library **before normalization**.
+
+sgRNA|dCas9R1|dCas9R2|NCR1|NCR2|plasmid
+-----|-------|-------|----|----|-------
+gspKb3332_817|12|11|11|9|8
+intRb1345_13|30|44|27|17|35
+yhbJb3205_520|13|8|28|20|8
+...|...|...|...|...|...
+
+**prefix.normalizeCount.txt**: read count for each sgRNA in the *in silico* library **after normalization of sequencing depth** (for details, see our paper).
+
+sgRNA|Gene|dCas9R1|dCas9R2|NCR1|NCR2|plasmid
+-----|----|-------|-------|----|----|-------
+gspKb3332_817|gspK|12.07|11.08|10.95|8.95|7.98
+intRb1345_13	intR|30.16|44.34|26.88|16.90|34.90
+yhbJb3205_520	yhbJ|13.07|8.06|27.87|19.88|7.98
+...|...|...|...|...|...|...
 
 ### sgRNA level statistics
 #### negative control sgRNA distribution (fit by normal distribution)
