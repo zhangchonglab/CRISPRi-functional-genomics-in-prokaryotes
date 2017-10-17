@@ -297,7 +297,7 @@ We use a Storey-Tibshirani approach (PNAS 2003) to convert *FPR* into *Q* values
   
   3. Distributions of *FPR* (or t test *P*) for all genes (2N [figures](./image/all_essential_Ttest_pValue.png), N = number of phenotypes).
   
-  4. Comparison of *P-Q* curves from two approaches (N [figures](./image/all_essential_Pvalue_Qvalue.png), N = number of phenotypes).
+  4. Comparison of *P-Q* curves from two approaches (N [figures](./image/Ilovemicrobe_example_Pvalue_Qvalue.png), N = number of phenotypes).
  
 ============================================================
 #### gene fitness, statistical significance, etc (prefix_gene_statistics/)
