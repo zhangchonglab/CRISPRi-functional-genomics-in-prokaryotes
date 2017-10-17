@@ -232,13 +232,19 @@ yhbJb3205_520|yhbJ|13.07|8.06|27.87|19.88|7.98
 It is neccessary to set up biological (technical) replicates during the experiment to test the reliability. Files under this dierectory is a minotoring panel for biological replicate agreement. In our opinion, two replicates for one experiment is fairly enough. The replicate information is encoded by the experiment design file (see above, How to use it? Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file about the Pearson correlation coefficients for all replicate pairs is given.
 
  1. **prefix_replicates_reads_statistics.txt**: the summary file
+ 
+ condition|pearson correlation coefficient|P value
+ ---------|-------------------------------|-------
+ stress1|0.868083522607|0.0
+ control1|0.831989793461|0.0
+ ...|...|...
 
  2. **prefix_oneexperiment_replicates.txt**: two-column flat file of normalized read count of each sgRNA in two replicates of one particular experiment.
 
  3. [**prefix_oneexperiment_replicates.png**](./image/all_control1_replicates.png): schematic of replicate agreement of one particular experiment.
 
 #### sgRNA read count, abundance change, fitness score, etc (prefix_sgRNA_statistics/)
-This directory stores all dataset about sgRNA metrics. It is generally organized at three levels:
+This directory stores all dataset about sgRNA metrics. It is generally organized at three levels (three sub directories):
  1. **Library level** (information of one NGS library, under library_level directory)
 
  2. **Condition level** (information of one experiement (average of two replicate NGS library), under condition_level directory)
