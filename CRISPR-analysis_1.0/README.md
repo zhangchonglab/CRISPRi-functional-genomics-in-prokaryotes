@@ -303,7 +303,21 @@ We use a Storey-Tibshirani approach (PNAS 2003) to convert *FPR* into *Q* values
 #### gene fitness, statistical significance, etc (prefix_gene_statistics/)
 This directory stores all dataset about gene metrics. N files are generated, corresponding to N studied phenotypes.
 
-gene|sgRNAnumber|MedianRAC|MedianZ|-Log10Pvalue_MWUtest|FDRvalue|FPRvalue|-Log10Pvalue_Ttest|Qvalue_Ttest
+sgRNAnumber: number of sgRNAs used to produce the metrics for this gene (see 'position' approach in our paper)
+
+MedianRAC: gene fintess score
+
+MedianZ: gene fitness score normalized by the sigma of NC sgRNA fitness normal distribution
+
+-Log10Pvalue_MWUtest: MWU test of sgRNA (of one gene) fitness scores vs. NC sgRNA fitness scores
+
+FPRvalue: as above; FDRvalue: *Q* value derived from *FPR*;
+
+-Log10Pvalue_Ttest: student t test of sgRNA (of one gene) fitness scores vs. NC sgRNA fitness scores
+
+Qvalue_Ttest: *Q* value derived from t test *P* value
+
+gene|sgRNAnumber|MedianRAC|MedianZ|negative Log10Pvalue_MWUtest|FDRvalue|FPRvalue|negative Log10Pvalue_Ttest|Qvalue_Ttest
 ----|-----------|---------|-------|--------------------|--------|--------|------------------|------------
 gspK|11|-0.19|-0.27|0.76|0.30|0.18|0.74|0.36
 ...|...|...|...|...|...|...|...|...
