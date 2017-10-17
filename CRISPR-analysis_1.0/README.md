@@ -348,7 +348,7 @@ A [figure](./image/all_essential_quasigeneFDR.png) and a file describing FDR vs.
 
 one phenotype
 
-gene|sgRNAnumber|MedianRAC|MedianZ|-Log10Pvalue_MWUtest|FDRvalue|FPRvalue
+gene|sgRNAnumber|MedianRAC|MedianZ|negative Log10Pvalue_MWUtest|FDRvalue|FPRvalue
 ----|-----------|---------|-------|--------------------|--------|--------|
 mtlD,mtlR|8,7|-0.110,-0.248|-0.154,-0.347|0.510,0.724|0.472,0.300|0.410,0.184
 ...|...|...|...|...|...|...|
