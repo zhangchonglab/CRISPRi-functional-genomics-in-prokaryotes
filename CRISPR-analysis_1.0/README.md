@@ -220,9 +220,11 @@ yhbJb3205_520|13|8|28|20|8
 sgRNA|Gene|dCas9R1|dCas9R2|NCR1|NCR2|plasmid
 -----|----|-------|-------|----|----|-------
 gspKb3332_817|gspK|12.07|11.08|10.95|8.95|7.98
-intRb1345_13	intR|30.16|44.34|26.88|16.90|34.90
-yhbJb3205_520	yhbJ|13.07|8.06|27.87|19.88|7.98
+intRb1345_13|intR|30.16|44.34|26.88|16.90|34.90
+yhbJb3205_520|yhbJ|13.07|8.06|27.87|19.88|7.98
 ...|...|...|...|...|...|...
+
+[**prefix_Libray_Gini_Score.png**](./image/all_Libray_Gini_Score.png): schematic of Gini index for each library.
 
 ### sgRNA level statistics
 #### negative control sgRNA distribution (fit by normal distribution)
