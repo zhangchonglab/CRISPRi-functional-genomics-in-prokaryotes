@@ -43,11 +43,6 @@ rsmE|rsmE_9|0.0122950819672
 ----|------|---------------
 rsmE|rsmE_10|0.0136612021858
 rsmE|rsmE_11|0.0150273224044
-rsmE|rsmE_12|0.016393442623
-rsmE|rsmE_25|0.0341530054645
-acnA|acnA_384|0.143497757848
-acnA|acnA_395|0.147608370703
-acnA|acnA_441|0.164798206278
 acnA|acnA_459|0.171524663677
 acnA|acnA_477|0.178251121076
 ...|...|...
@@ -59,12 +54,8 @@ CRISPRi works at the transcription level, due to the unique structure of polycis
 operonid|operon	genes
 |-------|------------
 KO04087|dapE,ypfN
-KO04086|yffB,dapE,ypfN
 KO04089|bcp
-KO04735|ykfH,ykfF,yafX,ykfI,ykfG,yafW
 KO04731|dinJ
-KO04956|ssuB,ssuE,ssuA,ssuD,ssuC
-KO05736|damX,aroB,gph,trpS,dam,rpe,aroK
 ...|...
 
 #### File 5: experiment design file (see example_experiment_configure.txt)
