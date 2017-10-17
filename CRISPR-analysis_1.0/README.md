@@ -278,7 +278,7 @@ Theoretically, fitness socre (log2 abundance change) of NC sgRNA should follow a
 ### gene level statistics: 
 -------------------------------------------------------------
 #### FPR-score curve (prefix_quasigeneFPR/)
-We use a NC sgRNA derived 'quasi' gene simulation approach (score approach thereafter, we use this method in our paper) to determine the false positive rate (*FPR*) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated FPR-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
+We use a NC sgRNA derived 'quasi' gene simulation approach (score approach thereafter, we use this method in our paper) (score = gene fitness * -Log10Pvalue_MWUtest) to determine the false positive rate (*FPR*) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated FPR-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
 
 ============================================================
 #### P value-Q value curve (prefix_Pvalue_Qvalue/)
@@ -305,15 +305,15 @@ This directory stores all dataset about gene metrics. N files are generated, cor
 
 sgRNAnumber: number of sgRNAs used to produce the metrics for this gene (see 'position' approach in our paper)
 
-MedianRAC: gene fintess score
+MedianRAC: gene fintess
 
-MedianZ: gene fitness score normalized by the sigma of NC sgRNA fitness normal distribution
+MedianZ: gene fitness normalized by the sigma of NC sgRNA fitness normal distribution
 
--Log10Pvalue_MWUtest: MWU test of sgRNA (of one gene) fitness scores vs. NC sgRNA fitness scores
+-Log10Pvalue_MWUtest: MWU test of sgRNA (of one gene) fitness vs. NC sgRNA fitness
 
-FPRvalue: as above; FDRvalue: *Q* value derived from *FPR*;
+FPRvalue: score approach derived *FPR*; FDRvalue: *Q* value derived from *FPR*;
 
--Log10Pvalue_Ttest: student t test of sgRNA (of one gene) fitness scores vs. NC sgRNA fitness scores
+-Log10Pvalue_Ttest: student t test of sgRNA (of one gene) fitness vs. NC sgRNA fitness
 
 Qvalue_Ttest: *Q* value derived from t test *P* value
 
@@ -322,11 +322,9 @@ gene|sgRNAnumber|MedianRAC|MedianZ|negative Log10Pvalue_MWUtest|FDRvalue|FPRvalu
 gspK|11|-0.19|-0.27|0.76|0.30|0.18|0.74|0.36
 ...|...|...|...|...|...|...|...|...
 
-
-
 ============================================================
-#### gene fitness
-
+#### FDR-score curve (prefix_quasigeneFDR/)
+A [figure](./image/all_essential_quasigeneFDR.png) describing FDR vs. score relation considering sgRNA number per gene profile in the library using a 'quasi' gene simulation approach. It is used to produce the volcano plot.
 
 ### operon level statistics (reorganize gene data according to the operon file)
 -------------------------------------------------------------
