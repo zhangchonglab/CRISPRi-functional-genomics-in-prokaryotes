@@ -226,7 +226,7 @@ yhbJb3205_520|yhbJ|13.07|8.06|27.87|19.88|7.98
 
 [**prefix_Libray_Gini_Score.png**](./image/all_Libray_Gini_Score.png): schematic of Gini index for each library.
 
-### sgRNA level statistics
+### sgRNA level statistics: for the comprehensive description of the mathematical processing, see our paper.
 -------------------------------------------------------------
 #### removed sgRNAs (removed.sgRNA/)
 We remove the over diluted sgRNAs with read count less than one threshold ('ReadsThreshold' described in the configure file part).
@@ -267,15 +267,19 @@ This directory stores all dataset about sgRNA metrics. It is generally organized
  2. **Condition level** (information of one experiement (average of two replicate NGS library), under condition_level directory)
  
  sgRNA|gene|control1_Log2_abundnace|control1_reads|control1_Log2_abundnace_vs_initial|control1_relative_deviation
- -----|----|----------------------|-------------|---------------------------------
+ -----|----|----------------------|---------------|----------------------------------|---------------------------
  gspKb3332_817|gspK|-16.37|9.90|0.31|0.10
  intRb1345_13|intR|-15.26|21.31|-0.71|0.23
  ...|...|...|...|...|...
 
  3. **Phenotype level (only need to focus on this level if you are not a developer)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory)
+ relative_abundnace_change = Log2 (read count selective condition / read count control condition)
+ normalized_change (**it is used as sgRNA fitness score**) = relative_abundnace_change - median relative_abundnace_change of negative control sgRNAs
+ Zscore = normalized_change / sigma of negative control sgRNA normalized_change normal distribution
+ Quality: it is tagged as 'Good' if the averaged read count in control condition is above the threshold ('ReadsThreshold' described in the configure file part). **Only 'Good' sgRNAs are used in gene level calculation**.
  
- sgRNA|gene|essential_relative_abundnace_change|essential_normalized_change|essential_Zscore	Quality
- -----|----|-----------------------------------|---------------------------|------------------------
+ sgRNA|gene|relative_abundnace_change|normalized_change|Zscore|Quality
+ -----|----|-------------------------|-----------------|------|-------
  gspKb3332_817|gspK|0.224399437928|-0.027223892011|-0.0381514944062|Good
  intRb1345_13|intR|0.778866623706|0.527243293767|0.738877437683|Good
  ...|...|...|...|...
