@@ -262,14 +262,16 @@ Theoretically, fitness socre (log2 abundance change) of NC sgRNA should follow a
  
  condition|median|mean|stdev
  ---------|------|----|-----
- example|0.25|0.16|0.71
+ phenotype1|0.25|0.16|0.71
+ phenotype2|0.25|0.16|0.71
  ...|...|...|...
 
  2. **prefix_NCsgRNA_normalized_ND.txt**: normal distribution of NC sgRNA fitness scores (after normalization by median of NC sgRNA relative abundance change, referring to 'normalized_change' column in phenotype level sgRNA statistics)
  
  condition|median|mean|stdev
  ---------|------|----|-----
- example|0.0|-0.09|0.71
+ phenotype1|0.0|-0.09|0.71
+ phenotype2|0.0|-0.09|0.71
  ...|...|...|...
 
  3. [**prefix_phenotype_NCsgRNAND.png**](./image/all_essential_NCsgRNAND.png): schematic of NC sgRNA fitness score distribution.
@@ -344,7 +346,8 @@ A [figure](./image/all_essential_quasigeneFDR.png) and a file describing FDR vs.
 
 **prefix_phenotype_operon_statistics.txt**: reorganized gene fitness and statistical signifcance dataset. Each line refers to one operon. Different types of metrics are seperated by tab. The same type of metrics corresponding to multiple genes in one operon are seperated by comma. For simplicity, only part of gene metrics are included here.
 
-phenotype
+one phenotype
+
 gene|sgRNAnumber|MedianRAC|MedianZ|-Log10Pvalue_MWUtest|FDRvalue|FPRvalue
 ----|-----------|---------|-------|--------------------|--------|--------|
 mtlD,mtlR|8,7|-0.110,-0.248|-0.154,-0.347|0.510,0.724|0.472,0.300|0.410,0.184
