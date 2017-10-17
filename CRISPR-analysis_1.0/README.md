@@ -164,7 +164,7 @@ You can find many sub directories under the result directory.
 
 [your result directory after running the test](./image/resultdir_after_example_running.png)
 
-Below is the description of these files. For the comprehensive description of the mathematical processing, see our paper.
+Below is the description. For the mathematical processing, see our paper. **All .csv flat files use tab as delimiter unless mentioned**
 
 ### NGS raw data profile
 -------------------------------------------------------------
@@ -277,11 +277,26 @@ Theoretically, fitness socre (log2 abundance change) of NC sgRNA should follow a
 
 ### gene level statistics: 
 -------------------------------------------------------------
-#### FPR-score curve (prefix_quasigeneFPR)
-We use a NC sgRNA derived 'quasi' gene simulation approach to determine the false positive rate (FPR) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated FPR-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
+#### FPR-score curve (prefix_quasigeneFPR/)
+We use a NC sgRNA derived 'quasi' gene simulation approach (score approach thereafter) to determine the false positive rate (FPR) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated FPR-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
 
 ============================================================
-#### FPR-Q value curve
+#### P value-Q value curve (prefix_Pvalue_Qvalue/)
+We use a Storey-Tibshirani approach (PNAS 2003) to convert *FPR* into *Q* values. We also use a simple student t test method (sgRNA for one gene vs NC sgRNAs) (t test approach thereafter) to calculate another *P* value and convert it into *Q* values.
+
+ 1. **Qvalue_scoreFPR.txt**: score approach derived *P-Q* value curve.
+ 
+
+============================================================
+#### gene fitness, statistical significance, etc (prefix_gene_statistics/)
+This directory stores all dataset about gene metrics. N files are generated, corresponding to N studied phenotypes.
+
+gene|sgRNAnumber|MedianRAC|MedianZ|-Log10Pvalue_MWUtest|FDRvalue|FPRvalue|-Log10Pvalue_Ttest|Qvalue_Ttest
+----|-----------|---------|-------|--------------------|--------|--------|------------------|------------
+gspK|11|-0.19|-0.27|0.76|0.30|0.18|0.74|0.36
+...|...|...|...|...|...|...|...|...
+
+
 
 ============================================================
 #### gene fitness
