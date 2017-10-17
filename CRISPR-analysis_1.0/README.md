@@ -254,7 +254,8 @@ This directory stores all dataset about sgRNA metrics. It is generally organized
  gspKb3332_817|gspK|0.22|-0.03|-0.04|Good
  ...|...|...|...|...
 
-#### NC sgRNA distribution (fit by normal distribution) (NCsgRNA_ND/)
+============================================================
+#### NC sgRNA distribution (NCsgRNA_ND/)
 Theoretically, fitness socre (log2 abundance change) of NC sgRNA should follow a normal distribution. We hence use a normal distribution to fit NC sgRNA fitness score data.
 
  1. **prefix_NCsgRNA_ND.txt**: normal distribution of NC sgRNA relative abundance changes (before normalization by median of NC sgRNA relative abundance change, referring to 'relative_abundnace_change' column in phenotype level sgRNA statistics)
@@ -274,14 +275,15 @@ Theoretically, fitness socre (log2 abundance change) of NC sgRNA should follow a
  3. [**prefix_phenotype_NCsgRNAND.png**](./image/all_essential_NCsgRNAND.png): schematic of NC sgRNA fitness score distribution.
 
 
-### gene level statistics
+### gene level statistics: 
 -------------------------------------------------------------
+#### FPR-score curve (prefix_quasigeneFPR)
+We use a NC sgRNA derived 'quasi' gene simulation approach to determine the false positive rate (FPR) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated FPR-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
 
-#### FPR-score curve
-
-
+============================================================
 #### FPR-Q value curve
 
+============================================================
 #### gene fitness
 
 
