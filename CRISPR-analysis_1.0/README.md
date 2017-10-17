@@ -342,11 +342,10 @@ A [figure](./image/all_essential_quasigeneFDR.png) and a file describing FDR vs.
 
 **prefix_phenotype_RemoveOperon_statistics.txt**: flat file describing removed operons due to the availability of genes
 
-**prefix_phenotype_operon_statistics.txt**: reorganized gene fitness and statistical signifcance dataset. Each line refers to one operon. Different types of metrics are seperated by tab. The same type of metrics corresponding to multiple genes in one operon are seperated by comma.
+**prefix_phenotype_operon_statistics.txt**: reorganized gene fitness and statistical signifcance dataset. Each line refers to one operon. Different types of metrics are seperated by tab. The same type of metrics corresponding to multiple genes in one operon are seperated by comma. For simplicity, only part of gene metrics are included here.
 
-
-
-
-
-
-
+phenotype
+gene|sgRNAnumber|MedianRAC|MedianZ|-Log10Pvalue_MWUtest|FDRvalue|FPRvalue
+----|-----------|---------|-------|--------------------|--------|--------|
+mtlD,mtlR|8,7|-0.110,-0.248|-0.154,-0.347|0.510,0.724|0.472,0.300|0.410,0.184
+...|...|...|...|...|...|...|
