@@ -73,6 +73,8 @@ For each phenotype to be studied, we need one selective and one control conditio
 Library/Condition|initial|stress1|control1|...|stressX|controlX|...
 -----------------|-------|-------|--------|---|-------|--------|---
 
+**Each stress and control pair defines a phenotype to be studied.**
+
 **Each row refers to a NGS library and each column refers to a condition. '1' indicates the association between library and condition, whereas the program will skip the item set as ‘0’.** All libraries under one common condition (in one column) are regarded as biological replicates and read count for each sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. **At least and only one library should be assigned as initial condition.** Initial library will be used to exclude sgRNAs with poor representation from further analysis to ensure statistical robustness based on customized threshold (see below in configure file). Usually, use the library before selection as the initial library. Initial library can be also used as control condition for a particular phenotype to be studied.
 
 Library/Condition|initial|stress1|control1
@@ -256,7 +258,7 @@ It is neccessary to set up biological (technical) replicates during the experime
 
 #### sgRNA read count, abundance change, fitness score, etc (prefix_sgRNA_statistics/)
 This directory stores all dataset about sgRNA metrics. It is generally organized at three levels (three sub directories):
- 1. **Library level** (information of one NGS library, under library_level directory)
+ 1. **Library level** (information of one NGS library, under library_level directory). N files, N = number of rows in experiment design file.
  
  sgRNA|gene|plasmid_Log2_abundnace|plasmid_reads|plasmid_Log2_abundnace_vs_initial
  -----|----|----------------------|-------------|---------------------------------
@@ -264,7 +266,7 @@ This directory stores all dataset about sgRNA metrics. It is generally organized
  intRb1345_13|intR|-14.55|34.90|0.0
  ...|...|...|...|...|
 
- 2. **Condition level** (information of one experiement (average of two replicate NGS library), under condition_level directory)
+ 2. **Condition level** (information of one experiement (average of two replicate NGS library), under condition_level directory). N files, N = number of columns in experiment design file.
  
  sgRNA|gene|control1_Log2_abundnace|control1_reads|control1_Log2_abundnace_vs_initial|control1_relative_deviation
  -----|----|----------------------|---------------|----------------------------------|---------------------------
@@ -272,7 +274,7 @@ This directory stores all dataset about sgRNA metrics. It is generally organized
  intRb1345_13|intR|-15.26|21.31|-0.71|0.23
  ...|...|...|...|...|...
 
- 3. **Phenotype level (only need to focus on this level if you are not a developer)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory)
+ 3. **Phenotype level (only need to focus on this level if you are not a developer)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory). N files, N = number of 'stress'(selective) conditions in experiment design file.
   
   3.1 relative_abundnace_change = Log2 (read count selective condition / read count control condition)
   
