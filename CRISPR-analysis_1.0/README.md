@@ -276,13 +276,13 @@ This directory stores all dataset about sgRNA metrics. It is generally organized
 
  3. **Phenotype level (only need to focus on this level if you are not a developer)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory). N files, N = number of 'stress'(selective) conditions in experiment design file.
   
-  3.1 relative_abundnace_change = Log2 (read count selective condition / read count control condition)
+  relative_abundnace_change = Log2 (read count selective condition / read count control condition)
   
-  3.2 normalized_change (**it is used as sgRNA fitness score**) = relative_abundnace_change - median relative_abundnace_change of negative control sgRNAs
+  normalized_change (**it is used as sgRNA fitness score**) = relative_abundnace_change - median relative_abundnace_change of negative control sgRNAs
   
-  3.3 Zscore = normalized_change / sigma of negative control sgRNA normalized_change normal distribution
+  Zscore = normalized_change / sigma of negative control sgRNA normalized_change normal distribution
   
-  3.4 Quality: it is tagged as 'Good' if the averaged read count in control condition is above the threshold ('ReadsThreshold' described in the configure file part). **Only 'Good' sgRNAs are used in gene level calculation**.
+  Quality: it is tagged as 'Good' if the averaged read count in control condition is above the threshold ('ReadsThreshold' described in the configure file part). **Only 'Good' sgRNAs are used in gene level calculation**.
   
  sgRNA|gene|relative_abundnace_change|normalized_change|Zscore|Quality
  -----|----|-------------------------|-----------------|------|-------
@@ -293,9 +293,19 @@ This directory stores all dataset about sgRNA metrics. It is generally organized
 #### negative control sgRNA distribution (fit by normal distribution) (NCsgRNA_ND/)
 We use negative control sgRNA in the screening experiment to monitor the noise introduced during the experiment. Theoretically, fitness socre (log2 abundance change) of negative control sgRNA should follow a normal distribution. We hence use a normal distribution to fit negative control sgRNA fitness score and the derived sigma value (standard deriative) is a quantitative measurement of experimental noise.
 
- 1. **prefix_NCsgRNA_ND.txt**: normal distribution of negative control sgRNA fitness
+ 1. **prefix_NCsgRNA_ND.txt**: normal distribution of negative control sgRNA relative abundance changes (before normalization by median of negative control sgRNA relative abundance change, referring to 'relative_abundnace_change' column in phenotype level sgRNA statistics)
+ 
+ condition|median|mean|stdev
+ ---------|------|----|-----
+ example|0.25|0.16|0.71
+ ...|...|...|...
 
- 2. **prefix_NCsgRNA_normalized_ND.txt**
+ 2. **prefix_NCsgRNA_normalized_ND.txt**: normal distribution of negative control sgRNA fitness scores (after normalization by median of negative control sgRNA relative abundance change, referring to 'normalized_change' column in phenotype level sgRNA statistics)
+ 
+ condition|median|mean|stdev
+ ---------|------|----|-----
+ example|0.0|-0.09|0.71
+ ...|...|...|...
 
  3. [**prefix_phenotype_NCsgRNAND.png**](./image/all_essential_NCsgRNAND.png): schematic of negative control sgRNA fitness score distribution.
 
