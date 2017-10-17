@@ -324,11 +324,25 @@ gspK|11|-0.19|-0.27|0.76|0.30|0.18|0.74|0.36
 
 ============================================================
 #### FDR-score curve (prefix_quasigeneFDR/)
-A [figure](./image/all_essential_quasigeneFDR.png) describing FDR vs. score relation considering sgRNA number per gene profile in the library using a 'quasi' gene simulation approach. It is used to produce the volcano plot.
+A [figure](./image/all_essential_quasigeneFDR.png) and a file describing FDR vs. score relation considering sgRNA number per gene profile in the library using a 'quasi' gene simulation approach. It is used to produce the volcano plot.
+
+ phenotype1|phenotype2|...|FDR
+ ----------|----------|---|------
+ 21.91|...|...|0.001
+ 4.36|...|...|0.005
+ ...|...|...|...
+ 0.72|...|...|0.1
 
 ### operon level statistics (reorganize gene data according to the operon file)
 -------------------------------------------------------------
+#### reorganize gene fitness and statistical significance according to operon structures (prefix_operon_statistics/)
+3N files corresponding to N phenotypes. 
 
+**prefix_phenotype_RemoveGene_statistics.txt**: flat file describing removed genes due to the availability of sgRNAs
+
+**prefix_phenotype_RemoveOperon_statistics.txt**: flat file describing removed operons due to the availability of genes
+
+**prefix_phenotype_operon_statistics.txt**: reorganized gene fitness and statistical signifcance dataset. Each line refers to one operon. Different types of metrics are seperated by tab. The same type of metrics corresponding to multiple genes in one operon are seperated by comma.
 
 
 
