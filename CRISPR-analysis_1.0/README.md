@@ -241,7 +241,7 @@ This directory stores all dataset about sgRNA metrics. It is generally organized
 
  3. **Phenotype level (only need to focus on this level for simplicity)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory). N files, N = number of 'stress'(selective) conditions in experiment design file.
  
- relative_abundnace_change = Log2 (read count selective condition / read count control condition)
+ relative_abundnace_change = Log<sub>2</sub> (read count selective condition / read count control condition)
  
  normalized_change (**it is used as sgRNA fitness score**) = relative_abundnace_change - median relative_abundnace_change of NC sgRNAs
  
