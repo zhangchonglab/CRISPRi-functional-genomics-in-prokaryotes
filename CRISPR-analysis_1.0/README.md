@@ -192,8 +192,8 @@ You can find many sub directories in under the result directory. Below is an ill
 We describe the output files located under each sub directory as below.
 
 
-### ---------------------------------------------------------
 ### NGS raw data profile
+### ---------------------------------------------------------
 
 #### read count of each sgRNA in each library (prefix_count/)
 **prefix.countsummary.txt**: basic statistics of the mapping ratio of each NGS library. It is a .csv file with a header line using tab as delimiter.
@@ -229,11 +229,11 @@ yhbJb3205_520|yhbJ|13.07|8.06|27.87|19.88|7.98
 [**prefix_Libray_Gini_Score.png**](./image/all_Libray_Gini_Score.png): schematic of Gini index for each library.
 
 
-### ---------------------------------------------------------
 ### sgRNA level statistics
+### ---------------------------------------------------------
 
-#### ---------------------------------------------------------
 #### biological replicate agreement (replicate_consistence/)
+#### ---------------------------------------------------------
 It is neccessary to set up biological (technical) replicates during the experiment to test the reliability. Files under this dierectory is a minotoring panel for biological replicate agreement. In our opinion, two replicates for one experiment is fairly enough. The replicate information is encoded by the experiment design file (see above, How to use it? Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file about the Pearson correlation coefficients for all replicate pairs is given.
 
 **prefix_replicates_reads_statistics.txt**: the summary file
@@ -242,8 +242,8 @@ It is neccessary to set up biological (technical) replicates during the experime
 
 [**prefix_oneexperiment_replicates.png**](./image/all_control1_replicates.png): schematic of replicate agreement of one particular experiment.
 
-#### ---------------------------------------------------------
 #### negative control sgRNA distribution (fit by normal distribution) (NCsgRNA_ND/)
+#### ---------------------------------------------------------
 We use negative control sgRNA in the screening experiment to monitor the noise introduced during the experiment. Theoretically, fitness socre (log2 abundance change) of negative control sgRNA should follow a normal distribution. We hence use a normal distribution to fit negative control sgRNA fitness score and the derived sigma value (standard deriative) is a quantitative measurement of experimental noise.
 
 **prefix_NCsgRNA_ND.txt**: normal distribution of negative control sgRNA fitness
@@ -252,17 +252,21 @@ We use negative control sgRNA in the screening experiment to monitor the noise i
 
 [**prefix_phenotype_NCsgRNAND.png**](./image/all_essential_NCsgRNAND.png): schematic of negative control sgRNA fitness score distribution.
 
-#### ---------------------------------------------------------
 #### sgRNA fitness
+#### ---------------------------------------------------------
 
 
-### ---------------------------------------------------------
 ### gene level statistics
+### ---------------------------------------------------------
+
 #### FPR-score curve
+#### ---------------------------------------------------------
 
 #### FPR-Q value curve
+#### ---------------------------------------------------------
 
 #### gene fitness
+#### ---------------------------------------------------------
 
 
 ### ---------------------------------------------------------
