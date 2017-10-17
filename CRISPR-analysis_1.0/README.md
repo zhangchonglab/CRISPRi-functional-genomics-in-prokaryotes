@@ -8,7 +8,7 @@ This script collection is user-friendly for experimental microbiologists with no
 ## General description of the algorithm and experiment
 The synthetic sgRNA plasmid library designed by the sgRNA-design subpackage can be transformed into prokaryotic cells expressing dCas9 protein. The resulting cell library can be subjected to stressed and control condition, and the plasmids after selection can be extracted and prepared for NGS library. With this protocol, we have a series of NGS data (.fastq) for each stressed and control condition. Each one can have one or more biological replicates. About the detailed protocol of the method, see https://doi.org/10.1101/129668 in BioRxiv. This program is used to convert these .fastq data to the gene-phenotype association profile.
 
-## How to use it
+## How to use it?
 ### Step 1：Installation
 1. Install Python version 2.7 or above
 2. Install Scipy version 0.19.1 or above
@@ -196,15 +196,15 @@ We describe the output files located under each sub directory as below.
 
 **Ilovemicrobe.countsummary.txt**: basic statistics of the mapping ratio of each NGS library. It is a .csv file with a header line using tab as delimiter.
 
-File|Label|Reads|Mapped|Synerror|Unknown|Percentage|TotalsgRNAs|Zerocounts|GiniIndex
-----|-----|-----|------|--------|-------|----------|-----------|----------|---------
-example_data/dCas9R2.fq.gz|dCas9R2|1000000|829847|92360|77793|0.8298|56046|6766|0.2817
-example_data/plasmid.fq.gz|plasmid|1000000|838484|90356|71160|0.8385|56046|1734|0.2167
-example_data/dCas9R1.fq.gz|dCas9R1|1000000|831615|92301|76084|0.8316|56046|6762|0.2808
-example_data/NCR2.fq.gz|NCR2|1000000|841039|86621|72340|0.841|56046|2346|0.2013
-example_data/NCR1.fq.gz|NCR1|1000000|839977|86801|73222|0.84|56046|2266|0.1985
+File|Label|Reads|Mapped|Synerror|Unknown|Percentage|Zerocounts|GiniIndex
+----|-----|-----|------|--------|-------|----------|----------|---------
+example_data/dCas9R2.fq.gz|dCas9R2|1000000|829847|92360|77793|0.8298|6766|0.2817
+example_data/plasmid.fq.gz|plasmid|1000000|838484|90356|71160|0.8385|1734|0.2167
+example_data/dCas9R1.fq.gz|dCas9R1|1000000|831615|92301|76084|0.8316|6762|0.2808
+example_data/NCR2.fq.gz|NCR2|1000000|841039|86621|72340|0.841|2346|0.2013
+example_data/NCR1.fq.gz|NCR1|1000000|839977|86801|73222|0.84|2266|0.1985
 
-
+Reads denote the number of reads in the raw data. Mapped denotes number of reads mapping perfectly to one member of the synthetic sgRNA library. Synerror refers to those reads with one indel mutation or more mismatch mutations. Unknown refers to those reads where no forward_prefixseq and forward_suffixseq can be identified (see configure file). Percentage is the mapping ratio. Zerocount refers to sgRNA number in the *in silico* library without any corresponding read detected in the library. GiniIndex is a metric reflecting the member abundance uniformity in a library. Bigger Gini index indicate more biased distribution of library with over- represented or diluted members. Generally, more stringent the selective condition is, bigger Gini index we can expect. 
 
 ### sgRNA level statistics
 #### negative control sgRNA distribution (fit by normal distribution)
