@@ -27,44 +27,41 @@ Download files with .fna (genome as a single contig); .ppt (protein-coding gene 
 If you are also interested in RNA-coding genes, download files with .fna (genome as a single contig); .rnt (RNA-coding gene annotation) and .frn (RNA-coding gene .fasta file) extensions. Follow the same instructions as described above. We strongly recommand to process protein- and RNA-coding gene sgRNA library design seperately (run one process with .fna, .ptt, .ffn and configure files; run another with .fna, .rnt, .frn and configure files;), because different parameters may be needed in the configure file (see below), due to the fact that RNA-coding genes tent to have much smaller coding regions in contrast to their protein-coding counterparts.
 
 2. **For focused library**
-Sometimes, only a subset of genes (for example, all transcription factors) are of interest in particular research project. In these cases, you need to construct a [.fasta file](https://en.wikipedia.org/wiki/FASTA_format) for these genes containing all their DNA sequences, similar to .ffn (.frn) file mentioned above. You can name each gene uniquely as you like in the '>' line of this constructed .fasta file. Avoid to use -, _ or " "(space) in these names. Besides, download .fna file from relevant directory of the studied microorganisms as described above.
+Sometimes, only a subset of genes (for example, all transcription factors) are of interest in particular research project. In these cases, you need to construct a [.fasta file](https://en.wikipedia.org/wiki/FASTA_format) for these genes containing all their DNA sequences, similar to .ffn (.frn) file mentioned above. You can name each gene uniquely as you like in the '>' line of this constructed .fasta file. Avoid to use ‘-’, ‘_’ and ‘ ’.(space) in these names. Besides, download .fna file from relevant directory of the studied microorganisms as described above.
 
 3. **Coping with multiple copy issue**
 Some genes have multiple copies in the genome. If it is not specified, the program cannot design any sgRNA for such genes, because 'off-target' site due to other copies in the genome can be always identified for any designed sgRNA. Although it is generally a minor issue due to very small number of such genes, we still design a optional method to handle it. If you want to cope with this issue to make your sgRNA library more comprehensive, prepare another file by an all-against-all BLASTN. Install [BLAST+ package](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/), make nucleotide sequence database for your .ffn (.frn) file by makeblastdb command and then run the following:
-blastn -query your_.ff(r)n_file -db your_.ff(r)n_database -evalue 0.001 -out your_output_name -outfmt 6
-The output file of this command will be used to identify the genes with multiple copies in the genome. The pregram will regard these paralogs as functionally identical and design sgRNAs to target all of them as a cluster. For details of the algorithm, see our paper.
+"blastn -query your_.ff(r)n_file -db your_.ff(r)n_database -evalue 0.001 -out your_output_name -outfmt 6"
+The output file of this command will be used to identify the genes with multiple copies in the genome. The program will regard each cluster of paralogs as functionally identical and design sgRNAs to target all of members of a cluster. For details of the algorithm, see our paper.
 
+### Step 3: Set up the configure file (see example_configure.txt)
+The configure file is used to set all the necessary parameters and tell the program where to find necessary files. This file is in a two-column format using tab as delimiter. Each line starts with one word (name of one parameter) separated with the following (setting of this parameter) by a tab delimiter. We describe each parameter as below.
 
+**ORFcutoff**: The sgRNA location within the gene coding region (ORF 5’=0.0, ORF 3’=1.0) (default=0.05, real number belonging to (0.0,1.0)). We find that the sgRNAs exhibit better activities locating within the first 5% of the coding region. Hence, by default, the sgRNA is designed at this region as many as possible.
 
+**sgRNA_number**: The number of sgRNA you want to design for each gene (default=10, positive integer). According to the description of our paper, we find that 5-10 sgRNAs per gene is enough for pooled screening based functional genomics analysis. However, more sgRNAs provide benefit (stronger statistical significance) for genes with only moderate phenotypic effect.
 
-### Step 3: Edit the configure file, which is used to set all the necessary parameters for the design. 
-The default parameters are given in the original configure file under the unzipped directory. Generally, the program processes the gene one by one, search for all the possible sgRNAs for this gene meeting the requirement given in the configure file, eliminate the sgRNAs with potential off-target site(s), and store all the qualified sgRNAs. The brief description of all the parameters is given below. For more details, please check our paper (BioRxiv: https://doi.org/10.1101/129668).
+**GCcontentMin**: The minimal GC content of spacer region (percentage) (default=30, positive integer between 0~100 is accepted).
 
-**ORFcutoff**: The sgRNA location within the gene coding region (ORF 5’=0.0, ORF 3’=1.0) (default=0.05, real number belonging to (0.0,1.0)). We found that the sgRNAs exhibited higher activities locating with the first 5% of ORF. Hence, by default, the sgRNA is designed at this region as many as possible.
+**GCcontentMax**: The maximum GC content of spacer region (percentage) (default=85, positive integer between 0~100 and > GCcontentMin is accepted). 
 
-sgRNA_number: The number of sgRNA you want to design for each gene (default=10, positive integer accepted). According to the description of our paper, we found that in E. coli, 5-10 sgRNAs per gene is enough for pooled screen based functional genomics analysis. However, more sgRNAs provide benefit (stronger statistical significance) for genes with only moderate phenotypic effect.
+In previous reports about dCas9 based CRISPRi system, GC content of sgRNA spacer region is found to be correlated with sgRNA activity. Extreme GC content reduces sgRNA activity. Hence, we suggest the abovementioned threshold. In situations of genome with relative low or high GC content, we suggest to adjust the threshold to (10,90). 
 
-GCcontentMin: The minimal GC content of spacer region (percentage) (default=20, positive integer between 0~100 is accepted).
+**off_threshold**: the off target penalty threshold (default=20), sgRNAs with potential off-target site carrying penalty score lower than the threshold will be eliminated. For the detailed description of the scoring method, please check our paper. Briefly, we suggest off_threshold >= 20 for library design. In situations where more sgRNAs are desired, the threshold can be decreased to 10, where the off-target effect of CRISPRi is still very slight as previously reported (Gilbert Luke et al., Cell 2014).
 
-GCcontentMax: The maximum GC content of spacer region (percentage) (default=80, positive integer between 0~100 and > GCcontentMin is accepted). 
+**strand**: Whether the sgRNA is designed targeting (binding) to the template or nontemplate stand of a coding gene (default=nontemplate, nontemplate or template is accepted). It is suggested by previous reports that dCas9 based CRISPRi system used in this work exhibited higher activity when targeting to non-template strand in ORF region.
 
-In previous reports about dCas9 based CRISPRi system, GC content of spacer region is correlated with sgRNA activity only in extreme GC content (reduce the activity). Hence, we suggested the above threshold. In situations of genome with relative low or high GC content, we suggested to adjust the threshold to (10,90). 
+**negative**: Choose whether to design negative control sgRNAs (sgRNA with no significant target across the genome, which is used as negative control in pooled screen to determine the phenotypic effect and statistical power of each gene) for the experiment(yes or no， default=yes). We highly recommend to include the negative control sgRNAs in the pooled screen. For the description of negative control sgRNA usage, please see our paper.
 
-off_threshold: Set the off target penalty threshold (default=20), sgRNAs with potential off-target site carrying penalty score lower than the threshold will be eliminated. For the detailed description of the scoring method, please check the paper. Briefly, we suggested off_threshold >= 20 for library design. In extreme situation where more sgRNAs are desired, the threshold can be decreased to 10.
+**negative_number**: The number of negative control sgRNA you want to design for the experiment.If negative option is no, select 0 for this option. The default is 400.
 
-strand: Whether the sgRNA is designed targeting (binding) to the template or nontemplate stand of a coding gene (default=nontemplate, nontemplate or template is accepted). It is suggested by previous reports that dCas9 based CRISPRi system used in this work exhibited higher activity when targeting to non-template strand in ORF region.
+**targetFasta**: DNA sequence file for genes of interest (.ffn file of protein-coding genes and .frn file of RNA-coding genes for genome-scale sgRNA library design, or your customized file for focused sgRNA library design, see Step 2)
 
-negative: Choose whether to design negative control sgRNAs (sgRNA with no significant target across the genome, which is used as negative control in pooled screen to determine the phenotypic effect and statistical power of each gene) for the experiment(yes or no， default=yes). We highly recommend to include the negative control sgRNAs in the pooled screen. For the description of negative control sgRNA usage, please see our paper.
+**indexFile**: the gene sequence annotation file (.ptt file for protein-coding genes and .rnt file for RNA-coding genes, see Step 2).
 
-negative_number: The number of negative control sgRNA you want to design for the experiment.If negative option is no, select 0 for this option. The default is 400.
+**genome**: the genome file (.fna file, see Step 2) used for off-target check. 
 
-targetFasta: Gene sequence file for genes of interest in .fasta format. It can be downloaded from NCBI ftp site for all protein-coding gene (.ffn suffix) or all RNA-coding genes (.frn suffix) encoded by a genome of particular microorganisms. The customized .fasta file for a focused library design can be extracted from the abovementioned files. It is noted that the naming of each gene in the customized .fasta file should follow that of .ffn or .frn file from NCBI.
-
-indexFile: The gene sequence annotation file. (.ptt suffix for protein-coding genes and .rnt suffix for RNA-coding genes).
-
-genome: The genome file (.fna suffix) used for off-target check. 
-
-prefix: Prefix used for naming of all output files.
+**prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘design20171001’ is fine.
 
 ### Step 4: After editing the configure file as introduced above, cd to the working directory where the scripts and the necessary files (check list: configure file, files for targetFasta, indexFile and genome, all python scripts, seqmap executable file) are located. Type in the command line below:
 
