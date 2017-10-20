@@ -129,8 +129,6 @@ For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the exam
 ## Output description
 The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex/). We term this subdirectory 'result directory' thereafter.
 
-[your working directory should be like this after running the test](./image/wkd_after_example_running.png)
-
 You can find many sub directories or files under the result directory.
 
 [your result directory after running the test](./image/resultdir_after_example_running.png)
