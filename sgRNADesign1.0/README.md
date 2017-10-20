@@ -19,19 +19,28 @@ Seqmap, developed by Jiang, H., Wong, W.H. (2008) Bioinformatics, 24(20) is used
 ### Step 2: Prepare the necessary files. 
 This package provides two options for library design: genome-wide or focused sgRNA library. 
 1. **For genome-wide library**
-For one microorganisms, three standard files are needed to design the genome-scale sgRNA library for all protein-coding genes (or five if RNA-coding genes are also of interest) by the genome. All these files can be accessed at the FTP site of NCBI: ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/
+For one microorganisms, three standard files are needed to design the genome-scale sgRNA library for all protein-coding genes (or five if RNA-coding genes are also of interest) by the genome. All these files can be accessed at the FTP site of NCBI: 
+
+ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/
+
 For example, for *E. coli* K12 MG1655 strain, open the hyperlink above, find the directory for this strain:
+
 ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/Escherichia_coli_K_12_substr__MG1655_uid57779/ 
+
 You can find the content under this directory: [here](./image/NCBI_refseq_E.coli.png)
+
 Download files with .fna (genome as a single contig); .ppt (protein-coding gene annotation) and .ffn (protein-coding gene .fasta file) extensions. In many microorganisms, all genes are encoded by a single chromosome. In these cases, we can only find one file each with abovementioned three extensions, respectively. In other cases where the microorganisms carry several plasmids to encode genes (for example: ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/Methylobacterium_extorquens_AM1_uid57605/ see the content under this directory [here](./image/NCBI_refseq_AM1.png)), you may be interested in designing sgRNA library for all genes. To cope with this, download all files with these extensions and combine those with the same extension, resulting in three combined files with .fna, .ffn and .ptt extension, respectively. Note that .fna and .ptt files have one and three header lines, respectively. In file combination process, remove these header lines and only keep them for the combined file at the very beginning.
-If you are also interested in RNA-coding genes, download files with .fna (genome as a single contig); .rnt (RNA-coding gene annotation) and .frn (RNA-coding gene .fasta file) extensions. Follow the same instructions as described above. We strongly recommand to process protein- and RNA-coding gene sgRNA library design seperately (run one process with .fna, .ptt, .ffn and configure files; run another with .fna, .rnt, .frn and configure files;), because different parameters may be needed in the configure file (see below), due to the fact that RNA-coding genes tent to have much smaller coding regions in contrast to their protein-coding counterparts.
+
+If you are also interested in RNA-coding genes, download files with .fna (genome as a single contig); .rnt (RNA-coding gene annotation) and .frn (RNA-coding gene .fasta file) extensions. Follow the same instructions as described above. We strongly recommand to process protein- and RNA-coding gene sgRNA library design seperately (run one process with .fna, .ptt, .ffn and configure files; run another with .fna, .rnt, .frn and configure files), because different parameters may be needed in the configure file (see below), due to the fact that RNA-coding genes tent to have much smaller coding regions in contrast to their protein-coding counterparts.
 
 2. **For focused library**
 Sometimes, only a subset of genes (for example, all transcription factors) are of interest in particular research project. In these cases, you need to construct a [.fasta file](https://en.wikipedia.org/wiki/FASTA_format) for these genes containing all their DNA sequences, similar to .ffn (.frn) file mentioned above. You can name each gene uniquely as you like in the '>' line of this constructed .fasta file. Avoid to use ‘-’, ‘_’ and ‘ ’.(space) in these names. Besides, download .fna file from relevant directory of the studied microorganisms as described above.
 
 3. **Coping with multiple copy issue**
 Some genes have multiple copies in the genome. If it is not specified, the program cannot design any sgRNA for such genes, because 'off-target' site due to other copies in the genome can be always identified for any designed sgRNA. Although it is generally a minor issue due to very small number of such genes, we still design a optional method to handle it. If you want to cope with this issue to make your sgRNA library more comprehensive, prepare another file by an all-against-all BLASTN. Install [BLAST+ package](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/), make nucleotide sequence database for your .ffn (.frn) file by makeblastdb command and then run the following:
+
 "blastn -query your_.ff(r)n_file -db your_.ff(r)n_database -evalue 0.001 -out your_output_name -outfmt 6"
+
 The output file of this command will be used to identify the genes with multiple copies in the genome. The program will regard each cluster of paralogs as functionally identical and design sgRNAs to target all of members of a cluster. For details of the algorithm, see our paper.
 
 ### Step 3: Set up the configure file (see example_configure.txt)
