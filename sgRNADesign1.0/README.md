@@ -129,20 +129,28 @@ For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the exam
 ## Output description
 The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex/). We term this subdirectory 'result directory' thereafter.
 
-You can find many sub directories or files under the result directory.
+You can find many files under the result directory.
 
 [your result directory after running the test](./image/resultdir_after_example_running.png)
 
 Below is the description. For the mathematical processing, see our paper. **All .csv flat files use tab as delimiter unless mentioned**
 
-The prefix.fasta file contains the the target gene sequences.
-The prefix.txt is the .txt format of output.fasta file.
-The prefix.N20.fasta contains the sgRNA library sequences (N20).
-The prefix.N20.txt is the .txt format of output.N20.fasta file.
-The prefix.N20NGG.fasta contains the sgRNA library sequence with PAM in the relevant genome.
-The prefix.N20NGG.txt is the .txt format of output.N20NGG.fasta file.
-The prefix.sgRNA_statistics.txt file contains the position information within relevant ORF and the GC content of each designed sgRNA.
-The prefix.gene_statistics.txt file contains the length and the designed sgRNA numbers of each gene.
+**prefix.fasta.txt**: target gene sequences.
+
+**prefix.cluster.txt**: target gene sequences.
+
+**prefix.N20.fasta.txt**: contains the sgRNA library sequences (N20).
+
+**prefix.N20NGG.fasta.txt**: contains the sgRNA library sequence with PAM in the relevant genome.
+
+**prefix.sgRNA_statistics.txt**: file contains the position information within relevant ORF and the GC content of each designed sgRNA.
+
+**prefix.gene_statistics.txt**: file contains the length and the designed sgRNA numbers of each gene.
+
+**N20_library.csv**: 
+
+**sgRNA_position.txt**:
+
 Two .png figures use histogram to summarize the basic information of gene (sgRNA number vs. gene) and sgRNA (position vs. sgRNA) statistics.
 
 Under the negative subdirectory:
