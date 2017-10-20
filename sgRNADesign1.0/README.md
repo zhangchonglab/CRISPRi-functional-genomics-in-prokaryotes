@@ -5,9 +5,9 @@ This python script collection is one of the two the software subpackages of CRIS
 
 This script collection is user-friendly for experimental biologists with no or limited programming expertise. Generally, the user only need to download the script and several standard files (genome, annotation, etc), edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment (for example, terminal in MacOS) to initiate the design process. The output includes the .fasta file for sgRNA and statistics-describing tables as well as figures to intuitively overview the design result.
 
-Seqmap, developed by Jiang, H., Wong, W.H. (2008) Bioinformatics, 24(20) is used in our program for off-target identification and elimination. We have included an executable file of seqmap in the delivered zip file. If you want to use the updated version of seqmap, please follow the below instructions:
+Seqmap, developed by Jiang, H., Wong, W.H. (2008) Bioinformatics, 24(20) is used in our program for off-target identification and elimination. We have included an executable file of seqmap in the delivered package. If you want to use the updated version of seqmap, please follow the below instructions:
 1. Download the Seqmap source file (for all platform) from http://www-personal.umich.edu/~jianghui/seqmap/ and unzip it.
-2. Compile the source code following the README file under the unzipped directory of seqmap. 
+2. Compile the source code following the README file under the unzipped directory of seqmap.
 3. Copy and paste the resulted seqmap executable file to the working directory.
 
 ## How to use it?
@@ -30,6 +30,11 @@ If you are also interested in RNA-coding genes, download files with .fna (genome
 Sometimes, only a subset of genes (for example, all transcription factors) are of interest in particular research project. In these cases, you need to construct a [.fasta file](https://en.wikipedia.org/wiki/FASTA_format) for these genes containing all their DNA sequences, similar to .ffn (.frn) file mentioned above. You can name each gene uniquely as you like in the '>' line of this constructed .fasta file. Avoid to use -, _ or " "(space) in these names. Besides, download .fna file from relevant directory of the studied microorganisms as described above.
 
 3. **Coping with multiple copy issue**
+Some genes have multiple copies in the genome. If it is not specified, the program cannot design any sgRNA for such genes, because 'off-target' site due to other copies in the genome can be always identified for any designed sgRNA. Although it is generally a minor issue due to very small number of such genes, we still design a optional method to handle it. If you want to cope with this issue to make your sgRNA library more comprehensive, prepare another file by an all-against-all BLASTN. Install [BLAST+ package](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/), make nucleotide sequence database for your .ffn (.frn) file by makeblastdb command and then run the following:
+blastn -query your_.ff(r)n_file -db your_.ff(r)n_database -evalue 0.001 -out your_output_name -outfmt 6
+The output file of this command will be used to identify the genes with multiple copies in the genome. The pregram will regard these paralogs as functionally identical and design sgRNAs to target all of them as a cluster. For details of the algorithm, see our paper.
+
+
 
 
 ### Step 3: Edit the configure file, which is used to set all the necessary parameters for the design. 
