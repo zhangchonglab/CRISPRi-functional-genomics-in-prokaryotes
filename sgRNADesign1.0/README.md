@@ -105,6 +105,20 @@ prefix|example
 After Step 2 and 3, check your working directory. It should looks like below:
 [here](./image/files_prepared_before_library_design.png)
 
+### Step 4：Run the pipeline
+Open the command line window (for example, terminal in Macbook), cd to the working directory and run the analysis pipeline.
+cd path_to_your_working_directory
+python sgRNA_desgin_main.py configure.txt
+
+We also post a toy example together with the scripts and the example_configure.txt has been edit to make it compatible. For this test, cd to the working directory, type in: 
+python sgRNA_desgin_main.py example_configure.txt
+
+Check [here](./image/successful_running.png) for the output during a successful running of the abovementioned test.
+
+The program will create an 'error.log' file under the working directory, open this file to check whether anything wrong happens. Generally, no content suggests successful running. Please post your 'error.log' if you cannot figure out the bugs when using this tool.
+
+For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step is off-target site identification across the genome. For a typical Macbook, we expect a processing speed of ~ 50 sgRNAs designed per minute. For a genome-scale library with 50 k members (10 sgRNAs per gene assuming 5 k genes encoded by a genome), the laptop thus needs roughly 20 hours to finalize the design process.
+
 ### Step 4: After editing the configure file as introduced above, cd to the working directory where the scripts and the necessary files (check list: configure file, files for targetFasta, indexFile and genome, all python scripts, seqmap executable file) are located. Type in the command line below:
 
 python sgRNA_desgin_main.py configure.txt
