@@ -124,7 +124,18 @@ The program will create an 'error.log' file under the working directory, open th
 For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step is off-target site identification across the genome. For a typical Macbook, we expect a processing speed of ~ 50 sgRNAs designed per minute. For a genome-scale library with 50 k members (10 sgRNAs per gene assuming 5 k genes encoded by a genome), the laptop thus needs roughly 20 hours to finalize the design process.
 
 ## Output description
-All the output files will be located in a directory named after the prefix given in configure.txt, under which the files about negative control sgRNA are under a subfolder named after negative.
+All the output files will be located in a directory named after the prefix given in configure.txt, under which the files about negative control sgRNA are under a subfolder named after "negative".
+
+The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex/). We term this subdirectory 'result directory' thereafter.
+
+[your working directory should be like this after running the test](./image/wkd_after_example_running.png)
+
+You can find many sub directories or files under the result directory.
+
+[your result directory after running the test](./image/resultdir_after_example_running.png)
+
+Below is the description. For the mathematical processing, see our paper. **All .csv flat files use tab as delimiter unless mentioned**
+
 The prefix.fasta file contains the the target gene sequences.
 The prefix.txt is the .txt format of output.fasta file.
 The prefix.N20.fasta contains the sgRNA library sequences (N20).
