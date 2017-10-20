@@ -3,7 +3,7 @@
 ## What is this?
 This python script collection is one of the two the software subpackages of CRISPRi functional genomics method for the prokaryotes, used for genome-wide or focused sgRNA library design. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
 
-This script collection is user-friendly for experimental microbiologists with no or limited programming expertise. Generally, the user only need to download the script and several standard files (genome, annotation, etc), edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment (for example, terminal in MacOS) to initiate the design process. The output includes the .fasta file for sgRNA and statistics-describing tables as well as figures to intuitively overview the design result.
+This script collection is user-friendly for experimental biologists with no or limited programming expertise. Generally, the user only need to download the script and several standard files (genome, annotation, etc), edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment (for example, terminal in MacOS) to initiate the design process. The output includes the .fasta file for sgRNA and statistics-describing tables as well as figures to intuitively overview the design result.
 
 Seqmap, developed by Jiang, H., Wong, W.H. (2008) Bioinformatics, 24(20) is used in our program for off-target identification and elimination. We have included an executable file of seqmap in the delivered zip file. If you want to use the updated version of seqmap, please follow the below instructions:
 1. Download the Seqmap source file (for all platform) from http://www-personal.umich.edu/~jianghui/seqmap/ and unzip it.
@@ -16,18 +16,21 @@ Seqmap, developed by Jiang, H., Wong, W.H. (2008) Bioinformatics, 24(20) is used
 2. Install Matplotlib version 2.0.2 or above
 3. Install Numpy version 1.13.1 or above
 
-### Step 2: Download or construct the necessary files. 
+### Step 2: Prepare the necessary files. 
 This package provides two options for library design: genome-wide or focused sgRNA library. 
 1. **For genome-wide library**
-For one microorganisms, three (or five if RNA-coding genes are also of interest) standard files are needed to design the genome-scale sgRNA library for all protein-coding genes by the genome. All these files are accessed at the FTP site of NCBI: ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/
+For one microorganisms, three standard files are needed to design the genome-scale sgRNA library for all protein-coding genes (or five if RNA-coding genes are also of interest) by the genome. All these files can be accessed at the FTP site of NCBI: ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/
 For example, for *E. coli* K12 MG1655 strain, open the hyperlink above, find the directory for this strain:
 ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/Escherichia_coli_K_12_substr__MG1655_uid57779/ 
 You can find the content under this directory: [here](./image/NCBI_refseq_E.coli.png)
 Download files with .fna (genome as a single contig); .ppt (protein-coding gene annotation) and .ffn (protein-coding gene .fasta file) extensions. In many microorganisms, all genes are encoded by a single chromosome. In these cases, we can only find one file each with abovementioned three extensions, respectively. In other cases where the microorganisms carry several plasmids to encode genes (for example: ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/Methylobacterium_extorquens_AM1_uid57605/ see the content under this directory [here](./image/NCBI_refseq_AM1.png)), you may be interested in designing sgRNA library for all genes. To cope with this, download all files with these extensions and combine those with the same extension, resulting in three combined files with .fna, .ffn and .ptt extension, respectively. Note that .fna and .ptt files have one and three header lines, respectively. In file combination process, remove these header lines and only keep them for the combined file at the very beginning.
-If you are also interested in RNA-coding genes, download files with .fna (genome as a single contig); .rnt (RNA-coding gene annotation) and .frn (RNA-coding gene .fasta file) extensions. Follow the same instructions as described above. We strongly recommand to process protein- and RNA-coding gene sgRNA library design seperately, because different parameters may be needed in the configure file (see below), as RNA-coding genes tent to have much smaller coding regions in contrast to their protein-coding counterparts.
+If you are also interested in RNA-coding genes, download files with .fna (genome as a single contig); .rnt (RNA-coding gene annotation) and .frn (RNA-coding gene .fasta file) extensions. Follow the same instructions as described above. We strongly recommand to process protein- and RNA-coding gene sgRNA library design seperately (run one process with .fna, .ptt, .ffn and configure files; run another with .fna, .rnt, .frn and configure files;), because different parameters may be needed in the configure file (see below), due to the fact that RNA-coding genes tent to have much smaller coding regions in contrast to their protein-coding counterparts.
 
 2. **For focused library**
 Sometimes, only a subset of genes (for example, all transcription factors) are of interest in particular research project. In these cases, you need to construct a [.fasta file](https://en.wikipedia.org/wiki/FASTA_format) for these genes containing all their DNA sequences, similar to .ffn (.frn) file mentioned above. You can name each gene uniquely as you like in the '>' line of this constructed .fasta file. Avoid to use -, _ or " "(space) in these names. Besides, download .fna file from relevant directory of the studied microorganisms as described above.
+
+3. **Coping with multiple copy issue**
+
 
 ### Step 3: Edit the configure file, which is used to set all the necessary parameters for the design. 
 The default parameters are given in the original configure file under the unzipped directory. Generally, the program processes the gene one by one, search for all the possible sgRNAs for this gene meeting the requirement given in the configure file, eliminate the sgRNAs with potential off-target site(s), and store all the qualified sgRNAs. The brief description of all the parameters is given below. For more details, please check our paper (BioRxiv: https://doi.org/10.1101/129668).
