@@ -82,6 +82,8 @@ In previous reports about dCas9 based CRISPRi system, GC content of sgRNA spacer
 
 **prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘design20171001’ is fine.
 
+Below is **an example configure file with default parameters**.
+
 parameter|value
 ---------|-----
 ORFcutoff|0.05
@@ -100,7 +102,8 @@ multiple|yes
 genomewide|yes
 prefix|example
 
-
+After Step 2 and 3, check your working directory. It should looks like below:
+[here](./image/files_prepared_before_library_design.png)
 
 ### Step 4: After editing the configure file as introduced above, cd to the working directory where the scripts and the necessary files (check list: configure file, files for targetFasta, indexFile and genome, all python scripts, seqmap executable file) are located. Type in the command line below:
 
