@@ -49,7 +49,7 @@ Some genes have multiple copies in the genome. If it is not specified, the progr
 
 "blastn -query your_.ff(r)n_file -db your_.ff(r)n_database -evalue 0.001 -out your_output_name -outfmt 6"
 
-The output file of this command will be used to identify the genes with multiple copies in the genome. The program will regard each cluster of paralogs as functionally identical and design sgRNAs to target all of members of a cluster. For details of the algorithm, see our paper.
+The output file of this command will be used to identify the genes with multiple copies in the genome. The program will use a stringent threshold (identity > 95%, query coverage > 95%, hit coverage > 95%) to categorize genes with homology into clusters and regard each cluster of paralogs as functionally identical and design sgRNAs to target all of members of a cluster. For details of the algorithm, see our paper.
 
 ### Step 3: Set up the configure file (see example_configure.txt)
 The configure file is used to set all the necessary parameters and tell the program where to find necessary files. This file is in a two-column format using tab as delimiter. Each line starts with one word (name of one parameter) separated with the following (setting of this parameter) by a tab delimiter. We describe each parameter as below.
@@ -135,28 +135,32 @@ You can find many files under the result directory.
 
 Below is the description. For the mathematical processing, see our paper. **All .csv flat files use tab as delimiter unless mentioned**
 
-**prefix.fasta.txt**: target gene sequences.
+**prefix.N20.fasta.txt**: sgRNA library sequences (N20) in .fasta format, including negative control sgRNAs if it is specified in the configure file. **This file, after adding designed flanking nucleotides, can be subjected to microarray based oligomer synthesis** to prepare the sgRNA library. 
 
-**prefix.cluster.txt**: target gene sequences.
+**prefix.N20NGG.fasta.txt**: The reverse complementary of target region of each sgRNA including the PAM site in .fasta format.
 
-**prefix.N20.fasta.txt**: contains the sgRNA library sequences (N20).
+**prefix.sgRNA_statistics.txt**: position information within relevant gene coding region and the GC content of each designed sgRNA in .csv format.
 
-**prefix.N20NGG.fasta.txt**: contains the sgRNA library sequence with PAM in the relevant genome.
+sgRNAID|sgRNA_position_in_gene |GCcontent
+-------|-----------------------|---------
+insI1b4284_32|0.028|39.13
+...|...|...
 
-**prefix.sgRNA_statistics.txt**: file contains the position information within relevant ORF and the GC content of each designed sgRNA.
+**prefix.cluster.txt**: Clusters of genes with homologs (see Step 2, "Coping with multiple copy issue" section). The file has no header line and uses tab as delimiter. It is consisted of two columns: cluster name and the genes in each cluster. Genes in one cluster are separated by comma.
+
+cluster|genes in the cluster
+-------|--------------------
+araFb1901|araFb1901
+yjhXb4566|yjhXb4566
+tufAb3339|tufAb3339,tufBb3980
+...|...
 
 **prefix.gene_statistics.txt**: file contains the length and the designed sgRNA numbers of each gene.
+
+**prefix.fasta.txt**: target gene sequences in .fasta format. 
 
 **N20_library.csv**: 
 
 **sgRNA_position.txt**:
 
 Two .png figures use histogram to summarize the basic information of [number of sgRNA per gene](./image/The_distrution_of_sgRNA_number_per_gene.png) and [position of sgRNAs in the coding region of relevant genes](./image/The_distrution_of_sgRNA_position_per_gene.png).
-
-Under the negative subdirectory:
-The prefix_N20_NC_passed.fasta contains the negative control sgRNA sequences.
-The prefix_N20_NC_passed.txt is the .txt format of the output_N20_NC_passed.fasta.
-
-We also included example files of Corynebacterium glutamicum ATCC 13032 (RefSeq NC_003450). After unzipping the download, please directly come to Step 4 to run an example process as an initial test (79 C. glutamicum genes, around 30 min running).
-
-A typical genome-wide design process needs around 24h running on a typical laptop (for example, 2.6 GHz processor, 8 GB memory). Please keep the power on until the process ends automatically. 
