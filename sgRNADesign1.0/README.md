@@ -29,7 +29,11 @@ ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/Escherichia_coli_
 
 You can find the content under this directory: [here](./image/NCBI_refseq_E.coli.png)
 
-Download files with .fna (genome as a single contig); .ppt (protein-coding gene annotation) and .ffn (protein-coding gene .fasta file) extensions. In many microorganisms, all genes are encoded by a single chromosome. In these cases, we can only find one file each with abovementioned three extensions, respectively. In other cases where the microorganisms carry several plasmids to encode genes (for example: ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/Methylobacterium_extorquens_AM1_uid57605/ see the content under this directory [here](./image/NCBI_refseq_AM1.png)), you may be interested in designing sgRNA library for all genes. To cope with this, download all files with these extensions and combine those with the same extension, resulting in three combined files with .fna, .ffn and .ptt extension, respectively. Note that .fna and .ptt files have one and three header lines, respectively. In file combination process, remove these header lines and only keep them for the combined file at the very beginning.
+Download files with .fna (genome as a single contig); .ppt (protein-coding gene annotation) and .ffn (protein-coding gene .fasta file) extensions. In many microorganisms, all genes are encoded by a single chromosome. In these cases, we can only find one file each with abovementioned three extensions, respectively. In other cases where the microorganisms carry several plasmids to encode genes, you may be interested in designing sgRNA library for all genes. 
+
+(for example: ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/Methylobacterium_extorquens_AM1_uid57605/ see the content under this directory [here](./image/NCBI_refseq_AM1.png))
+
+To cope with this, download all files with these extensions and combine those with the same extension, resulting in three combined files with .fna, .ffn and .ptt extension, respectively. Note that .fna and .ptt files have one and three header lines, respectively. In file combination process, remove these header lines and only keep them for the combined file at the very beginning.
 
 If you are also interested in RNA-coding genes, download files with .fna (genome as a single contig); .rnt (RNA-coding gene annotation) and .frn (RNA-coding gene .fasta file) extensions. Follow the same instructions as described above. We strongly recommand to process protein- and RNA-coding gene sgRNA library design seperately (run one process with .fna, .ptt, .ffn and configure files; run another with .fna, .rnt, .frn and configure files), because different parameters may be needed in the configure file (see below), due to the fact that RNA-coding genes tent to have much smaller coding regions in contrast to their protein-coding counterparts.
 
@@ -46,9 +50,9 @@ The output file of this command will be used to identify the genes with multiple
 ### Step 3: Set up the configure file (see example_configure.txt)
 The configure file is used to set all the necessary parameters and tell the program where to find necessary files. This file is in a two-column format using tab as delimiter. Each line starts with one word (name of one parameter) separated with the following (setting of this parameter) by a tab delimiter. We describe each parameter as below.
 
-**ORFcutoff**: The sgRNA location within the gene coding region (ORF 5’=0.0, ORF 3’=1.0) (default=0.05, real number belonging to (0.0,1.0)). We find that the sgRNAs exhibit better activities locating within the first 5% of the coding region. Hence, by default, the sgRNA is designed at this region as many as possible.
+**ORFcutoff**: The sgRNA location within the gene coding region (ORF 5’=0.0, ORF 3’=1.0) (default=0.05, real number belonging to (0.0,1.0)). We find that the sgRNAs exhibit **better activities locating within the first 5% of the coding region**. Hence, by default, the sgRNA is designed at this region as many as possible.
 
-**sgRNA_number**: The number of sgRNA you want to design for each gene (default=10, positive integer). According to the description of our paper, we find that 5-10 sgRNAs per gene is enough for pooled screening based functional genomics analysis. However, more sgRNAs provide benefit (stronger statistical significance) for genes with only moderate phenotypic effect.
+**sgRNA_number**: The number of sgRNA you want to design for each gene (default=10, positive integer). According to the description of our paper, we find that **5-10 sgRNAs per gene is enough for pooled screening based functional genomics analysis**. However, more sgRNAs provide benefit (stronger statistical significance) for genes with only moderate phenotypic effect.
 
 **GCcontentMin**: The minimal GC content of spacer region (percentage) (default=30, positive integer between 0~100 is accepted).
 
@@ -58,7 +62,7 @@ In previous reports about dCas9 based CRISPRi system, GC content of sgRNA spacer
 
 **off_threshold**: the off target penalty threshold (default=20), sgRNAs with potential off-target site carrying penalty score lower than the threshold will be eliminated. For the detailed description of the scoring method, please check our paper. Briefly, we suggest off_threshold >= 20 for library design. In situations where more sgRNAs are desired, the threshold can be decreased to 10, where the off-target effect of CRISPRi is still very slight as previously reported (Gilbert Luke et al., Cell 2014).
 
-**strand**: whether the sgRNA is designed targeting (binding) to the template or nontemplate stand of a coding gene (default=nontemplate, nontemplate or template is accepted). It is suggested by previous reports that dCas9 based CRISPRi system used in this work exhibits better activity when targeting to non-template strand in the coding region.
+**strand**: whether the sgRNA is designed targeting (binding) to the template or nontemplate stand of a coding gene (default=nontemplate, nontemplate or template is accepted). It is suggested by previous reports that dCas9 based CRISPRi system used in this work exhibits **better activity when targeting to non-template strand in the coding region**.
 
 **negative**: choose whether to design negative control sgRNAs (sgRNA with no significant target across the genome, which is used as negative control in the following pooled screening experiment and data analysis) for the experiment(yes or no， default=yes). We strongly recommend to include the negative control sgRNAs. For the description of negative control sgRNA usage, see our paper.
 
@@ -70,11 +74,11 @@ In previous reports about dCas9 based CRISPRi system, GC content of sgRNA spacer
 
 **genome**: the genome file (.fna file, see Step 2) used for off-target check.
 
-**blastresult**: blastresult
+**multiple**: whether to cope with multiple copy issue or not (see step 2, default: no). If it is specified as 'yes', it is need to prepare an additional blastn output file (see below and Step 2, "Coping with multiple copy issue" section).
 
-**multiple**:False
+**blastresult**: blastn output file (see step 2, "Coping with multiple copy issue" section). **This one is optional, if you do not need it, just leave it blank, note that do not delete the tab when leaving this parameter blank.**
 
-**genomewide**:False
+**genomewide**: whether to design genome-scale sgRNA library (see step 2, default: yes). Prepare neccessary files based on the instructions in Step 2. You need to prepare three files (.fna, .ff(r)n, .pt(rn)t) if this parameter is set as 'yes' and two files (.fna, .ff(r)n) in the case of 'no'.
 
 **prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘design20171001’ is fine.
 
