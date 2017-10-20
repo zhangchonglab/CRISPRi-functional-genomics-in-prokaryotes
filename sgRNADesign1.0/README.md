@@ -119,10 +119,6 @@ The program will create an 'error.log' file under the working directory, open th
 
 For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step is off-target site identification across the genome. For a typical Macbook, we expect a processing speed of ~ 50 sgRNAs designed per minute. For a genome-scale library with 50 k members (10 sgRNAs per gene assuming 5 k genes encoded by a genome), the laptop thus needs roughly 20 hours to finalize the design process.
 
-### Step 4: After editing the configure file as introduced above, cd to the working directory where the scripts and the necessary files (check list: configure file, files for targetFasta, indexFile and genome, all python scripts, seqmap executable file) are located. Type in the command line below:
-
-python sgRNA_desgin_main.py configure.txt
-
 ## Output description
 All the output files will be located in a directory named after the prefix given in configure.txt, under which the files about negative control sgRNA are under a subfolder named after negative.
 The prefix.fasta file contains the the target gene sequences.
