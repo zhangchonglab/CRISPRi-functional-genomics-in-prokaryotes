@@ -6,7 +6,7 @@ The python package basically contains two subpackages, one for the sgRNA (N20) d
 
 [Schematic for the structure of this software package](./package_framework.png)
 
-For any request or question, please contact wtm0217@gmail.com
+For any request or question, please contact wtm0217@gmail.com or guanchangge@163.com.
 
 It is also ok to post your concern directly at this GitHub site. This software package is actively maintained and upgraded.
 
