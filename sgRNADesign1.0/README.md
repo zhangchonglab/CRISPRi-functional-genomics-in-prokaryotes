@@ -49,19 +49,45 @@ In previous reports about dCas9 based CRISPRi system, GC content of sgRNA spacer
 
 **off_threshold**: the off target penalty threshold (default=20), sgRNAs with potential off-target site carrying penalty score lower than the threshold will be eliminated. For the detailed description of the scoring method, please check our paper. Briefly, we suggest off_threshold >= 20 for library design. In situations where more sgRNAs are desired, the threshold can be decreased to 10, where the off-target effect of CRISPRi is still very slight as previously reported (Gilbert Luke et al., Cell 2014).
 
-**strand**: Whether the sgRNA is designed targeting (binding) to the template or nontemplate stand of a coding gene (default=nontemplate, nontemplate or template is accepted). It is suggested by previous reports that dCas9 based CRISPRi system used in this work exhibited higher activity when targeting to non-template strand in ORF region.
+**strand**: whether the sgRNA is designed targeting (binding) to the template or nontemplate stand of a coding gene (default=nontemplate, nontemplate or template is accepted). It is suggested by previous reports that dCas9 based CRISPRi system used in this work exhibits better activity when targeting to non-template strand in the coding region.
 
-**negative**: Choose whether to design negative control sgRNAs (sgRNA with no significant target across the genome, which is used as negative control in pooled screen to determine the phenotypic effect and statistical power of each gene) for the experiment(yes or no， default=yes). We highly recommend to include the negative control sgRNAs in the pooled screen. For the description of negative control sgRNA usage, please see our paper.
+**negative**: choose whether to design negative control sgRNAs (sgRNA with no significant target across the genome, which is used as negative control in the following pooled screening experiment and data analysis) for the experiment(yes or no， default=yes). We strongly recommend to include the negative control sgRNAs. For the description of negative control sgRNA usage, see our paper.
 
-**negative_number**: The number of negative control sgRNA you want to design for the experiment.If negative option is no, select 0 for this option. The default is 400.
+**negative_number**: The number of negative control sgRNA you want to design for the experiment. If negative option is no, select 0 for this option. The default is 400. We recommand min(400, 5% of sgRNA library size) as the number of netagive control sgRNAs. 
 
 **targetFasta**: DNA sequence file for genes of interest (.ffn file of protein-coding genes and .frn file of RNA-coding genes for genome-scale sgRNA library design, or your customized file for focused sgRNA library design, see Step 2)
 
 **indexFile**: the gene sequence annotation file (.ptt file for protein-coding genes and .rnt file for RNA-coding genes, see Step 2).
 
-**genome**: the genome file (.fna file, see Step 2) used for off-target check. 
+**genome**: the genome file (.fna file, see Step 2) used for off-target check.
+
+**blastresult**: blastresult
+
+**multiple**:False
+
+**genomewide**:False
 
 **prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘design20171001’ is fine.
+
+parameter|value
+---------|-----
+ORFcutoff|0.05
+sgRNA_number|10    
+GCcontentMin|30
+GCcontentMax|85
+off_threshold|20
+strand|nontemplate 
+negative|yes
+negative_number|400
+targetFasta|example.ffn
+indexFile|example.ptt
+genome|example.fna
+blastresult|example_blastresult
+multiple|yes
+genomewide|yes
+prefix|example
+
+
 
 ### Step 4: After editing the configure file as introduced above, cd to the working directory where the scripts and the necessary files (check list: configure file, files for targetFasta, indexFile and genome, all python scripts, seqmap executable file) are located. Type in the command line below:
 
