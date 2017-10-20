@@ -142,7 +142,7 @@ After Step 2 and 3, check your working directory. It should looks like below:
 [here](./image/files_prepared_before_data_processing.png)
 
 ### Step 4：Run the pipeline
-Open the command line window (for example, terminal in Macbook), cd to the working directory.
+Open the command line window (for example, terminal in Macbook), cd to the working directory and run the analysis pipeline.
 cd path_to_your_working_directory
 python CRISPRscreen_main.py configure.txt
 
