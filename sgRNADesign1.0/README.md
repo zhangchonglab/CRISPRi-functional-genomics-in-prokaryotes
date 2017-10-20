@@ -151,7 +151,7 @@ Below is the description. For the mathematical processing, see our paper. **All 
 
 **sgRNA_position.txt**:
 
-Two .png figures use histogram to summarize the basic information of gene (sgRNA number vs. gene) and sgRNA (position vs. sgRNA) statistics.
+Two .png figures use histogram to summarize the basic information of [number of sgRNA per gene](./image/The_distrution_of_sgRNA_number_per_gene.png) and [position of sgRNAs in the coding region of relevant genes](./image/The_distrution_of_sgRNA_position_per_gene.png).
 
 Under the negative subdirectory:
 The prefix_N20_NC_passed.fasta contains the negative control sgRNA sequences.
