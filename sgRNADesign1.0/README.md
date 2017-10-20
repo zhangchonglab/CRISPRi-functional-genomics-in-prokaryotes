@@ -1,9 +1,6 @@
-======================
-synthetic sgRNA library based functional genomics for prokaryotes: sgRNA library design part
-======================
+# synthetic sgRNA library based functional genomics for prokaryotes: sgRNA library design package
 
-# ///////////////////////////////////////////////////////////////
-What is this?
+# What is this?
 This python script collection is one of the two the software subpackages of CRISPRi functional genomics method for the prokaryotes, used for genome-wide sgRNA library design. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
 
 This script collection is user-friendly for experimental microbiologists with no or limited programming expertise. Generally, the user only need to download the script, edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment to initiate the design process. The output includes the .fasta file for sgRNA and statistics-describing tables as well as figures to intuitively overview the design result.
@@ -14,17 +11,18 @@ Seqmap, developed by Jiang, H., Wong, W.H. (2008) Bioinformatics, 24(20) is used
 2. Compile the source code following the README file under the unzipped directory of seqmap. 
 3. Copy and paste the resulted seqmap executable file to the working directory.
 
-# ///////////////////////////////////////////////////////////////
-Step 1: The successful running of this software needs a Linux environment with python 2.7 installed. Python packages matplotlib 2.0.0，numpy 1.12.1 or above are also needed. Please preinstall these packages before starting your own process.
+# How to use it?
+## Step 1: Installation
+The successful running of this software needs a Linux environment with python 2.7 installed. Python packages matplotlib 2.0.0，numpy 1.12.1 or above are also needed. Please preinstall these packages before starting your own process.
 
-# ///////////////////////////////////////////////////////////////
-Step 2: Download or construct the necessary gene sequence file, annotation file and genome sequence file. The detailed description about these files can be found at Step 3 (targetFasta, indexFile, genome).
+## Step 2: Download or construct the necessary files. 
+The detailed description about these files can be found at Step 3 (targetFasta, indexFile, genome).
 Please download the above-mentioned files from the ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/. You can find the relevant files under the directory of specific organism of your own interest. Please download or construct these files into the working directory where the scripts and configure file are located.
 
-# ///////////////////////////////////////////////////////////////
-Step 3: Edit the configure file, which is used to set all the necessary parameters for the design. The default parameters are given in the original configure file under the unzipped directory. Generally, the program processes the gene one by one, search for all the possible sgRNAs for this gene meeting the requirement given in the configure file, eliminate the sgRNAs with potential off-target site(s), and store all the qualified sgRNAs. The brief description of all the parameters is given below. For more details, please check our paper (BioRxiv: https://doi.org/10.1101/129668).
+## Step 3: Edit the configure file, which is used to set all the necessary parameters for the design. 
+The default parameters are given in the original configure file under the unzipped directory. Generally, the program processes the gene one by one, search for all the possible sgRNAs for this gene meeting the requirement given in the configure file, eliminate the sgRNAs with potential off-target site(s), and store all the qualified sgRNAs. The brief description of all the parameters is given below. For more details, please check our paper (BioRxiv: https://doi.org/10.1101/129668).
 
-ORFcutoff: The sgRNA location within the gene coding region (ORF 5’=0.0, ORF 3’=1.0) (default=0.05, real number belonging to (0.0,1.0)). We found that the sgRNAs exhibited higher activities locating with the first 5% of ORF. Hence, by default, the sgRNA is designed at this region as many as possible.
+**ORFcutoff**: The sgRNA location within the gene coding region (ORF 5’=0.0, ORF 3’=1.0) (default=0.05, real number belonging to (0.0,1.0)). We found that the sgRNAs exhibited higher activities locating with the first 5% of ORF. Hence, by default, the sgRNA is designed at this region as many as possible.
 
 sgRNA_number: The number of sgRNA you want to design for each gene (default=10, positive integer accepted). According to the description of our paper, we found that in E. coli, 5-10 sgRNAs per gene is enough for pooled screen based functional genomics analysis. However, more sgRNAs provide benefit (stronger statistical significance) for genes with only moderate phenotypic effect.
 
