@@ -1,0 +1,31 @@
+prefix	Ilovemicrobe
+
+fastqpath	example_data/
+
+fastq	dCas9R1.fq.gz	dCas9R2.fq.gz	NCR1.fq.gz	NCR2.fq.gz	plasmid.fq.gz
+
+forward_prefixseq	GCAC	
+
+forward_suffixseq	GTTT
+
+sample-label	dCas9R1	dCas9R2	NCR1	NCR2	plasmid
+
+sgrna-len	20
+
+list-seq	example_library.csv
+
+experiment_configure	example_experiment_configure.txt
+
+name_configure	example_naming_configure.txt
+
+control_setting	all
+
+FDR_threshold	0.05
+
+ReadsThreshold	5
+
+hit_gene_calling	all
+
+gene_sgRNA_position	example_coding_region_position.txt
+
+Operon_gene_List	example_operon.txt

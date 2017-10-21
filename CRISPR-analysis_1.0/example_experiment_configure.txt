@@ -1,0 +1,6 @@
+Library/Condition	initial	stress1	control1
+dCas9R1	0	1	0
+dCas9R2	0	1	0
+NCR1	0	0	1
+NCR2	0	0	1
+plasmid	1	0	0
