@@ -26,7 +26,7 @@ Note: Please try to keep the name of each file meaningful but as simple as possi
 The sgRNA library file is at .csv formate **containing one header line**, in which there are three columns in order of id, sequence and gene respectively. **Use comma as delimiter**.
 If negative control (NC) sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of our library design subpackage. It should be noted that **-, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-sgRNA', 'super_sgRNA' or 'super sgRNA'**.
 
-id|sequence|gene
+sgRNAID|sgRNAseq|gene
 --|--------|----
 sgRNA1|ATCCCCCCCCCCGGGGG|recA
 NC1|TGTGTGTGTGTGTGTGTGTG|0
