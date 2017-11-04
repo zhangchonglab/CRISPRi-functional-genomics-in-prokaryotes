@@ -85,21 +85,22 @@ Below is **an example configure file with default parameters**.
 
 parameter|value
 ---------|-----
-ORFcutoff:0.05
-sgRNA_number:10    
-GCcontentMin:30
-GCcontentMax:85
-off_threshold:20
-strand:nontemplate 
-negative:yes
-negative_number:400
-targetFasta:example.ffn
-indexFile:example.ptt
-genome:example.fna
-blastresult:example_blastresult
-multiple:yes
-genomewide:yes
-prefix:example_output
+[configdesign]
+ORFcutoff:|0.05
+sgRNA_number:|10    
+GCcontentMin:|30
+GCcontentMax:|85
+off_threshold:|20
+strand:|nontemplate 
+negative:|yes
+negative_number:|400
+targetFasta:|example.ffn
+indexFile:|example.ptt
+genome:|example.fna
+blastresult:|example_blastresult
+multiple:|yes
+genomewide:|yes
+prefix:|example_output
 
 After Step 2 and 3, check your working directory. It should looks like below:
 [here](./image/files_prepared_before_library_design.png)
