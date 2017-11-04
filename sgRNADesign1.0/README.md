@@ -63,7 +63,7 @@ In previous reports about dCas9 based CRISPRi system, GC content of sgRNA spacer
 
 **strand**: whether the sgRNA is designed targeting (binding) to the template or nontemplate stand of a coding gene (default=nontemplate, nontemplate or template is accepted). It is suggested by previous reports that dCas9 based CRISPRi system used in this work exhibits **better activity when targeting to non-template strand in the coding region**.
 
-**negative**: choose whether to design negative control sgRNAs (sgRNA with no significant target across the genome, which is used as negative control in the following pooled screening experiment and data analysis) for the experiment(yes or no， default=yes). We strongly recommend to include the negative control sgRNAs. For the description of negative control sgRNA usage, see our paper.
+**negative**: choose whether to design negative control sgRNAs (sgRNA with no significant target across the genome, which is used as negative control in the following pooled screening experiment and data analysis) for the experiment(Yes or No， default=Yes). We strongly recommend to include the negative control sgRNAs. For the description of negative control sgRNA usage, see our paper.
 
 **negative_number**: The number of negative control sgRNA you want to design for the experiment. If negative option is no, select 0 for this option. The default is 400. We recommand min(400, 5% of sgRNA library size) as the number of netagive control sgRNAs. 
 
@@ -73,11 +73,11 @@ In previous reports about dCas9 based CRISPRi system, GC content of sgRNA spacer
 
 **genome**: the genome file (.fna file, see Step 2) used for off-target check.
 
-**multiple**: whether to cope with multiple copy issue or not (see step 2, default: no). If it is specified as 'yes', it is need to prepare an additional blastn output file (see below and Step 2, "Coping with multiple copy issue" section).
+**multiple**: whether to cope with multiple copy issue or not (see step 2, default: No). If it is specified as 'Yes', it is need to prepare an additional blastn output file (see below and Step 2, "Coping with multiple copy issue" section).
 
-**blastresult**: blastn output file (see step 2, "Coping with multiple copy issue" section). **This one is optional, if you do not need it, just leave it blank, note that do not delete the tab when leaving this parameter blank.**
+**blastresult**: blastn output file (see step 2, "Coping with multiple copy issue" section). **This one is optional, if you do not need it, just leave it blank, note that do not delete the Colon or equal sign when leaving this parameter blank.**
 
-**genomewide**: whether to design genome-scale sgRNA library (see step 2, default: yes). Prepare neccessary files based on the instructions in Step 2. You need to prepare three files (.fna, .ff(r)n, .pt(rn)t) if this parameter is set as 'yes' and two files (.fna, .ff(r)n) in the case of 'no'.
+**genomewide**: whether to design genome-scale sgRNA library (see step 2, default: Yes). Prepare neccessary files based on the instructions in Step 2. You need to prepare three files (.fna, .ff(r)n, .pt(rn)t) if this parameter is set as 'Yes' and two files (.fna, .ff(r)n) in the case of 'No'.
 
 **prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘design20171001’ is fine.
 
@@ -85,21 +85,21 @@ Below is **an example configure file with default parameters**.
 
 parameter|value
 ---------|-----
-ORFcutoff|0.05
-sgRNA_number|10    
-GCcontentMin|30
-GCcontentMax|85
-off_threshold|20
-strand|nontemplate 
-negative|yes
-negative_number|400
-targetFasta|example.ffn
-indexFile|example.ptt
-genome|example.fna
-blastresult|example_blastresult
-multiple|yes
-genomewide|yes
-prefix|example_output
+ORFcutoff:0.05
+sgRNA_number:10    
+GCcontentMin:30
+GCcontentMax:85
+off_threshold:20
+strand:nontemplate 
+negative:yes
+negative_number:400
+targetFasta:example.ffn
+indexFile:example.ptt
+genome:example.fna
+blastresult:example_blastresult
+multiple:yes
+genomewide:yes
+prefix:example_output
 
 After Step 2 and 3, check your working directory. It should looks like below:
 [here](./image/files_prepared_before_library_design.png)
