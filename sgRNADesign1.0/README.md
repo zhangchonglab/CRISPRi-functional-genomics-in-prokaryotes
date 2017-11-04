@@ -47,7 +47,7 @@ Some genes have multiple copies in the genome. If it is not specified, the progr
 The output file of this command will be used to identify the genes with multiple copies in the genome. The program will use a stringent threshold (identity > 95%, query coverage > 95%, hit coverage > 95%) to categorize genes with homology into clusters and regard each cluster of paralogs as functionally identical and design sgRNAs to target all of members of a cluster. For details of the algorithm, see our paper.
 
 ### Step 3: Set up the configure file (see example_configure.txt)
-The configure file is used to set all the necessary parameters and tell the program where to find necessary files. This file is in a two-column format using colon or equal sign as delimiter. Each line starts with one word (name of one parameter) separated with the following (setting of this parameter) by a colon or equal sign delimiter. We describe each parameter as below.
+The configure file is used to set all the necessary parameters and tell the program where to find necessary files. This file that contains a header for [configdesign] is in a two-column format using colon or equal sign as delimiter. Each line starts with one word (name of one parameter) separated with the following (setting of this parameter) by a colon or equal sign delimiter. We describe each parameter as below.
 
 **ORFcutoff**: The sgRNA location within the gene coding region (ORF 5’=0.0, ORF 3’=1.0) (default=0.05, real number belonging to (0.0,1.0)). We find that the sgRNAs exhibit **better activities locating within the first 5% of the coding region**. Hence, by default, the sgRNA is designed at this region as many as possible.
 
