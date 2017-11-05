@@ -10,6 +10,7 @@ This script collection is user-friendly for experimental biologists with no or l
 1. Install Python version 2.7 or above
 2. Install Matplotlib version 2.0.2 or above
 3. Install Numpy version 1.13.1 or above
+4. Install SeqMap,please go to the http://www-personal.umich.edu/~jianghui/seqmap/download/seqmap-1.0.13-src.zip and download the seqmap-1.0.13-src.zip. Then unzip the file and input the g++ -O3 -m 64 -o seqmap match.cpp or g++ -O3 -m 32 -o seqmap match.cpp based on your computer system. After that move the seqmap executable file to the script fold.
 
 ### Step 2: Prepare the necessary files. 
 This package provides two options for library design: genome-wide or focused sgRNA library. 
