@@ -90,7 +90,7 @@ parameter|value
 ORFcutoff:|0.05
 sgRNA_number:|10    
 GCcontentMin:|30
-GCcontentMax:|85
+GCcontentMax:|80
 off_threshold:|20
 strand:|nontemplate 
 negative:|yes
