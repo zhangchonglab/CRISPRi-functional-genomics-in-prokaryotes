@@ -93,14 +93,14 @@ GCcontentMin:|30
 GCcontentMax:|80
 off_threshold:|20
 strand:|nontemplate 
-negative:|yes
+negative:|Yes
 negative_number:|400
 targetFasta:|example.ffn
 indexFile:|example.ptt
 genome:|example.fna
 blastresult:|example_blastresult
-multiple:|yes
-genomewide:|yes
+multiple:|Yes
+genomewide:|Yes
 prefix:|example_output
 
 After Step 2 and 3, check your working directory. It should looks like below:
