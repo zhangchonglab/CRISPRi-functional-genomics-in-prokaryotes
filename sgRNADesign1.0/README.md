@@ -56,7 +56,7 @@ The configure file is used to set all the necessary parameters and tell the prog
 
 **GCcontentMin**: The minimal GC content of spacer region (percentage) (default=30, positive integer between 0~100 is accepted).
 
-**GCcontentMax**: The maximum GC content of spacer region (percentage) (default=85, positive integer between 0~100 and > GCcontentMin is accepted). 
+**GCcontentMax**: The maximum GC content of spacer region (percentage) (default=80, positive integer between 0~100 and > GCcontentMin is accepted). 
 
 In previous reports about dCas9 based CRISPRi system, GC content of sgRNA spacer region is found to be correlated with sgRNA activity. Extreme GC content reduces sgRNA activity. Hence, we suggest the abovementioned threshold. In situations of genome with relative low or high GC content, we suggest to adjust the threshold to (10,90). 
 
