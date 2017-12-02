@@ -76,7 +76,7 @@ In previous reports about dCas9 based CRISPRi system, GC content of sgRNA spacer
 
 **multiple**: whether to cope with multiple copy issue or not (see step 2, default: No). If it is specified as 'Yes', it is need to prepare an additional blastn output file (see below and Step 2, "Coping with multiple copy issue" section).
 
-**blastresult**: blastn output file (see step 2, "Coping with multiple copy issue" section). **This one is optional, if you do not need it, just leave it blank, note that do not delete the Colon or equal sign when leaving this parameter blank.**
+**blastresult**: blastn output file (see step 2, "Coping with multiple copy issue" section). **This one is optional, if you do not need it, just leave it blank, note that do not delete the ':' delimiter when leaving this parameter blank.**
 
 **genomewide**: whether to design genome-scale sgRNA library (see step 2, default: Yes). Prepare neccessary files based on the instructions in Step 2. You need to prepare three files (.fna, .ff(r)n, .pt(rn)t) if this parameter is set as 'Yes' and two files (.fna, .ff(r)n) in the case of 'No'.
 
