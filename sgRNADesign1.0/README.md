@@ -21,7 +21,7 @@ For one microorganisms, three standard files are needed to design the genome-sca
 
 ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/
 
-For example, for *E. coli* K12 MG1655 strain, open the hyperlink above, find the directory for this strain:
+For example, for *E. coli* K12 MG1655 strain, open the hyperlink below, find the directory for this strain:
 
 ftp://ftp.ncbi.nlm.nih.gov/genomes/archive/old_refseq/Bacteria/Escherichia_coli_K_12_substr__MG1655_uid57779/ 
 
