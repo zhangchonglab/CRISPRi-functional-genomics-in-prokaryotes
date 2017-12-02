@@ -119,8 +119,6 @@ python sgRNA_desgin_main.py example_configure.txt
 
 Check [here](./image/successful_running.png) for the output during a successful running of the abovementioned test.
 
-The program will create an 'error.log' file under the working directory, open this file to check whether anything wrong happens. Generally, no content suggests successful running. Please post your 'error.log' if you cannot figure out the bugs when using this tool.
-
 For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step is off-target site identification across the genome. For a typical Macbook, we expect a processing speed of ~ 50 sgRNAs designed per minute. For a genome-scale library with 50 k members (10 sgRNAs per gene assuming 5 k genes encoded by a genome), the laptop thus needs roughly 20 hours to finalize the design process.
 
 ## Output description
@@ -161,7 +159,7 @@ pinRb1374|591|9
 
 **prefix.fasta.txt**: target gene sequences in .fasta format. It is similar to the input gene fasta file. For genome-wide sgRNA library design, we use the combination of gene and synonym (.ptt or .rnt annotation file) to rename each gene. Hence, we give the refined .fasta file with new gene names for some convenience in following usage.
 
-**N20_library.csv**: the sgRNA library file is at .csv formate **containing one header line**, in which there are three columns in order of id, sequence and gene respectively. **Use comma as delimiter**. If negative control (NC) sgRNAs are within this synthetic library (specified in configure file), name them NCx and assign '0' at 'gene' column of these sgRNAs. This file is used as input for the data processing subpackage (File 2) after experiment and NGS.
+**N20_library.csv**: the sgRNA library file is at .csv formate **containing one header line**, in which there are three columns in order of id, sequence and gene respectively. **Use comma as delimiter**. If negative control (NC) sgRNAs are within this synthetic library (specified in configure file), name them NCx and assign '0' at 'gene' column of these sgRNAs. This file is used as input for the data processing subpackage after pooled screening experiment and NGS.
 
 id|sequence|gene
 --|--------|----
@@ -169,7 +167,7 @@ sgRNA1|ATCCCCCCCCCCGGGGG|recA
 NC1|TGTGTGTGTGTGTGTGTGTG|0
 ...|...|...
 
-**sgRNA_position.txt**: Flat file of sgRNA position (relative location of sgRNA in the coding region) information in gene **without header line**. The file contains three columns in order of gene name, sgRNAid and the relative position of sgRNA in the gene. Actually, you can also find this file as output of our library design subpackage. This file is also used as input for the data processing subpackage (File 3) after experiment and NGS.
+**sgRNA_position.txt**: Flat file of sgRNA position (relative location of sgRNA in the coding region) information in gene **without header line**. The file contains three columns in order of gene name, sgRNAid and the relative position of sgRNA in the gene. Actually, you can also find this file as output of our library design subpackage. This file is also used as input for the data processing subpackage after pooled screening experiment and NGS.
 
 rsmE|rsmE_9|0.012
 ----|------|-----
